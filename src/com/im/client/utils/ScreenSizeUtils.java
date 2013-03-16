@@ -4,45 +4,45 @@ import java.awt.Toolkit;
 
 /** 
 * CopyRright (c)2013:	InstantMessage                          
-* Project:				InstantMessage                                          
-* Module ID:			3    
-* Comments:  			»ñÈ¡ÆÁÄ»¸ß¶È¿í¶È¹¤¾ßÀà                                          
+* Project:				InstantMessageClient                                          
+* Module ID:			2    
+* Comments:  			è·å–å±å¹•é«˜åº¦å®½åº¦å·¥å…·ç±»                                          
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.utils                         
-* Author£º				Ellery                 
-* Create Date£º			2013-03-16 15:05 
-* Modified By£º			                                        
+* Authorï¼š				Ellery                 
+* Create Dateï¼š			2011-03-16 15:05 
+* Modified Byï¼š			                                        
 * Modified Date:		                                    
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
 public class ScreenSizeUtils {
 	
-	//ÆÁÄ»µÄ¿í¶ÈºÍÆÁÄ»µÄ¸ß¶È
+	//å±å¹•çš„å®½åº¦å’Œå±å¹•çš„é«˜åº¦
 	private int screenWidth = 0;
 	private int screenHeight = 0;
 	
 	/*
-	 * ´ËÀàÊÇËùÓĞ Abstract Window Toolkit Êµ¼ÊÊµÏÖµÄ³éÏó³¬Àà¡£
-	 * Toolkit µÄ×ÓÀà±»ÓÃÓÚ½«¸÷ÖÖ×é¼ş°ó¶¨µ½ÌØ¶¨±¾»ú¹¤¾ß°üÊµÏÖ¡£
-	 * ´ó¶àÊıÓ¦ÓÃ³ÌĞò²»Ó¦Ö±½Óµ÷ÓÃ¸ÃÀàÖĞµÄÈÎºÎ·½·¨¡£
-	 * Toolkit ¶¨ÒåµÄ·½·¨ÊÇÒ»ÖÖ¡°½ºË®¡±£¬½« java.awt °üÖĞÓëÆ½Ì¨ÎŞ¹ØµÄÀàÓëjava.awt.peer ÖĞµÄ¶ÔÓ¦ÎïÁ¬½ÓÆğÀ´¡£
-	 * Toolkit ¶¨ÒåµÄÒ»Ğ©·½·¨ÄÜÖ±½Ó²éÑ¯±¾»ú²Ù×÷ÏµÍ³¡£
+	 * æ­¤ç±»æ˜¯æ‰€æœ‰ Abstract Window Toolkit å®é™…å®ç°çš„æŠ½è±¡è¶…ç±»ã€‚
+	 * Toolkit çš„å­ç±»è¢«ç”¨äºå°†å„ç§ç»„ä»¶ç»‘å®šåˆ°ç‰¹å®šæœ¬æœºå·¥å…·åŒ…å®ç°ã€‚
+	 * å¤§å¤šæ•°åº”ç”¨ç¨‹åºä¸åº”ç›´æ¥è°ƒç”¨è¯¥ç±»ä¸­çš„ä»»ä½•æ–¹æ³•ã€‚
+	 * Toolkit å®šä¹‰çš„æ–¹æ³•æ˜¯ä¸€ç§â€œèƒ¶æ°´â€ï¼Œå°† java.awt åŒ…ä¸­ä¸å¹³å°æ— å…³çš„ç±»ä¸java.awt.peer ä¸­çš„å¯¹åº”ç‰©è¿æ¥èµ·æ¥ã€‚
+	 * Toolkit å®šä¹‰çš„ä¸€äº›æ–¹æ³•èƒ½ç›´æ¥æŸ¥è¯¢æœ¬æœºæ“ä½œç³»ç»Ÿã€‚
 	 */
 	private Toolkit tool = null;
 	
 	public ScreenSizeUtils(){
-		//»ñÈ¡Ä¬ÈÏ¹¤¾ß°ü
+		//è·å–é»˜è®¤å·¥å…·åŒ…
 		tool =  Toolkit.getDefaultToolkit();
 	}
 	
-	//·µ»ØÆÁÄ»µÄ¿í¶È
+	//è¿”å›å±å¹•çš„å®½åº¦
 	public int getScreenWidth(){
 		screenWidth = tool.getScreenSize().width;
 		return screenWidth;
 	}
 	
-	//·µ»ØÆÁÄ»µÄ¸ß¶È
+	//è¿”å›å±å¹•çš„é«˜åº¦
 	public int getScreenHeight(){
 		screenHeight = tool.getScreenSize().height;
 		return screenHeight;

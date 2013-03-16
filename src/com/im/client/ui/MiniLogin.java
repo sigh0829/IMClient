@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -17,14 +18,14 @@ import com.sun.awt.AWTUtilities;
 
 /** 
 * CopyRright (c)2013:	InstantMessage                          
-* Project:				InstantMessage                                          
+* Project:				InstantMessageClient                                          
 * Module ID:			1    
-* Comments:  			Mini°æÓÃ»§µÇÂ½½çÃæ                                           
+* Comments:  			Miniç‰ˆç”¨æˆ·ç™»é™†ç•Œé¢                                           
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.ui                         
-* Author£º				Ellery                 
-* Create Date£º			2013-03-16 14:23 
-* Modified By£º			                                        
+* Authorï¼š				Ellery                 
+* Create Dateï¼š			2011-03-16 14:23 
+* Modified Byï¼š			                                        
 * Modified Date:		                                    
 * Why&What is modified:    
 * Version:				0.1                       
@@ -32,27 +33,39 @@ import com.sun.awt.AWTUtilities;
 @SuppressWarnings("serial")
 public class MiniLogin extends JFrame{
 
-	//´°¿ÚµÄ¿í¶ÈºÍ´°¿ÚµÄ¸ß¶È
+	//çª—å£çš„å®½åº¦å’Œçª—å£çš„é«˜åº¦
 	private int windowWidth = 380;
 	private int windowHeight = 292;
 	
-	//ÆÁÄ»µÄ¿í¶ÈºÍÆÁÄ»µÄ¸ß¶È
+	//å±å¹•çš„å®½åº¦å’Œå±å¹•çš„é«˜åº¦
 	private int screenWidth = 0;
 	private int screenHeight = 0;
 	
-	//´°ÌåÊÇ·ñÍêÈ«²»Í¸Ã÷
-	private boolean isWindowOpaque = false;
+	//çª—ä½“æ˜¯å¦å®Œå…¨ä¸é€æ˜
+	private boolean isWindowOpaque = true;
 	
-	//µÇÂ¼½çÃæ±³¾°Í¼Æ¬
+	//ç™»å½•ç•Œé¢èƒŒæ™¯å›¾ç‰‡
 	private ImageIcon loginbgIcon = GetImageUtils.getImageIcon("images/background/login/login_bg_noon.jpg");
+	//å…³é—­æŒ‰é’®
+	private ImageIcon btn_close_normalIcon = GetImageUtils.getImageIcon("images/common/btn_close_normal.png");
+	//å…³é—­æŒ‰é’®é«˜äº®
+	private ImageIcon btn_close_hoverIcon = GetImageUtils.getImageIcon("images/common/btn_close_hover.png");
+	//å…³é—­æŒ‰é’®è¢«ç‚¹å‡»
+	private ImageIcon btn_close_pressIcon = GetImageUtils.getImageIcon("images/common/btn_close_press.png");
+	//æœ€å°åŒ–
+	private ImageIcon btn_mini_normalIcon = GetImageUtils.getImageIcon("images/common/btn_minimize_normal.png");
+	//æœ€å°åŒ–æŒ‰é’®é«˜äº®
+	private ImageIcon btn_mini_hoverIcon = GetImageUtils.getImageIcon("images/common/btn_minimize_hover.png");
+	//æœ€å°åŒ–æŒ‰é’®è¢«ç‚¹å‡»
+	private ImageIcon btn_mini_pressIcon = GetImageUtils.getImageIcon("images/common/btn_minimize_press.png");
 	
 	public MiniLogin(){
-		//»ñÈ¡ÆÁÄ»¸ß¶È¿í¶È
+		//è·å–å±å¹•é«˜åº¦å®½åº¦
 		ScreenSizeUtils screenSizeUtils = new ScreenSizeUtils();
 		screenWidth = screenSizeUtils.getScreenWidth();
 		screenHeight = screenSizeUtils.getScreenHeight();
 		
-		//³õÊ¼»¯½çÃæ
+		//åˆå§‹åŒ–ç•Œé¢
 		initUI();
 	}
 	
@@ -64,33 +77,53 @@ public class MiniLogin extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setUndecorated(true);
 		
-		//¶¨ÒåÒ»¸öËùÓĞÔ²½Ç¶¼Ê¹ÓÃ double×ø±êÖ¸¶¨µÄ¾ØĞÎ
+		//å®šä¹‰ä¸€ä¸ªæ‰€æœ‰åœ†è§’éƒ½ä½¿ç”¨ doubleåæ ‡æŒ‡å®šçš„çŸ©å½¢
 		Shape shape = new RoundRectangle2D.Double(0, 0, 
 				windowWidth, windowHeight, 6.5D, 6.5D);  
 		AWTUtilities.setWindowShape(this, shape); 
 		
-		//ÅĞ¶Ï´°ÌåÊÇ·ñÍ¸Ã÷
+		//åˆ¤æ–­çª—ä½“æ˜¯å¦é€æ˜
 		if(isWindowOpaque){
-			//ÉèÖÃ´°ÌåÍêÈ«²»Í¸Ã÷
+			//è®¾ç½®çª—ä½“å®Œå…¨ä¸é€æ˜
 			AWTUtilities.setWindowOpaque(this, true);
 		}else {
-			//ÉèÖÃ´°ÌåÍ¸Ã÷¶È£¬È¡Öµ·¶Î§´Ó0µ½1£¬Í¸Ã÷¶ÈÖğ½¥¼õĞ¡
+			//è®¾ç½®çª—ä½“é€æ˜åº¦ï¼Œå–å€¼èŒƒå›´ä»0åˆ°1ï¼Œé€æ˜åº¦é€æ¸å‡å°
 			AWTUtilities.setWindowOpacity(this, 0.8f);
 		}
 		
-		//ÉèÖÃ±³¾°Í¼Æ¬
+		//è®¾ç½®èƒŒæ™¯å›¾ç‰‡
 		JLabel loginbg = new JLabel(loginbgIcon);  
 		loginbg.setBounds(0, 0, windowWidth, windowHeight);
 		
-		//Ìí¼Ó½çÃæ×é¼ş
-		this.add(loginbg);
+		//è®¾ç½®å…³é—­æŒ‰é’®
+		JButton btn_close = new JButton();
+		btn_close.setBounds((windowWidth-30), 0, 30, 20);
+		btn_close.setIcon(btn_close_normalIcon);
+		btn_close.setRolloverIcon(btn_close_hoverIcon);
+		btn_close.setPressedIcon(btn_close_pressIcon);
+		btn_close.setBorderPainted(false);
+		btn_close.setContentAreaFilled(false);
 		
-		//Ìí¼Ó½çÃæÍÏ×§ÒÆ¶¯¼àÌıÆ÷
+		//è®¾ç½®æœ€å°åŒ–æŒ‰é’®
+		JButton btn_mini = new JButton();
+		btn_mini.setBounds((windowWidth-30-30), 0, 30, 20);
+		btn_mini.setIcon(btn_mini_normalIcon);
+		btn_mini.setRolloverIcon(btn_mini_hoverIcon);
+		btn_mini.setPressedIcon(btn_mini_pressIcon);
+		btn_mini.setBorderPainted(false);
+		btn_mini.setContentAreaFilled(false);
+		
+		//æ·»åŠ ç•Œé¢ç»„ä»¶
+		this.setContentPane(loginbg);
+		this.add(btn_close);
+		this.add(btn_mini);
+		
+		//æ·»åŠ ç•Œé¢æ‹–æ‹½ç§»åŠ¨ç›‘å¬å™¨
 		this.addMouseListener(moveWindowListener);
 		this.addMouseMotionListener(moveWindowListener); 
 	}
 	
-	//½çÃæÍÏ×§ÒÆ¶¯¼àÌıÆ÷ÄÚ²¿Àà
+	//ç•Œé¢æ‹–æ‹½ç§»åŠ¨ç›‘å¬å™¨å†…éƒ¨ç±»
 	private MouseAdapter moveWindowListener = new MouseAdapter() {
 
         private Point lastPoint = null;

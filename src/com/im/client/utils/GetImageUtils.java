@@ -6,28 +6,28 @@ import javax.swing.ImageIcon;
 
 /** 
 * CopyRright (c)2013:	InstantMessage                          
-* Project:				InstantMessage                                          
+* Project:				InstantMessageClient                                          
 * Module ID:			3    
-* Comments:  			»ñÈ¡Í¼Æ¬Ïà¹ØĞÅÏ¢¹¤¾ßÀà                                           
+* Comments:  			è·å–å›¾ç‰‡ç›¸å…³ä¿¡æ¯å·¥å…·ç±»                                           
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.utils                         
-* Author£º				Ellery                 
-* Create Date£º			2013-03-16 16:03 
-* Modified By£º			                                        
+* Authorï¼š				Ellery                 
+* Create Dateï¼š			2011-03-16 16:03 
+* Modified Byï¼š			                                        
 * Modified Date:		                                    
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
 public class GetImageUtils {
 
-	//Í¼Æ¬Â·¾¶Ç°×º
+	//å›¾ç‰‡è·¯å¾„å‰ç¼€
 	private static final String IMAGE_URL_PREFIX = "images/";
 	
 	/**
-	 * Description: 	Icon½Ó¿ÚµÄÊµÏÖ£¬¸ù¾İ Image»æÖÆ Icon£¬Ô¤ÔØ¸ù¾İ URL¡¢
-	 * 					ÎÄ¼şÃû»ò×Ö½ÚÊı×é´´½¨µÄÍ¼Ïñ£¬ÒÔ¼àÊÓ¸ÃÍ¼ÏñµÄ¼ÓÔØ×´Ì¬¡£
-	 * @param imgPath:	Í¼Æ¬Êµ¼Ê´æ·ÅÂ·¾¶
-	 * @return Icon£º	icon
+	 * Description: 	Iconæ¥å£çš„å®ç°ï¼Œæ ¹æ® Imageç»˜åˆ¶ Iconï¼Œé¢„è½½æ ¹æ® URLã€
+	 * 					æ–‡ä»¶åæˆ–å­—èŠ‚æ•°ç»„åˆ›å»ºçš„å›¾åƒï¼Œä»¥ç›‘è§†è¯¥å›¾åƒçš„åŠ è½½çŠ¶æ€ã€‚
+	 * @param imgPath:	å›¾ç‰‡å®é™…å­˜æ”¾è·¯å¾„
+	 * @return Iconï¼š	icon
 	 */
 	public static ImageIcon getImageIcon(String imgPath){
 		ImageIcon icon = null;
@@ -35,24 +35,24 @@ public class GetImageUtils {
 			icon = new ImageIcon(imgPath);
 			return icon;
 		}catch (Exception e){
-			System.out.println("ÕÒ²»µ½Í¼Æ¬£º " +imgPath );
+			System.out.println("æ‰¾ä¸åˆ°å›¾ç‰‡ï¼š " +imgPath );
 		}
 		return icon;
 	}
 	
 	/**
-	 * Description:			»ñÈ¡ImageÀàĞÍÍ¼Æ¬
-	 * @param imageName:	Í¼Æ¬Ãû³Æ
-	 * @return Image£º		
+	 * Description:			è·å–Imageç±»å‹å›¾ç‰‡
+	 * @param imageName:	å›¾ç‰‡åç§°
+	 * @return Imageï¼š		
 	 */
     public static Image getImage(String imageName) {
     	return new ImageIcon(getImageURL(imageName)).getImage();
     }
     
     /**
-     * Description:			»ñÈ¡Í¼Æ¬URL
-     * @param imageName:	Í¼Æ¬Ãû³Æ
-     * @return String:		·µ»ØStringÀàĞÍURLµØÖ·
+     * Description:			è·å–å›¾ç‰‡URL
+     * @param imageName:	å›¾ç‰‡åç§°
+     * @return String:		è¿”å›Stringç±»å‹URLåœ°å€
      */
     public static String getImageURL(String imageName) {
         return IMAGE_URL_PREFIX + imageName;
