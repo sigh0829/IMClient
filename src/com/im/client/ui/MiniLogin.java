@@ -1,8 +1,15 @@
 package com.im.client.ui;
 
+import java.awt.AWTException;
+import java.awt.MenuItem;
 import java.awt.Point;
+import java.awt.PopupMenu;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -66,11 +73,27 @@ public class MiniLogin extends JFrame{
 	private ImageIcon user_image_bg_normalIcon = ImageManageUtils.getImageIcon("images/usericon/user_imgbg_normal.png");
 	private ImageIcon user_image_bg_hoverIcon = ImageManageUtils.getImageIcon("images/usericon/user_imgbg_hover.png");
 	//密码框中的键盘
-	private ImageIcon pwd_keyboard_Icon = ImageManageUtils.getImageIcon("images/common/login_pwd_keyboard.png");
+	private ImageIcon pwd_keyboard_Icon = ImageManageUtils.getImageIcon("images/login/btn_loginpwd_keyboard.png");
 	//输入框边框
-	private ImageIcon textfield_borderIcon = ImageManageUtils.getImageIcon("images/common/textfield_border.png");
+	private ImageIcon textfield_borderIcon = ImageManageUtils.getImageIcon("images/login/textfield_border.png");
 	//帐号前面的企鹅
-	private ImageIcon avatarIcon = ImageManageUtils.getImageIcon("images/common/avatar.png");
+	private ImageIcon avatarIcon = ImageManageUtils.getImageIcon("images/login/btn_penguin_avatar.png");
+	//注册新用户按钮
+	private ImageIcon btn_register_normalIcon = ImageManageUtils.getImageIcon("images/login/btn_register_normal.png");
+	//注册新用户按钮高亮
+	private ImageIcon btn_register_hoverIcon = ImageManageUtils.getImageIcon("images/login/btn_register_hover.png");
+	//注册新用户按钮点击
+	private ImageIcon btn_register_pressIcon = ImageManageUtils.getImageIcon("images/login/btn_register_press.png");
+	//注册新用户按钮
+	private ImageIcon btn_forgetPwd_normalIcon = ImageManageUtils.getImageIcon("images/login/btn_forgetPwd_normal.png");
+	//注册新用户按钮高亮
+	private ImageIcon btn_forgetPwd_hoverIcon = ImageManageUtils.getImageIcon("images/login/btn_forgetPwd_hover.png");
+	//注册新用户按钮点击
+	private ImageIcon btn_forgetPwd_pressIcon = ImageManageUtils.getImageIcon("images/login/btn_forgetPwd_press.png");
+	//系统托盘图标
+	private ImageIcon sys_tray_logoIcon = ImageManageUtils.getImageIcon("images/common/sysTrayIcon.png");
+	//系统任务栏图标
+	private ImageIcon taskbar_logoIcon = ImageManageUtils.getImageIcon("images/common/taskBarIcon.png");
 	
 	public MiniLogin(){
 		//获取屏幕高度宽度
@@ -89,6 +112,8 @@ public class MiniLogin extends JFrame{
 				(screenHeight - windowHeight)/2, windowWidth, windowHeight);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setUndecorated(true);
+
+		this.setIconImage(taskbar_logoIcon.getImage());
 		
 		//定义一个所有圆角都使用 double坐标指定的矩形
 		Shape shape = new RoundRectangle2D.Double(0, 0, 
@@ -103,6 +128,30 @@ public class MiniLogin extends JFrame{
 			//设置窗体透明度，取值范围从0到1，透明度逐渐减小
 			AWTUtilities.setWindowOpacity(this, 0.8f);
 		}
+		
+		//判断系统是否托盘
+		if(SystemTray.isSupported()){  
+		    //创建一个托盘图标对象  
+		    TrayIcon icon = new TrayIcon(sys_tray_logoIcon.getImage());  
+		    //创建弹出菜单  
+		    PopupMenu menu = new PopupMenu();  
+		    //添加一个用于退出的按钮  
+		    MenuItem item = new MenuItem("Exit");  
+		    item.addActionListener(new ActionListener() {  
+		        public void actionPerformed(ActionEvent e) {  
+		            System.exit(0);  
+		        }  
+		    });  
+		    menu.add(item);  
+		    //添加弹出菜单到托盘图标  
+		    icon.setPopupMenu(menu);  
+		    SystemTray tray = SystemTray.getSystemTray();//获取系统托盘  
+		    try {
+				tray.add(icon);//将托盘图表添加到系统托盘  
+			} catch (AWTException e1) {
+				e1.printStackTrace();
+			}
+		} 
 		
 		//设置背景图片
 		JLabel loginbg = new JLabel(loginbgIcon);  
@@ -244,6 +293,24 @@ public class MiniLogin extends JFrame{
 				
 			}
 		});
+
+		//设置注册新用户按钮
+		JButton btn_register = new JButton();
+		btn_register.setBounds(310, 148, 51, 16);
+		btn_register.setIcon(btn_register_normalIcon);
+		btn_register.setRolloverIcon(btn_register_hoverIcon);
+		btn_register.setPressedIcon(btn_register_pressIcon);
+		btn_register.setBorderPainted(false);
+		btn_register.setContentAreaFilled(false);
+		
+		//设置注册新用户按钮
+		JButton btn_forget_password = new JButton();
+		btn_forget_password.setBounds(310, 179, 51, 16);
+		btn_forget_password.setIcon(btn_forgetPwd_normalIcon);
+		btn_forget_password.setRolloverIcon(btn_forgetPwd_hoverIcon);
+		btn_forget_password.setPressedIcon(btn_forgetPwd_pressIcon);
+		btn_forget_password.setBorderPainted(false);
+		btn_forget_password.setContentAreaFilled(false);
 		
 		//添加界面组件
 		this.setContentPane(loginbg);
@@ -256,7 +323,8 @@ public class MiniLogin extends JFrame{
 		this.add(user_field);
 		this.add(pass_textfield_border);
 		this.add(pass_field);
-		
+		this.add(btn_register);
+		this.add(btn_forget_password);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
