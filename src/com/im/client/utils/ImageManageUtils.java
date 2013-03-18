@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
-public class GetImageUtils {
+public class ImageManageUtils {
 
 	//图片路径前缀
 	private static final String IMAGE_URL_PREFIX = "images/";
@@ -45,8 +45,8 @@ public class GetImageUtils {
 	 * @param imageName:	图片名称
 	 * @return Image：		
 	 */
-    public static Image getImage(String imageName) {
-    	return new ImageIcon(getImageURL(imageName)).getImage();
+    public static Image getImage(String imageName, String path) {
+    	return new ImageIcon(getImageURL(imageName, path)).getImage();
     }
     
     /**
@@ -54,7 +54,7 @@ public class GetImageUtils {
      * @param imageName:	图片名称
      * @return String:		返回String类型URL地址
      */
-    public static String getImageURL(String imageName) {
-        return IMAGE_URL_PREFIX + imageName;
+    public static String getImageURL(String imageName, String path) {
+        return IMAGE_URL_PREFIX + path + "/" + imageName;
     }
 }

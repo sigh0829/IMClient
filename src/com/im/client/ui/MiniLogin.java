@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.ImageIcon;
@@ -12,7 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import com.im.client.utils.GetImageUtils;
+import com.im.client.component.NewPasswordField;
+import com.im.client.component.NewTextField;
+import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.sun.awt.AWTUtilities;
 
@@ -45,19 +48,29 @@ public class MiniLogin extends JFrame{
 	private boolean isWindowOpaque = true;
 	
 	//登录界面背景图片
-	private ImageIcon loginbgIcon = GetImageUtils.getImageIcon("images/background/login/login_bg_noon.jpg");
+	private ImageIcon loginbgIcon = ImageManageUtils.getImageIcon("images/background/login/login_bg_noon.jpg");
 	//关闭按钮
-	private ImageIcon btn_close_normalIcon = GetImageUtils.getImageIcon("images/common/btn_close_normal.png");
+	private ImageIcon btn_close_normalIcon = ImageManageUtils.getImageIcon("images/common/btn_close_normal.png");
 	//关闭按钮高亮
-	private ImageIcon btn_close_hoverIcon = GetImageUtils.getImageIcon("images/common/btn_close_hover.png");
+	private ImageIcon btn_close_hoverIcon = ImageManageUtils.getImageIcon("images/common/btn_close_hover.png");
 	//关闭按钮被点击
-	private ImageIcon btn_close_pressIcon = GetImageUtils.getImageIcon("images/common/btn_close_press.png");
+	private ImageIcon btn_close_pressIcon = ImageManageUtils.getImageIcon("images/common/btn_close_press.png");
 	//最小化
-	private ImageIcon btn_mini_normalIcon = GetImageUtils.getImageIcon("images/common/btn_minimize_normal.png");
+	private ImageIcon btn_mini_normalIcon = ImageManageUtils.getImageIcon("images/common/btn_minimize_normal.png");
 	//最小化按钮高亮
-	private ImageIcon btn_mini_hoverIcon = GetImageUtils.getImageIcon("images/common/btn_minimize_hover.png");
+	private ImageIcon btn_mini_hoverIcon = ImageManageUtils.getImageIcon("images/common/btn_minimize_hover.png");
 	//最小化按钮被点击
-	private ImageIcon btn_mini_pressIcon = GetImageUtils.getImageIcon("images/common/btn_minimize_press.png");
+	private ImageIcon btn_mini_pressIcon = ImageManageUtils.getImageIcon("images/common/btn_minimize_press.png");
+	//用户头像
+	private ImageIcon user_imageIcon = ImageManageUtils.getImageIcon("images/usericon/user_image.png");
+	private ImageIcon user_image_bg_normalIcon = ImageManageUtils.getImageIcon("images/usericon/user_imgbg_normal.png");
+	private ImageIcon user_image_bg_hoverIcon = ImageManageUtils.getImageIcon("images/usericon/user_imgbg_hover.png");
+	//密码框中的键盘
+	private ImageIcon pwd_keyboard_Icon = ImageManageUtils.getImageIcon("images/common/login_pwd_keyboard.png");
+	//输入框边框
+	private ImageIcon textfield_borderIcon = ImageManageUtils.getImageIcon("images/common/textfield_border.png");
+	//帐号前面的企鹅
+	private ImageIcon avatarIcon = ImageManageUtils.getImageIcon("images/common/avatar.png");
 	
 	public MiniLogin(){
 		//获取屏幕高度宽度
@@ -113,10 +126,137 @@ public class MiniLogin extends JFrame{
 		btn_mini.setBorderPainted(false);
 		btn_mini.setContentAreaFilled(false);
 		
+		//设置头像
+		//头像边框
+		JLabel user_image_normalbg = new JLabel(user_image_bg_normalIcon);
+		user_image_normalbg.setBounds(20, 140, 84, 84);
+		//头像图片
+		JLabel user_image = new JLabel(user_imageIcon);
+		user_image.setBounds(22, 142, 80, 80);
+		//头像边框高亮
+		final JLabel user_image_hoverbg = new JLabel(user_image_bg_hoverIcon);
+		user_image_hoverbg.setBounds(20, 140, 84, 84);
+		user_image_hoverbg.setVisible(false);
+		user_image.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("ddddddddddddd");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				user_image_hoverbg.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				user_image_hoverbg.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		//设置账户输入框的边框
+		final JLabel user_textfield_border = new JLabel(textfield_borderIcon);
+		user_textfield_border.setBorder(null);
+		user_textfield_border.setBounds(110, 141, 192, 26);
+		user_textfield_border.setVisible(false);
+
+		//设置帐号输入框
+		final NewTextField user_field = new NewTextField(avatarIcon);
+		user_field.setBorder(null);
+		user_field.setBounds(111, 142, 190, 24);
+		user_field.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("ddddddddddddd");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				user_textfield_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				user_textfield_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		//密码框边框
+		final JLabel pass_textfield_border = new JLabel(textfield_borderIcon);
+		pass_textfield_border.setBorder(null);
+		pass_textfield_border.setBounds(110, 171, 192, 26);
+		pass_textfield_border.setVisible(false);
+		
+		//密码框
+		final NewPasswordField pass_field = new NewPasswordField(pwd_keyboard_Icon);
+		pass_field.setBorder(null);
+		pass_field.setBounds(111, 172, 190, 24);
+		pass_field.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("ddddddddddddd");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				pass_textfield_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+				pass_textfield_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
 		//添加界面组件
 		this.setContentPane(loginbg);
 		this.add(btn_close);
 		this.add(btn_mini);
+		this.add(user_image_normalbg);
+		this.add(user_image_hoverbg);
+		this.add(user_image);
+		this.add(user_textfield_border);
+		this.add(user_field);
+		this.add(pass_textfield_border);
+		this.add(pass_field);
+		
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
