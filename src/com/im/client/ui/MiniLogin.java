@@ -109,16 +109,59 @@ public class MiniLogin extends JFrame{
 	private ImageIcon btn_login_cancel_pressIcon = ImageManageUtils.getImageIcon("images/login/button_red_press.png");
 	//登录加载图标
 	private ImageIcon login_loadingIcon = ImageManageUtils.getImageIcon("images/login/login_loading.gif");
+
+	//获取屏幕高度宽度
+	private ScreenSizeUtils screenSizeUtils = null;
+	//定义一个所有圆角都使用 double坐标指定的矩形
+	private Shape shape = null;
+    //获取系统托盘  
+	private SystemTray systemTray = null; 
+    //托盘图标对象  
+    private TrayIcon trayIcon = null;
+	//背景图片
+    private JLabel login_bg = null;
+	private JLabel login_bg_texture = null; 
+	//关闭按钮
+	private JButton btn_close = null;
+	//最小化按钮
+	private JButton btn_mini = null;
+	//头像边框
+	private JLabel user_image_normalbg = null;
+	//头像图片
+	private JLabel user_image = null;
+	//头像边框高亮
+	private JLabel user_image_hoverbg = null;
+	//账户输入框的边框
+	private JLabel user_textfield_border = null;
+	//帐号输入框
+	private NewTextField user_field = null;
+	//密码框边框
+	private JLabel pass_textfield_border = null;
+	//密码框
+	private NewPasswordField password_field = null;
+	//注册新用户按钮
+	private JButton btn_register = null;
+	//忘记密码按钮
+	private JButton btn_forget_password = null;
+	//记住密码复选框
+	private NewCheckbox remember_password = null;
+	//自动登录复选框
+	private NewCheckbox automatic_login = null;
+	//加载图片
+	private JLabel login_loading = null;
+	//登录取消按钮
+	private JButton btn_login_cancel = null;
+	//登录按钮
+	private NewButton btn_login = null;
 	
 	//颜色灰
 	private Color BLACK = new Color(64, 64, 64);
-	
 	//字体
 	private Font FONT_12_BOLD = new Font("宋体", 0, 12);
 	
 	public MiniLogin(){
 		//获取屏幕高度宽度
-		ScreenSizeUtils screenSizeUtils = new ScreenSizeUtils();
+		screenSizeUtils = new ScreenSizeUtils();
 		screenWidth = screenSizeUtils.getScreenWidth();
 		screenHeight = screenSizeUtils.getScreenHeight();
 		
@@ -137,7 +180,7 @@ public class MiniLogin extends JFrame{
 		this.setIconImage(taskbar_logoIcon.getImage());
 		
 		//定义一个所有圆角都使用 double坐标指定的矩形
-		Shape shape = new RoundRectangle2D.Double(0, 0, 
+		shape = new RoundRectangle2D.Double(0, 0, 
 				windowWidth, windowHeight, 6.5D, 6.5D);  
 		AWTUtilities.setWindowShape(this, shape); 
 		
@@ -151,9 +194,9 @@ public class MiniLogin extends JFrame{
 		}
 
 	    //获取系统托盘  
-	    final SystemTray systemTray = SystemTray.getSystemTray();
+	    systemTray = SystemTray.getSystemTray();
 	    //创建一个托盘图标对象  
-	    final TrayIcon trayIcon = new TrayIcon(sys_tray_logoIcon.getImage());  
+	    trayIcon = new TrayIcon(sys_tray_logoIcon.getImage());  
 		//判断系统是否托盘
 		if(SystemTray.isSupported()){  
 		    //创建弹出菜单  
@@ -176,13 +219,13 @@ public class MiniLogin extends JFrame{
 		} 
 		
 		//设置背景图片
-		JLabel login_bg = new JLabel(login_bg_Icon);  
+		login_bg = new JLabel(login_bg_Icon);  
 		login_bg.setBounds(0, 0, windowWidth, windowHeight);
-		JLabel login_bg_texture = new JLabel(login_bg_textureIcon);  
+		login_bg_texture = new JLabel(login_bg_textureIcon);  
 		login_bg_texture.setBounds(0, 0, windowWidth, windowHeight);
 		
 		//设置关闭按钮
-		JButton btn_close = new JButton();
+		btn_close = new JButton();
 		btn_close.setBounds((windowWidth-30), 0, 30, 20);
 		btn_close.setIcon(btn_close_normalIcon);
 		btn_close.setRolloverIcon(btn_close_hoverIcon);
@@ -197,7 +240,7 @@ public class MiniLogin extends JFrame{
         });
 		
 		//设置最小化按钮
-		JButton btn_mini = new JButton();
+		btn_mini = new JButton();
 		btn_mini.setBounds((windowWidth-30-30), 0, 30, 20);
 		btn_mini.setIcon(btn_mini_normalIcon);
 		btn_mini.setRolloverIcon(btn_mini_hoverIcon);
@@ -207,13 +250,13 @@ public class MiniLogin extends JFrame{
 		
 		//设置头像
 		//头像边框
-		JLabel user_image_normalbg = new JLabel(user_image_bg_normalIcon);
+		user_image_normalbg = new JLabel(user_image_bg_normalIcon);
 		user_image_normalbg.setBounds(20, 140, 84, 84);
 		//头像图片
-		JLabel user_image = new JLabel(user_imageIcon);
+		user_image = new JLabel(user_imageIcon);
 		user_image.setBounds(22, 142, 80, 80);
 		//头像边框高亮
-		final JLabel user_image_hoverbg = new JLabel(user_image_bg_hoverIcon);
+		user_image_hoverbg = new JLabel(user_image_bg_hoverIcon);
 		user_image_hoverbg.setBounds(20, 140, 84, 84);
 		user_image_hoverbg.setVisible(false);
 		user_image.addMouseListener(new MouseListener() {
@@ -246,13 +289,13 @@ public class MiniLogin extends JFrame{
 		});
 		
 		//设置账户输入框的边框
-		final JLabel user_textfield_border = new JLabel(textfield_borderIcon);
+		user_textfield_border = new JLabel(textfield_borderIcon);
 		user_textfield_border.setBorder(null);
 		user_textfield_border.setBounds(110, 141, 192, 26);
 		user_textfield_border.setVisible(false);
 
 		//设置帐号输入框
-		final NewTextField user_field = new NewTextField(avatarIcon);
+		user_field = new NewTextField(avatarIcon);
 		user_field.setBorder(null);
 		user_field.setBounds(111, 142, 190, 24);
 		user_field.addMouseListener(new MouseListener() {
@@ -285,16 +328,16 @@ public class MiniLogin extends JFrame{
 		});
 		
 		//密码框边框
-		final JLabel pass_textfield_border = new JLabel(textfield_borderIcon);
+		pass_textfield_border = new JLabel(textfield_borderIcon);
 		pass_textfield_border.setBorder(null);
 		pass_textfield_border.setBounds(110, 171, 192, 26);
 		pass_textfield_border.setVisible(false);
 		
 		//密码框
-		final NewPasswordField pass_field = new NewPasswordField(pwd_keyboard_Icon);
-		pass_field.setBorder(null);
-		pass_field.setBounds(111, 172, 190, 24);
-		pass_field.addMouseListener(new MouseListener() {
+		password_field = new NewPasswordField(pwd_keyboard_Icon);
+		password_field.setBorder(null);
+		password_field.setBounds(111, 172, 190, 24);
+		password_field.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -325,7 +368,7 @@ public class MiniLogin extends JFrame{
 		});
 
 		//设置注册新用户按钮
-		JButton btn_register = new JButton();
+		btn_register = new JButton();
 		btn_register.setBounds(310, 148, 51, 16);
 		btn_register.setIcon(btn_register_normalIcon);
 		btn_register.setRolloverIcon(btn_register_hoverIcon);
@@ -334,7 +377,7 @@ public class MiniLogin extends JFrame{
 		btn_register.setContentAreaFilled(false);
 		
 		//设置忘记密码按钮
-		JButton btn_forget_password = new JButton();
+		btn_forget_password = new JButton();
 		btn_forget_password.setBounds(310, 179, 51, 16);
 		btn_forget_password.setIcon(btn_forgetPwd_normalIcon);
 		btn_forget_password.setRolloverIcon(btn_forgetPwd_hoverIcon);
@@ -343,28 +386,26 @@ public class MiniLogin extends JFrame{
 		btn_forget_password.setContentAreaFilled(false);
 		
 		//记住密码复选框
-		NewCheckbox remember_password = new NewCheckbox("记住密码");
+		remember_password = new NewCheckbox("记住密码");
 		remember_password.setBounds(105, 203, 80, 13);
 		remember_password.setFont(FONT_12_BOLD);
 		remember_password.setForeground(BLACK);
 		remember_password.setOpaque(false);
 		
 		//自动登录复选框
-		NewCheckbox automatic_login = new NewCheckbox("自动登录");
+		automatic_login = new NewCheckbox("自动登录");
 		automatic_login.setBounds(180, 203, 80, 13);
 		automatic_login.setFont(FONT_12_BOLD);
 		automatic_login.setForeground(BLACK);
 		automatic_login.setOpaque(false);
 		
 		//登录加载图片
-		final JLabel login_loading = new JLabel(login_loadingIcon);  
+		login_loading = new JLabel(login_loadingIcon);  
 		login_loading.setBounds(1, 240, 377, 2);
 		login_loading.setVisible(false);
 
-		//声明登录取消按钮
-		final JButton btn_login_cancel = new JButton("取消");
 		//设置登录按钮
-		final NewButton btn_login = new NewButton("登录");
+		btn_login = new NewButton("登录");
 		btn_login.setBounds(71, 245, 237, 48);
 		btn_login.setBorderPainted(false);
 		btn_login.setContentAreaFilled(false);
@@ -403,6 +444,7 @@ public class MiniLogin extends JFrame{
 		});
 		
 		//设置登录取消按钮
+		btn_login_cancel = new JButton("取消");
 		btn_login_cancel.setBounds(71, 245, 237, 48);
 		btn_login_cancel.setIcon(btn_login_cancelIcon);
 		btn_login_cancel.setRolloverIcon(btn_login_cancel_hoverIcon);
@@ -455,7 +497,7 @@ public class MiniLogin extends JFrame{
 		this.add(user_textfield_border);
 		this.add(user_field);
 		this.add(pass_textfield_border);
-		this.add(pass_field);
+		this.add(password_field);
 		this.add(btn_register);
 		this.add(btn_forget_password);
 		this.add(remember_password);
