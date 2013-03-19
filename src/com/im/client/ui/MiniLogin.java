@@ -109,6 +109,18 @@ public class MiniLogin extends JFrame{
 	private ImageIcon btn_login_cancel_pressIcon = ImageManageUtils.getImageIcon("images/login/button_red_press.png");
 	//登录加载图标
 	private ImageIcon login_loadingIcon = ImageManageUtils.getImageIcon("images/login/login_loading.gif");
+	//多帐户登录图标
+	private ImageIcon multiple_accounts_normalIcon = ImageManageUtils.getImageIcon("images/login/multiple_accounts_normal.png");
+	//多帐户登录图标高亮
+	private ImageIcon multiple_accounts_hoverIcon = ImageManageUtils.getImageIcon("images/login/multiple_accounts_hover.png");
+	//多帐户登录图标点击
+	private ImageIcon multiple_accounts_pressIcon = ImageManageUtils.getImageIcon("images/login/multiple_accounts_press.png");
+	//帐号闪登图标
+	private ImageIcon quick_login_normalIcon = ImageManageUtils.getImageIcon("images/login/quick_login_normal.png");
+	//帐号闪登图标高亮
+	private ImageIcon quick_login_hoverIcon = ImageManageUtils.getImageIcon("images/login/quick_login_hover.png");
+	//帐号闪登图标点击
+	private ImageIcon quick_login_pressIcon = ImageManageUtils.getImageIcon("images/login/quick_login_press.png");
 
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -153,6 +165,10 @@ public class MiniLogin extends JFrame{
 	private JButton btn_login_cancel = null;
 	//登录按钮
 	private NewButton btn_login = null;
+	//多帐户登录
+	private JButton btn_multiple_accounts = null;
+	//闪登
+	private JButton btn_quick_login = null;
 	
 	//颜色灰
 	private Color BLACK = new Color(64, 64, 64);
@@ -440,6 +456,8 @@ public class MiniLogin extends JFrame{
 				btn_login.setVisible(false);
 				btn_login_cancel.setVisible(true);
 				login_loading.setVisible(true);
+				btn_multiple_accounts.setVisible(false);
+				btn_quick_login.setVisible(false);
 			}
 		});
 		
@@ -484,6 +502,80 @@ public class MiniLogin extends JFrame{
 				btn_login.setVisible(true);
 				btn_login_cancel.setVisible(false);
 				login_loading.setVisible(false);
+				btn_multiple_accounts.setVisible(true);
+				btn_quick_login.setVisible(true);
+			}
+		});
+		
+		//设置多帐户登录按钮
+		btn_multiple_accounts = new JButton();
+		btn_multiple_accounts.setBounds(0, 252, 40, 40);
+		btn_multiple_accounts.setIcon(multiple_accounts_normalIcon);
+		btn_multiple_accounts.setRolloverIcon(multiple_accounts_hoverIcon);
+		btn_multiple_accounts.setPressedIcon(multiple_accounts_pressIcon);
+		btn_multiple_accounts.setBorderPainted(false);
+		btn_multiple_accounts.setContentAreaFilled(false);
+		btn_multiple_accounts.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("ddddddddddddd");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+								
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		//设置闪登按钮
+		btn_quick_login = new JButton();
+		btn_quick_login.setBounds(340, 252, 40, 40);
+		btn_quick_login.setIcon(quick_login_normalIcon);
+		btn_quick_login.setRolloverIcon(quick_login_hoverIcon);
+		btn_quick_login.setPressedIcon(quick_login_pressIcon);
+		btn_quick_login.setBorderPainted(false);
+		btn_quick_login.setContentAreaFilled(false);
+		btn_quick_login.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("ddddddddddddd");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+								
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
 			}
 		});
 		
@@ -505,6 +597,8 @@ public class MiniLogin extends JFrame{
 		this.add(login_loading);
 		this.add(btn_login);
 		this.add(btn_login_cancel);
+		this.add(btn_multiple_accounts);
+		this.add(btn_quick_login);
 		login_bg.add(login_bg_texture);
 		
 		//添加界面拖拽移动监听器
