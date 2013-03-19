@@ -1,6 +1,8 @@
 package com.im.client.ui;
 
 import java.awt.AWTException;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.MenuItem;
 import java.awt.Point;
 import java.awt.PopupMenu;
@@ -19,7 +21,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
+import com.im.client.component.NewButton;
+import com.im.client.component.NewCheckbox;
 import com.im.client.component.NewPasswordField;
 import com.im.client.component.NewTextField;
 import com.im.client.utils.ImageManageUtils;
@@ -53,9 +58,11 @@ public class MiniLogin extends JFrame{
 	
 	//窗体是否完全不透明
 	private boolean isWindowOpaque = true;
-	
+
 	//登录界面背景图片
-	private ImageIcon loginbgIcon = ImageManageUtils.getImageIcon("images/background/login/login_bg_noon.jpg");
+	private ImageIcon login_bg_Icon = ImageManageUtils.getImageIcon("images/background/login/login_bg_noon.jpg");
+	//登录界面背景材质图片
+	private ImageIcon login_bg_textureIcon = ImageManageUtils.getImageIcon("images/login/bg_texture.png");
 	//关闭按钮
 	private ImageIcon btn_close_normalIcon = ImageManageUtils.getImageIcon("images/common/btn_close_normal.png");
 	//关闭按钮高亮
@@ -94,6 +101,20 @@ public class MiniLogin extends JFrame{
 	private ImageIcon sys_tray_logoIcon = ImageManageUtils.getImageIcon("images/common/sysTrayIcon.png");
 	//系统任务栏图标
 	private ImageIcon taskbar_logoIcon = ImageManageUtils.getImageIcon("images/common/taskBarIcon.png");
+	//登录取消按钮
+	private ImageIcon btn_login_cancelIcon = ImageManageUtils.getImageIcon("images/login/button_red_normal.png");
+	//登录取消按钮高亮
+	private ImageIcon btn_login_cancel_hoverIcon = ImageManageUtils.getImageIcon("images/login/button_red_hover.png");
+	//登录取消按钮点击
+	private ImageIcon btn_login_cancel_pressIcon = ImageManageUtils.getImageIcon("images/login/button_red_press.png");
+	//登录加载图标
+	private ImageIcon login_loadingIcon = ImageManageUtils.getImageIcon("images/login/login_loading.gif");
+	
+	//颜色灰
+	private Color BLACK = new Color(64, 64, 64);
+	
+	//字体
+	private Font FONT_12_BOLD = new Font("宋体", 0, 12);
 	
 	public MiniLogin(){
 		//获取屏幕高度宽度
@@ -128,11 +149,13 @@ public class MiniLogin extends JFrame{
 			//设置窗体透明度，取值范围从0到1，透明度逐渐减小
 			AWTUtilities.setWindowOpacity(this, 0.8f);
 		}
-		
+
+	    //获取系统托盘  
+	    final SystemTray systemTray = SystemTray.getSystemTray();
+	    //创建一个托盘图标对象  
+	    final TrayIcon trayIcon = new TrayIcon(sys_tray_logoIcon.getImage());  
 		//判断系统是否托盘
 		if(SystemTray.isSupported()){  
-		    //创建一个托盘图标对象  
-		    TrayIcon icon = new TrayIcon(sys_tray_logoIcon.getImage());  
 		    //创建弹出菜单  
 		    PopupMenu menu = new PopupMenu();  
 		    //添加一个用于退出的按钮  
@@ -144,18 +167,19 @@ public class MiniLogin extends JFrame{
 		    });  
 		    menu.add(item);  
 		    //添加弹出菜单到托盘图标  
-		    icon.setPopupMenu(menu);  
-		    SystemTray tray = SystemTray.getSystemTray();//获取系统托盘  
+		    trayIcon.setPopupMenu(menu);  
 		    try {
-				tray.add(icon);//将托盘图表添加到系统托盘  
+		    	systemTray.add(trayIcon);//将托盘图表添加到系统托盘  
 			} catch (AWTException e1) {
 				e1.printStackTrace();
 			}
 		} 
 		
 		//设置背景图片
-		JLabel loginbg = new JLabel(loginbgIcon);  
-		loginbg.setBounds(0, 0, windowWidth, windowHeight);
+		JLabel login_bg = new JLabel(login_bg_Icon);  
+		login_bg.setBounds(0, 0, windowWidth, windowHeight);
+		JLabel login_bg_texture = new JLabel(login_bg_textureIcon);  
+		login_bg_texture.setBounds(0, 0, windowWidth, windowHeight);
 		
 		//设置关闭按钮
 		JButton btn_close = new JButton();
@@ -165,6 +189,12 @@ public class MiniLogin extends JFrame{
 		btn_close.setPressedIcon(btn_close_pressIcon);
 		btn_close.setBorderPainted(false);
 		btn_close.setContentAreaFilled(false);
+		btn_close.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	systemTray.remove(trayIcon);
+                System.exit(0);
+            }
+        });
 		
 		//设置最小化按钮
 		JButton btn_mini = new JButton();
@@ -303,7 +333,7 @@ public class MiniLogin extends JFrame{
 		btn_register.setBorderPainted(false);
 		btn_register.setContentAreaFilled(false);
 		
-		//设置注册新用户按钮
+		//设置忘记密码按钮
 		JButton btn_forget_password = new JButton();
 		btn_forget_password.setBounds(310, 179, 51, 16);
 		btn_forget_password.setIcon(btn_forgetPwd_normalIcon);
@@ -312,8 +342,111 @@ public class MiniLogin extends JFrame{
 		btn_forget_password.setBorderPainted(false);
 		btn_forget_password.setContentAreaFilled(false);
 		
+		//记住密码复选框
+		NewCheckbox remember_password = new NewCheckbox("记住密码");
+		remember_password.setBounds(105, 203, 80, 13);
+		remember_password.setFont(FONT_12_BOLD);
+		remember_password.setForeground(BLACK);
+		remember_password.setOpaque(false);
+		
+		//自动登录复选框
+		NewCheckbox automatic_login = new NewCheckbox("自动登录");
+		automatic_login.setBounds(180, 203, 80, 13);
+		automatic_login.setFont(FONT_12_BOLD);
+		automatic_login.setForeground(BLACK);
+		automatic_login.setOpaque(false);
+		
+		//登录加载图片
+		final JLabel login_loading = new JLabel(login_loadingIcon);  
+		login_loading.setBounds(1, 240, 377, 2);
+		login_loading.setVisible(false);
+
+		//声明登录取消按钮
+		final JButton btn_login_cancel = new JButton("取消");
+		//设置登录按钮
+		final NewButton btn_login = new NewButton("登录");
+		btn_login.setBounds(71, 245, 237, 48);
+		btn_login.setBorderPainted(false);
+		btn_login.setContentAreaFilled(false);
+		btn_login.setFont(FONT_12_BOLD);
+		//设置文字在按钮水平垂直上的位置
+		btn_login.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn_login.setVerticalTextPosition(SwingConstants.CENTER);
+		btn_login.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("ddddddddddddd");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+								
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btn_login.setVisible(false);
+				btn_login_cancel.setVisible(true);
+				login_loading.setVisible(true);
+			}
+		});
+		
+		//设置登录取消按钮
+		btn_login_cancel.setBounds(71, 245, 237, 48);
+		btn_login_cancel.setIcon(btn_login_cancelIcon);
+		btn_login_cancel.setRolloverIcon(btn_login_cancel_hoverIcon);
+		btn_login_cancel.setPressedIcon(btn_login_cancel_pressIcon);
+		btn_login_cancel.setBorderPainted(false);
+		btn_login_cancel.setContentAreaFilled(false);
+		btn_login_cancel.setFont(FONT_12_BOLD);
+		//设置文字在按钮水平垂直上的位置
+		btn_login_cancel.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn_login_cancel.setVerticalTextPosition(SwingConstants.CENTER);
+		//默认不显示
+		btn_login_cancel.setVisible(false);
+		btn_login_cancel.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("ddddddddddddd");
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+								
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btn_login.setVisible(true);
+				btn_login_cancel.setVisible(false);
+				login_loading.setVisible(false);
+			}
+		});
+		
 		//添加界面组件
-		this.setContentPane(loginbg);
+		this.setContentPane(login_bg);
 		this.add(btn_close);
 		this.add(btn_mini);
 		this.add(user_image_normalbg);
@@ -325,6 +458,12 @@ public class MiniLogin extends JFrame{
 		this.add(pass_field);
 		this.add(btn_register);
 		this.add(btn_forget_password);
+		this.add(remember_password);
+		this.add(automatic_login);
+		this.add(login_loading);
+		this.add(btn_login);
+		this.add(btn_login_cancel);
+		login_bg.add(login_bg_texture);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);

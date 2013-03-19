@@ -17,7 +17,7 @@ import com.im.client.utils.ImageManageUtils;
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
 * Module ID:			1    
-* Comments:  			Mini版用户登陆界面                                           
+* Comments:  			重写JTextField                           
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                        
 * Author：				Ellery                 
