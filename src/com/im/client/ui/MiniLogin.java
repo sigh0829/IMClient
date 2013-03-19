@@ -121,6 +121,12 @@ public class MiniLogin extends JFrame{
 	private ImageIcon quick_login_hoverIcon = ImageManageUtils.getImageIcon("images/login/quick_login_hover.png");
 	//帐号闪登图标点击
 	private ImageIcon quick_login_pressIcon = ImageManageUtils.getImageIcon("images/login/quick_login_press.png");
+	//设置按钮
+	private ImageIcon btn_set_normalIcon = ImageManageUtils.getImageIcon("images/common/btn_set_normal.png");
+	//设置按钮高亮
+	private ImageIcon btn_set_hoverIcon = ImageManageUtils.getImageIcon("images/common/btn_set_hover.png");
+	//设置按钮被点击
+	private ImageIcon btn_set_pressIcon = ImageManageUtils.getImageIcon("images/common/btn_set_press.png");
 
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -137,6 +143,8 @@ public class MiniLogin extends JFrame{
 	private JButton btn_close = null;
 	//最小化按钮
 	private JButton btn_mini = null;
+	//设置按钮
+	private JButton btn_set = null;
 	//头像边框
 	private JLabel user_image_normalbg = null;
 	//头像图片
@@ -254,7 +262,7 @@ public class MiniLogin extends JFrame{
                 System.exit(0);
             }
         });
-		
+
 		//设置最小化按钮
 		btn_mini = new JButton();
 		btn_mini.setBounds((windowWidth-30-30), 0, 30, 20);
@@ -263,6 +271,15 @@ public class MiniLogin extends JFrame{
 		btn_mini.setPressedIcon(btn_mini_pressIcon);
 		btn_mini.setBorderPainted(false);
 		btn_mini.setContentAreaFilled(false);
+		
+		//设置按钮
+		btn_set = new JButton();
+		btn_set.setBounds((windowWidth-30-30-28), 0, 28, 20);
+		btn_set.setIcon(btn_set_normalIcon);
+		btn_set.setRolloverIcon(btn_set_hoverIcon);
+		btn_set.setPressedIcon(btn_set_pressIcon);
+		btn_set.setBorderPainted(false);
+		btn_set.setContentAreaFilled(false);
 		
 		//设置头像
 		//头像边框
@@ -583,6 +600,7 @@ public class MiniLogin extends JFrame{
 		this.setContentPane(login_bg);
 		this.add(btn_close);
 		this.add(btn_mini);
+		this.add(btn_set);
 		this.add(user_image_normalbg);
 		this.add(user_image_hoverbg);
 		this.add(user_image);
