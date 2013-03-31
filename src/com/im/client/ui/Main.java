@@ -72,6 +72,18 @@ public class Main extends JFrame{
 	private ImageIcon btn_mini_hoverIcon = ImageManageUtils.getImageIcon("images/common/btn_minimize_hover.png");
 	//最小化按钮被点击
 	private ImageIcon btn_mini_pressIcon = ImageManageUtils.getImageIcon("images/common/btn_minimize_press.png");
+	//皮肤按钮
+	private ImageIcon btn_skin_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/btn_skin_normal.png");
+	//皮肤按钮高亮
+	private ImageIcon btn_skin_hoverIcon = ImageManageUtils.getImageIcon("images/frame/main/btn_skin_highlight.png");
+	//皮肤按钮被点击
+	private ImageIcon btn_skin_pressIcon = ImageManageUtils.getImageIcon("images/frame/main/btn_skin_press.png");
+	//头像边框高亮
+	private ImageIcon user_image_border_highlightIcon = ImageManageUtils.getImageIcon("images/frame/main/user_imgbg_hightlight.png");
+	//头像边框
+	private ImageIcon user_image_border_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/user_imgbg_normal.png");
+	//用户头像
+	private ImageIcon user_imageIcon = ImageManageUtils.getImageIcon("images/usericon/user_image.png");
 	
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -89,6 +101,14 @@ public class Main extends JFrame{
 	private JButton btn_mini = null;
 	//设置标题栏
 	private JLabel title_main = null;
+	//设置皮肤按钮
+	private JButton btn_skin = null;
+	//设置头像边框普通
+	private JLabel user_img_normal_border = null; 
+	//设置头像边框高亮
+	private JLabel user_img_hightlight_border = null;
+	//设置头像
+	private JLabel user_image = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -200,12 +220,54 @@ public class Main extends JFrame{
 		title_main.setFont(FONT_12_BOLD);
 		title_main.setForeground(Color.white);
 		title_main.setBounds(9, 4, 57, 17);
+
+		//设置皮肤按钮
+		btn_skin = new JButton();
+		btn_skin.setBounds((windowWidth-30-30-28), 0, 28, 20);
+		btn_skin.setIcon(btn_skin_normalIcon);
+		btn_skin.setRolloverIcon(btn_skin_hoverIcon);
+		btn_skin.setPressedIcon(btn_skin_pressIcon);
+		btn_skin.setBorderPainted(false);
+		btn_skin.setContentAreaFilled(false);
+
+		//设置头像边框普通
+		user_img_normal_border = new JLabel(user_image_border_normalIcon);
+		user_img_normal_border.setBorder(null);
+		user_img_normal_border.setBounds(9, 30, 61, 61);
+		user_img_normal_border.setVisible(true);
+		
+		//设置头像边框高亮
+		user_img_hightlight_border = new JLabel(user_image_border_highlightIcon);
+		user_img_hightlight_border.setBorder(null);
+		user_img_hightlight_border.setBounds(9, 30, 61, 61);
+		user_img_hightlight_border.setVisible(false);
+		
+		//设置头像
+		user_image = new JLabel(user_imageIcon);
+		user_image.setBounds(13,34,53,53);
+		user_image.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("bbbbbbbbbbbb");
+				user_img_hightlight_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("aaaaaaaaaaaaaa");
+				user_img_hightlight_border.setVisible(true);
+			}
+		});
 		
 		//添加组件
 		this.setContentPane(main_bg);
 		this.add(btn_close);
 		this.add(btn_mini);
 		this.add(title_main);
+		this.add(btn_skin);
+		this.add(user_img_hightlight_border);
+		this.add(user_img_normal_border);
+		this.add(user_image);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
