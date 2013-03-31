@@ -27,32 +27,32 @@ public class NewCheckbox extends JCheckBox{
 	@Override
 	public Icon getIcon() {
 		//复选框未被选中时的样式
-		return new ImageIcon("images/login/btn_checkbox_normal.png");
+		return new ImageIcon("images/frame/login/btn_checkbox_normal.png");
 	}
 
 	@Override
 	public Icon getPressedIcon() {
 		//复选框被点击时图片样式
-		return new ImageIcon("images/login/btn_checkbox_press.png");
+		return new ImageIcon("images/frame/login/btn_checkbox_press.png");
 	}
 
 
 	@Override
 	public Icon getRolloverIcon() {
 		//复选框未被选中时高亮
-		return new ImageIcon("images/login/btn_checkbox_hover.png");
+		return new ImageIcon("images/frame/login/btn_checkbox_hover.png");
 	}
 
 	@Override
 	public Icon getRolloverSelectedIcon() {
 		//复选框被选中后高亮
-		return new ImageIcon("images/login/btn_checkbox_selected_hover.png");
+		return new ImageIcon("images/frame/login/btn_checkbox_selected_hover.png");
 	}
 
 	@Override
 	public Icon getSelectedIcon() {
 		//复选框被选中正常样式
-		return new ImageIcon("images/login/btn_checkbox_selected_normal.png");
+		return new ImageIcon("images/frame/login/btn_checkbox_selected_normal.png");
 	}
 	
 }

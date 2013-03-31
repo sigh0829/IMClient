@@ -30,9 +30,9 @@ import com.im.client.utils.ImageManageUtils;
 @SuppressWarnings("serial")
 public class NewTextField extends JTextField {
 
-	private Image backgroundLeftImage = ImageManageUtils.getImage("textfield_bg_left.png", "login");
-	private Image backgroundRightImage = ImageManageUtils.getImage("textfield_bg_right.png", "login");
-	private Image textfield_backgroundImage = ImageManageUtils.getImage("textfield_bg.png", "login");
+	private Image backgroundLeftImage = ImageManageUtils.getImage("textfield_bg_left.png", "frame/login");
+	private Image backgroundRightImage = ImageManageUtils.getImage("textfield_bg_right.png", "frame/login");
+	private Image textfield_backgroundImage = ImageManageUtils.getImage("textfield_bg.png", "frame/login");
 	private Font FONT_13_BOLD = new Font("宋体", 0, 13);
 	//private Font FONT_11_BOLD = new Font("宋体", 0, 11);
 	private Color BLACK = new Color(0,0,0);
