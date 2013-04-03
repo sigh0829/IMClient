@@ -13,6 +13,8 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,9 +26,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.KeyStroke;
 
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
+import com.im.client.utils.WeatherUtils;
 import com.sun.awt.AWTUtilities;
 
 /** 
@@ -117,6 +121,10 @@ public class Main extends JFrame{
 	private ImageIcon user_imonline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/imonline.png");
 	//用户状态-离线
 	private ImageIcon user_imoffline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/imoffline.png");
+	//用户状态-关闭所有声音
+	private ImageIcon user_closeallmusic_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/complete.png");
+	//用户状态-锁定QQ
+	private ImageIcon user_lock_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/lock.png");
 	
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -162,18 +170,42 @@ public class Main extends JFrame{
 	private JMenuItem invisibleItem = null;
 	//状态菜单-离线
 	private JMenuItem imofflineItem = null;
+	//状态菜单-添加状态信息
+	private JMenuItem addStatusItem = null;
+	//状态菜单-关闭所有声音
+	private JMenuItem closeAllMusicItem = null;
+	//状态菜单-锁定QQ
+	private JMenuItem lockItem = null;
+	//状态菜单-系统设置
+	private JMenuItem systemSetItem = null;
+	//状态菜单-我的资料
+	private JMenuItem myProfileItem = null;
+	//状态菜单-我的QQ中心
+	private JMenuItem myCenterItem = null;
+	//设置昵称
+	private JLabel nickName = null;
+	//个性签名
+	private	JLabel sign = null;
+	//天气
+	private JButton btn_weather = null;
+	//当前天气状态
+	private String currentWeatherStatus = "";
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
 	//字体
 	private Font FONT_12_BOLD = new Font("微软雅黑", 1, 12);
 	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
+	private Font FONT_14_NOBOLD = new Font("微软雅黑", 0, 14);
 	
 	public Main(){
 		//获取屏幕高度宽度
 		screenSizeUtils = new ScreenSizeUtils();
 		screenWidth = screenSizeUtils.getScreenWidth();
 		screenHeight = screenSizeUtils.getScreenHeight();
+		
+		//设置天气
+		currentWeatherStatus = "sunny";
 		
 		//初始化界面
 		initUI();
@@ -315,7 +347,8 @@ public class Main extends JFrame{
 		
 		//设置用户状态菜单
 		statusPopupMenu = new JPopupMenu("JPopupMenu"); 
-	    String[] items = {"我在线上", "Q我吧", "离开", "忙碌", "请勿打扰", "隐身", "离线"};  
+	    String[] items = {"我在线上", "Q我吧", "离开", "忙碌", "请勿打扰", "隐身", 
+	    		"离线", "添加状态信息", "关闭所有声音", "锁定QQ", "系统设置...", "我的资料...", "我的QQ中心"};  
         
 	    //下拉菜单-我在线上
         imonlineItem = new JMenuItem(items[0], user_imonline_statusIcon);  
@@ -380,6 +413,63 @@ public class Main extends JFrame{
             }  
         }); 
 
+        //下拉菜单-添加状态信息
+        addStatusItem = new JMenuItem(items[7]);  
+        addStatusItem.setFont(FONT_12_NOBOLD);
+        addStatusItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                //btn_user_status.setIcon(btn_user_imoffline_statusIcon);
+            }  
+        }); 
+        
+        //下拉菜单-关闭所有声音
+        closeAllMusicItem = new JMenuItem(items[8], user_closeallmusic_statusIcon);  
+        closeAllMusicItem.setFont(FONT_12_NOBOLD);
+        closeAllMusicItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                //btn_user_status.setIcon(btn_user_imoffline_statusIcon);
+            }  
+        }); 
+        
+        //下拉菜单-锁定QQ
+        lockItem = new JMenuItem(items[9], user_lock_statusIcon);  
+        lockItem.setFont(FONT_12_NOBOLD);
+        //设置快捷键
+        lockItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK | InputEvent.ALT_MASK));
+        lockItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+            	System.out.println("lock qq ctrl+alt+l");
+            }  
+        }); 
+
+        //下拉菜单-系统设置
+        systemSetItem = new JMenuItem(items[10]);  
+        systemSetItem.setFont(FONT_12_NOBOLD);
+        systemSetItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                //btn_user_status.setIcon(btn_user_imoffline_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-我的资料
+        myProfileItem = new JMenuItem(items[11]);  
+        myProfileItem.setFont(FONT_12_NOBOLD);
+        myProfileItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                //btn_user_status.setIcon(btn_user_imoffline_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-我的QQ中心
+        myCenterItem = new JMenuItem(items[12]);  
+        myCenterItem.setFont(FONT_12_NOBOLD);
+        myCenterItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                //btn_user_status.setIcon(btn_user_imoffline_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单添加条目
         statusPopupMenu.add(imonlineItem);  
         statusPopupMenu.add(qMeItem);  
         statusPopupMenu.add(awayItem);  
@@ -387,6 +477,17 @@ public class Main extends JFrame{
         statusPopupMenu.add(muteItem);  
         statusPopupMenu.add(invisibleItem);  
         statusPopupMenu.add(imofflineItem);  
+        //下拉菜单添加分割线
+        statusPopupMenu.addSeparator(); 
+        statusPopupMenu.add(addStatusItem);
+        statusPopupMenu.addSeparator(); 
+        statusPopupMenu.add(closeAllMusicItem);
+        statusPopupMenu.addSeparator();  
+        statusPopupMenu.add(lockItem); 
+        statusPopupMenu.addSeparator();  
+        statusPopupMenu.add(systemSetItem); 
+        statusPopupMenu.add(myProfileItem);
+        statusPopupMenu.add(myCenterItem);
 		
 		//设置用户状态边框
 		user_stauts_hightlight_border = new JLabel(user_border_statusIcon);
@@ -436,7 +537,32 @@ public class Main extends JFrame{
 				
 			}
 		});
-		
+
+		//设置昵称
+		nickName = new JLabel("蔚蓝de天空");
+		nickName.setFont(FONT_14_NOBOLD);
+		nickName.setBackground(Color.black);
+		nickName.setBounds(115, 37, 75, 17);
+
+		//个性签名
+		sign = new JLabel("请编辑个性签名...");
+		sign.setFont(FONT_12_NOBOLD);
+		sign.setBackground(Color.black);
+		sign.setBounds(75, 51, 229, 25);
+
+		//设置天气按钮
+		btn_weather = new JButton();
+		btn_weather.setBounds(230, 37, 40, 40);
+		btn_weather.setIcon(new WeatherUtils(currentWeatherStatus)
+			.getCurrentWeatherInfo().getWeatherImageIcon());
+		btn_weather.setBorderPainted(false);
+		btn_weather.setContentAreaFilled(false);
+		btn_weather.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("weather");
+			}
+		});
 		
 		//添加组件
 		this.setContentPane(main_bg);
@@ -449,6 +575,9 @@ public class Main extends JFrame{
 		this.add(user_image);
 		this.add(user_stauts_hightlight_border);
 		this.add(btn_user_status);
+		this.add(nickName);
+		this.add(sign);
+		this.add(btn_weather);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);

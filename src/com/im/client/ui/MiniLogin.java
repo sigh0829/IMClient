@@ -644,7 +644,7 @@ public class MiniLogin extends JFrame{
 		loginingIcon.setVisible(false);
 		
 		//正在登录号码
-		loginingAccount = new JLabel("(" + "921728078" + ")");
+		loginingAccount = new JLabel("正在登录(" + "921728078" + ")...");
 		loginingAccount.setBounds(120, 142, 200, 30);
 		loginingAccount.setFont(FONT_14_BOLD);
 		loginingAccount.setForeground(Color.WHITE);
