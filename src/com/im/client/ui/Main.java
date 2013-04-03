@@ -15,12 +15,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
@@ -84,6 +87,36 @@ public class Main extends JFrame{
 	private ImageIcon user_image_border_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/user_imgbg_normal.png");
 	//用户头像
 	private ImageIcon user_imageIcon = ImageManageUtils.getImageIcon("images/usericon/user_image.png");
+	//用户状态边框高亮
+	private ImageIcon user_border_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/statusborder.png");
+	//用户状态按钮-隐身
+	private ImageIcon btn_user_invisible_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/btn_invisible.png");
+	//用户状态按钮-离开
+	private ImageIcon btn_user_away_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/btn_away.png");
+	//用户状态按钮-忙碌
+	private ImageIcon btn_user_busy_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/btn_busy.png");
+	//用户状态按钮-隐身
+	private ImageIcon btn_user_mute_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/btn_mute.png");
+	//用户状态按钮-Q我吧
+	private ImageIcon btn_user_qme_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/btn_qme.png");
+	//用户状态按钮-在线
+	private ImageIcon btn_user_imonline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/btn_imonline.png");
+	//用户状态按钮-离线
+	private ImageIcon btn_user_imoffline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/btn_imoffline.png");
+	//用户状态-隐身
+	private ImageIcon user_invisible_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/invisible.png");
+	//用户状态-离开
+	private ImageIcon user_away_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/away.png");
+	//用户状态-忙碌
+	private ImageIcon user_busy_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/busy.png");
+	//用户状态-隐身
+	private ImageIcon user_mute_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/mute.png");
+	//用户状态-Q我吧
+	private ImageIcon user_qme_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/qme.png");
+	//用户状态-在线
+	private ImageIcon user_imonline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/imonline.png");
+	//用户状态-离线
+	private ImageIcon user_imoffline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/imoffline.png");
 	
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -109,11 +142,32 @@ public class Main extends JFrame{
 	private JLabel user_img_hightlight_border = null;
 	//设置头像
 	private JLabel user_image = null;
+	//设置用户状态边框高亮
+	private JLabel user_stauts_hightlight_border = null;
+	//设置用户状态按钮
+	private JButton btn_user_status = null;
+	//设置用户状态
+    private JPopupMenu statusPopupMenu = null;
+	//状态菜单-我在线上
+	private JMenuItem imonlineItem = null;
+	//状态菜单-Q我吧
+	private JMenuItem qMeItem = null;
+	//状态菜单-离开
+	private JMenuItem awayItem = null;
+	//状态菜单-忙碌
+	private JMenuItem busyItem = null;
+	//状态菜单-请勿打扰
+	private JMenuItem muteItem = null;
+	//状态菜单-隐身
+	private JMenuItem invisibleItem = null;
+	//状态菜单-离线
+	private JMenuItem imofflineItem = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
 	//字体
 	private Font FONT_12_BOLD = new Font("微软雅黑", 1, 12);
+	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
 	
 	public Main(){
 		//获取屏幕高度宽度
@@ -259,6 +313,131 @@ public class Main extends JFrame{
 			}
 		});
 		
+		//设置用户状态菜单
+		statusPopupMenu = new JPopupMenu("JPopupMenu"); 
+	    String[] items = {"我在线上", "Q我吧", "离开", "忙碌", "请勿打扰", "隐身", "离线"};  
+        
+	    //下拉菜单-我在线上
+        imonlineItem = new JMenuItem(items[0], user_imonline_statusIcon);  
+        imonlineItem.setFont(FONT_12_NOBOLD);
+        imonlineItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(btn_user_imonline_statusIcon);
+            }  
+        }); 
+        
+        //下拉菜单-Q我吧
+        qMeItem = new JMenuItem(items[1], user_qme_statusIcon);  
+        qMeItem.setFont(FONT_12_NOBOLD);
+        qMeItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(btn_user_qme_statusIcon);
+            }  
+        });  
+
+        //下拉菜单-离开
+        awayItem = new JMenuItem(items[2], user_away_statusIcon);  
+        awayItem.setFont(FONT_12_NOBOLD);
+        awayItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(btn_user_away_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-忙碌
+        busyItem = new JMenuItem(items[3], user_busy_statusIcon);  
+        busyItem.setFont(FONT_12_NOBOLD);
+        busyItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(btn_user_busy_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-请勿打扰
+        muteItem = new JMenuItem(items[4], user_mute_statusIcon);  
+        muteItem.setFont(FONT_12_NOBOLD);
+        muteItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(btn_user_mute_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-隐身
+        invisibleItem = new JMenuItem(items[5], user_invisible_statusIcon);  
+        invisibleItem.setFont(FONT_12_NOBOLD);
+        invisibleItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(btn_user_invisible_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-离线
+        imofflineItem = new JMenuItem(items[6], user_imoffline_statusIcon);  
+        imofflineItem.setFont(FONT_12_NOBOLD);
+        imofflineItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(btn_user_imoffline_statusIcon);
+            }  
+        }); 
+
+        statusPopupMenu.add(imonlineItem);  
+        statusPopupMenu.add(qMeItem);  
+        statusPopupMenu.add(awayItem);  
+        statusPopupMenu.add(busyItem);  
+        statusPopupMenu.add(muteItem);  
+        statusPopupMenu.add(invisibleItem);  
+        statusPopupMenu.add(imofflineItem);  
+		
+		//设置用户状态边框
+		user_stauts_hightlight_border = new JLabel(user_border_statusIcon);
+		user_stauts_hightlight_border.setBorder(null);
+		user_stauts_hightlight_border.setBounds(75, 34, 36, 22);
+		user_stauts_hightlight_border.setVisible(false);
+        
+        //设置用户状态
+		btn_user_status = new JButton();
+		btn_user_status.setBounds(78, 39, 30, 11);
+		btn_user_status.setIcon(btn_user_imonline_statusIcon);
+		btn_user_status.setBorderPainted(false);
+		btn_user_status.setContentAreaFilled(false);
+		btn_user_status.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                if(statusPopupMenu.getSubElements().length != 0) {  
+                	//在组件调用者的坐标空间中的位置 X、Y 显示弹出菜单
+                	statusPopupMenu.show(Main.this, 75, 61);  
+                    //请求此 Component 获取输入焦点
+                	statusPopupMenu.requestFocus();  
+                }  
+            }  
+        });  
+		btn_user_status.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				user_stauts_hightlight_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				user_stauts_hightlight_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		
+		
 		//添加组件
 		this.setContentPane(main_bg);
 		this.add(btn_close);
@@ -268,6 +447,8 @@ public class Main extends JFrame{
 		this.add(user_img_hightlight_border);
 		this.add(user_img_normal_border);
 		this.add(user_image);
+		this.add(user_stauts_hightlight_border);
+		this.add(btn_user_status);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
