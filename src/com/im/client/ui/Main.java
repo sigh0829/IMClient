@@ -66,7 +66,21 @@ public class Main extends JFrame{
 	//系统任务栏图标
 	private ImageIcon taskbar_logoIcon = ImageManageUtils.getImageIcon("images/common/taskBarIcon.png");
 	//系统托盘图标
-	private ImageIcon sys_tray_logoIcon = ImageManageUtils.getImageIcon("images/common/sysTrayIcon.png");
+	private ImageIcon sys_tray_logoIcon = ImageManageUtils.getImageIcon("images/common/systemtray/sysTrayIcon.png");
+	//系统托盘图标-away
+	private ImageIcon sys_tray_awayIcon = ImageManageUtils.getImageIcon("images/common/systemtray/male/tray_away.png");
+	//系统托盘图标-busy
+	private ImageIcon sys_tray_busyIcon = ImageManageUtils.getImageIcon("images/common/systemtray/male/tray_busy.png");
+	//系统托盘图标-imoffline
+	private ImageIcon sys_tray_imofflineIcon = ImageManageUtils.getImageIcon("images/common/systemtray/male/tray_imoffline.png");
+	//系统托盘图标-imonline
+	private ImageIcon sys_tray_imonlineIcon = ImageManageUtils.getImageIcon("images/common/systemtray/male/tray_imonline.png");
+	//系统托盘图标-invisible
+	private ImageIcon sys_tray_invisibleIcon = ImageManageUtils.getImageIcon("images/common/systemtray/male/tray_invisible.png");
+	//系统托盘图标-mute
+	private ImageIcon sys_tray_muteIcon = ImageManageUtils.getImageIcon("images/common/systemtray/male/tray_mute.png");
+	//系统托盘图标-qme
+	private ImageIcon sys_tray_qmeIcon = ImageManageUtils.getImageIcon("images/common/systemtray/male/tray_qme.png");
 	//关闭按钮
 	private ImageIcon btn_close_normalIcon = ImageManageUtils.getImageIcon("images/common/btn_close_normal.png");
 	//关闭按钮高亮
@@ -125,6 +139,26 @@ public class Main extends JFrame{
 	private ImageIcon user_closeallmusic_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/complete.png");
 	//用户状态-锁定QQ
 	private ImageIcon user_lock_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/lock.png");
+	//menu按钮边框图标
+	private ImageIcon btn_icon_broderIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_icon_border.png");
+	//空间
+	private ImageIcon btn_qzoneIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_qzone_icon.png");
+	//微博
+	private ImageIcon btn_wblogIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_wblog_icon.png");
+	//朋友
+	private ImageIcon btn_friendIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_friend_icon.png");
+	//mail
+	private ImageIcon btn_mailIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_mail_icon.png");
+	//today
+	private ImageIcon btn_todayIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_today_icon.png");
+	//paipai
+	private ImageIcon btn_paipaiIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_paipai_icon.png");
+	//purse
+	private ImageIcon btn_purseIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_purse_icon.png");
+	//soso
+	private ImageIcon btn_sosoIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_soso_icon.png");
+	//msgbox
+	private ImageIcon btn_msgboxIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_messagebox_icon.png");
 	
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -190,6 +224,42 @@ public class Main extends JFrame{
 	private JButton btn_weather = null;
 	//当前天气状态
 	private String currentWeatherStatus = "";
+	//设置qzone边框高亮
+	private JLabel btn_qzone_border = null;
+	//设置qq空间按钮
+	private JButton btn_qzone = null;
+	//设置wblog边框高亮
+	private JLabel btn_wblog_border = null; 
+	//设置微博按钮
+	private JButton btn_wblog = null;
+	//设置friends边框高亮
+	private JLabel btn_friend_border = null;
+	//设置校友按钮
+	private JButton btn_friend = null;
+	//设置email边框高亮
+	private JLabel btn_email_border = null;
+	//设置email按钮
+	private JButton btn_email = null;
+	//设置today边框高亮
+	private JLabel btn_today_border = null;
+	//设置today按钮
+	private JButton btn_today = null;
+	//设置paipai边框高亮
+	private JLabel btn_paipai_border = null;
+	//设置paipai按钮
+	private JButton btn_paipai = null;
+	//设置purse边框高亮
+	private JLabel btn_purse_border = null;
+	//设置purse按钮
+	private JButton btn_purse = null;
+	//设置soso边框高亮
+	private JLabel btn_soso_border = null;
+	//设置soso按钮
+	private JButton btn_soso = null;
+	//设置msgbox边框高亮
+	private JLabel btn_msgbox_border = null;
+	//设置msgbox按钮
+	private JButton btn_msgbox = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -356,6 +426,7 @@ public class Main extends JFrame{
         imonlineItem.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
                 btn_user_status.setIcon(btn_user_imonline_statusIcon);
+                trayIcon.setImage(sys_tray_imonlineIcon.getImage());
             }  
         }); 
         
@@ -365,6 +436,7 @@ public class Main extends JFrame{
         qMeItem.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
                 btn_user_status.setIcon(btn_user_qme_statusIcon);
+                trayIcon.setImage(sys_tray_qmeIcon.getImage());
             }  
         });  
 
@@ -374,6 +446,7 @@ public class Main extends JFrame{
         awayItem.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
                 btn_user_status.setIcon(btn_user_away_statusIcon);
+                trayIcon.setImage(sys_tray_awayIcon.getImage());
             }  
         }); 
 
@@ -383,6 +456,7 @@ public class Main extends JFrame{
         busyItem.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
                 btn_user_status.setIcon(btn_user_busy_statusIcon);
+                trayIcon.setImage(sys_tray_busyIcon.getImage());
             }  
         }); 
 
@@ -392,6 +466,7 @@ public class Main extends JFrame{
         muteItem.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
                 btn_user_status.setIcon(btn_user_mute_statusIcon);
+                trayIcon.setImage(sys_tray_muteIcon.getImage());
             }  
         }); 
 
@@ -401,6 +476,7 @@ public class Main extends JFrame{
         invisibleItem.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
                 btn_user_status.setIcon(btn_user_invisible_statusIcon);
+                trayIcon.setImage(sys_tray_invisibleIcon.getImage());
             }  
         }); 
 
@@ -410,6 +486,7 @@ public class Main extends JFrame{
         imofflineItem.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
                 btn_user_status.setIcon(btn_user_imoffline_statusIcon);
+                trayIcon.setImage(sys_tray_imofflineIcon.getImage());
             }  
         }); 
 
@@ -552,7 +629,7 @@ public class Main extends JFrame{
 
 		//设置天气按钮
 		btn_weather = new JButton();
-		btn_weather.setBounds(230, 37, 40, 40);
+		btn_weather.setBounds(220, 27, 60, 50);
 		btn_weather.setIcon(new WeatherUtils(currentWeatherStatus)
 			.getCurrentWeatherInfo().getWeatherImageIcon());
 		btn_weather.setBorderPainted(false);
@@ -561,6 +638,249 @@ public class Main extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("weather");
+			}
+		});
+
+		//设置qzone边框高亮
+		btn_qzone_border = new JLabel(btn_icon_broderIcon);
+		btn_qzone_border.setBorder(null);
+		btn_qzone_border.setBounds(78, 76, 16, 16);
+		btn_qzone_border.setVisible(false);
+		
+		//设置空间按钮
+		btn_qzone = new JButton();
+		btn_qzone.setBounds(78, 76, 16, 16);
+		btn_qzone.setIcon(btn_qzoneIcon);
+		btn_qzone.setBorderPainted(false);
+		btn_qzone.setContentAreaFilled(false);
+		btn_qzone.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("bbbbbbbbbbbb");
+				btn_qzone_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("aaaaaaaaaaaaaa");
+				btn_qzone_border.setVisible(true);
+				
+			}
+		});
+
+		//设置wblog边框高亮
+		btn_wblog_border = new JLabel(btn_icon_broderIcon);
+		btn_wblog_border.setBorder(null);
+		btn_wblog_border.setBounds(97, 76, 16, 16);
+		btn_wblog_border.setVisible(false);
+
+		//设置微博按钮
+		btn_wblog = new JButton();
+		btn_wblog.setBounds(97, 76, 16, 16);
+		btn_wblog.setIcon(btn_wblogIcon);
+		btn_wblog.setBorderPainted(false);
+		btn_wblog.setContentAreaFilled(false);
+		btn_wblog.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("bbbbbbbbbbbb");
+				btn_wblog_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("aaaaaaaaaaaaaa");
+				btn_wblog_border.setVisible(true);
+				
+			}
+		});
+		
+		//设置friends边框高亮
+		btn_friend_border = new JLabel(btn_icon_broderIcon);
+		btn_friend_border.setBorder(null);
+		btn_friend_border.setBounds(116, 76, 16, 16);
+		btn_friend_border.setVisible(false);
+
+		//设置校友按钮
+		btn_friend = new JButton();
+		btn_friend.setBounds(116, 76, 16, 16);
+		btn_friend.setIcon(btn_friendIcon);
+		btn_friend.setBorderPainted(false);
+		btn_friend.setContentAreaFilled(false);
+		btn_friend.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_friend_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_friend_border.setVisible(true);
+				
+			}
+		});
+
+		//设置email边框高亮
+		btn_email_border = new JLabel(btn_icon_broderIcon);
+		btn_email_border.setBorder(null);
+		btn_email_border.setBounds(135, 76, 16, 16);
+		btn_email_border.setVisible(false);
+		
+		//设置email按钮
+		btn_email = new JButton();
+		btn_email.setBounds(135, 76, 16, 16);
+		btn_email.setIcon(btn_mailIcon);
+		btn_email.setBorderPainted(false);
+		btn_email.setContentAreaFilled(false);
+		btn_email.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_email_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_email_border.setVisible(true);
+				
+			}
+		});
+
+		//设置today边框高亮
+		btn_today_border = new JLabel(btn_icon_broderIcon);
+		btn_today_border.setBorder(null);
+		btn_today_border.setBounds(154, 76, 16, 16);
+		btn_today_border.setVisible(false);
+		
+		//设置today按钮
+		btn_today = new JButton();
+		btn_today.setBounds(154, 76, 16, 16);
+		btn_today.setIcon(btn_todayIcon);
+		btn_today.setBorderPainted(false);
+		btn_today.setContentAreaFilled(false);
+		btn_today.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_today_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_today_border.setVisible(true);
+				
+			}
+		});
+
+		//设置paipai边框高亮
+		btn_paipai_border = new JLabel(btn_icon_broderIcon);
+		btn_paipai_border.setBorder(null);
+		btn_paipai_border.setBounds(173, 76, 16, 16);
+		btn_paipai_border.setVisible(false);
+		
+		//设置paipai按钮
+		btn_paipai = new JButton();
+		btn_paipai.setBounds(173, 76, 16, 16);
+		btn_paipai.setIcon(btn_paipaiIcon);
+		btn_paipai.setBorderPainted(false);
+		btn_paipai.setContentAreaFilled(false);
+		btn_paipai.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_paipai_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_paipai_border.setVisible(true);
+				
+			}
+		});
+		
+		//设置purse边框高亮
+		btn_purse_border = new JLabel(btn_icon_broderIcon);
+		btn_purse_border.setBorder(null);
+		btn_purse_border.setBounds(192, 76, 16, 16);
+		btn_purse_border.setVisible(false);
+		
+		//设置purse按钮
+		btn_purse = new JButton();
+		btn_purse.setBounds(192, 76, 16, 16);
+		btn_purse.setIcon(btn_purseIcon);
+		btn_purse.setBorderPainted(false);
+		btn_purse.setContentAreaFilled(false);
+		btn_purse.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_purse_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_purse_border.setVisible(true);
+				
+			}
+		});
+		
+		//设置soso边框高亮
+		btn_soso_border = new JLabel(btn_icon_broderIcon);
+		btn_soso_border.setBorder(null);
+		btn_soso_border.setBounds(211, 76, 16, 16);
+		btn_soso_border.setVisible(false);
+		
+		//设置soso按钮
+		btn_soso = new JButton();
+		btn_soso.setBounds(211, 76, 16, 16);
+		btn_soso.setIcon(btn_sosoIcon);
+		btn_soso.setBorderPainted(false);
+		btn_soso.setContentAreaFilled(false);
+		btn_soso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_soso_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_soso_border.setVisible(true);
+				
+			}
+		});
+		
+		//设置msgbox边框高亮
+		btn_msgbox_border = new JLabel(btn_icon_broderIcon);
+		btn_msgbox_border.setBorder(null);
+		btn_msgbox_border.setBounds(257, 76, 16, 16);
+		btn_msgbox_border.setVisible(false);
+		
+		//设置msgbox按钮
+		btn_msgbox = new JButton();
+		btn_msgbox.setBounds(257, 76, 16, 16);
+		btn_msgbox.setIcon(btn_msgboxIcon);
+		btn_msgbox.setBorderPainted(false);
+		btn_msgbox.setContentAreaFilled(false);
+		btn_msgbox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_msgbox_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_msgbox_border.setVisible(true);
+				
 			}
 		});
 		
@@ -578,6 +898,24 @@ public class Main extends JFrame{
 		this.add(nickName);
 		this.add(sign);
 		this.add(btn_weather);
+		this.add(btn_qzone);
+		this.add(btn_qzone_border);
+		this.add(btn_wblog);
+		this.add(btn_wblog_border);
+		this.add(btn_friend);
+		this.add(btn_friend_border);
+		this.add(btn_email);
+		this.add(btn_email_border);
+		this.add(btn_today);
+		this.add(btn_today_border);
+		this.add(btn_paipai);
+		this.add(btn_paipai_border);
+		this.add(btn_purse);
+		this.add(btn_purse_border);
+		this.add(btn_soso);
+		this.add(btn_soso_border);
+		this.add(btn_msgbox);
+		this.add(btn_msgbox_border);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
