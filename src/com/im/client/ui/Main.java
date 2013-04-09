@@ -13,6 +13,8 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -20,12 +22,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import com.im.client.utils.ImageManageUtils;
@@ -51,7 +55,7 @@ import com.sun.awt.AWTUtilities;
 public class Main extends JFrame{
 
 	//窗口的宽度和窗口的高度
-	private int windowWidth = 280;
+	private int windowWidth = 285;
 	private int windowHeight = 590;
 	
 	//屏幕的宽度和屏幕的高度
@@ -151,6 +155,14 @@ public class Main extends JFrame{
 	private ImageIcon btn_msgboxIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_messagebox_icon.png");
 	//add
 	private ImageIcon btn_mgrIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_icon_management.png");
+	//搜索框背景
+	private ImageIcon search_bg_Icon = ImageManageUtils.getImageIcon("images/frame/main/search/main_search_bkg.png");
+	//搜索框搜索按钮
+	private ImageIcon btn_search_Icon = ImageManageUtils.getImageIcon("images/frame/main/search/main_search_normal.png");
+	//搜索框搜索进入按钮
+	private ImageIcon btn_search_enterIcon = ImageManageUtils.getImageIcon("images/frame/main/search/main_search_enter.png");
+	//搜索框搜索进入按钮点击
+	private ImageIcon btn_search_downIcon = ImageManageUtils.getImageIcon("images/frame/main/search/main_search_down.png");
 	
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -256,6 +268,12 @@ public class Main extends JFrame{
 	private JLabel btn_mgr_border = null;
 	//设置mgr按钮
 	private JButton btn_mgr = null;
+	//设置搜索框背景
+	private JLabel search_textfield_bg = null;
+	//设置搜索框
+	JTextField search_textfield = null;
+	//设置搜索按钮
+	JButton btn_search = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -263,6 +281,7 @@ public class Main extends JFrame{
 	private Font FONT_12_BOLD = new Font("微软雅黑", 1, 12);
 	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
 	private Font FONT_14_NOBOLD = new Font("微软雅黑", 0, 14);
+	private Font FONT_15_NOBOLD = new Font("微软雅黑", 0, 15);
 	
 	public Main(){
 		//获取屏幕高度宽度
@@ -841,33 +860,6 @@ public class Main extends JFrame{
 			}
 		});
 		
-		/*//设置soso边框高亮
-		btn_soso_border = new JLabel(btn_icon_broderIcon);
-		btn_soso_border.setBorder(null);
-		btn_soso_border.setBounds(208, 73, 22, 22);
-		btn_soso_border.setVisible(false);
-		
-		//设置soso按钮
-		btn_soso = new JButton();
-		btn_soso.setBounds(232, 76, 16, 16);
-		btn_soso.setIcon(btn_sosoIcon);
-		btn_soso.setBorderPainted(false);
-		btn_soso.setContentAreaFilled(false);
-		btn_soso.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseExited(MouseEvent e) {
-				System.out.println("1");
-				btn_soso_border.setVisible(false);
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				System.out.println("2");
-				btn_soso_border.setVisible(true);
-				
-			}
-		});*/
-		
 		//设置mgr边框高亮
 		btn_mgr_border = new JLabel(btn_icon_broder_highlightIcon);
 		btn_mgr_border.setBorder(null);
@@ -936,6 +928,53 @@ public class Main extends JFrame{
 			}
 		});
 		
+		//设置搜索框背景
+		search_textfield_bg = new JLabel(search_bg_Icon);
+		search_textfield_bg.setBorder(null);
+		search_textfield_bg.setBounds(0, 98, 285, 28);
+		
+		//设置搜索框
+		search_textfield = new JTextField(40);
+		search_textfield.setBounds(5, 100, 254, 25);
+		search_textfield.setBorder(BorderFactory.createEmptyBorder());
+		search_textfield.setOpaque(false);
+		search_textfield.setFont(FONT_15_NOBOLD);
+		search_textfield.setForeground(Color.WHITE);
+		search_textfield.addFocusListener(new FocusListener() {  
+    	  public void focusLost(FocusEvent e) {
+			  btn_search.setIcon(btn_search_Icon);
+			  btn_search.setRolloverIcon(btn_search_Icon);
+    	  }
+		  public void focusGained(FocusEvent e) {
+			  btn_search.setIcon(btn_search_enterIcon);
+			  btn_search.setRolloverIcon(btn_search_downIcon);
+		  }
+        });
+		
+		//设置搜索按钮
+		btn_search = new JButton();
+		btn_search.setBounds(255, 98, 31, 28);
+		btn_search.setIcon(btn_search_Icon);
+		btn_search.setBorderPainted(false);
+		btn_search.setContentAreaFilled(false);
+		btn_search.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+			}
+		});
+		
 		//添加组件
 		this.setContentPane(main_bg);
 		this.add(btn_close);
@@ -954,8 +993,6 @@ public class Main extends JFrame{
 		this.add(btn_qzone);
 		this.add(btn_wblog_border);
 		this.add(btn_wblog);
-		//this.add(btn_friend_border);
-		//this.add(btn_friend);
 		this.add(btn_email_border);
 		this.add(btn_email);
 		this.add(btn_today_border);
@@ -964,12 +1001,13 @@ public class Main extends JFrame{
 		this.add(btn_paipai);
 		this.add(btn_purse_border);
 		this.add(btn_purse);
-		//this.add(btn_soso_border);
-		//this.add(btn_soso);
 		this.add(btn_msgbox);
 		this.add(btn_msgbox_border);
 		this.add(btn_mgr);
 		this.add(btn_mgr_border);
+		this.add(search_textfield);
+		this.add(btn_search);
+		this.add(search_textfield_bg);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
