@@ -29,9 +29,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
+import com.im.client.component.NewTabbedPane;
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.im.client.utils.WeatherUtils;
@@ -163,6 +165,16 @@ public class Main extends JFrame{
 	private ImageIcon btn_search_enterIcon = ImageManageUtils.getImageIcon("images/frame/main/search/main_search_enter.png");
 	//搜索框搜索进入按钮点击
 	private ImageIcon btn_search_downIcon = ImageManageUtils.getImageIcon("images/frame/main/search/main_search_down.png");
+	//tab 联系人
+	private ImageIcon tab_contacts_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/tab/icon_contacts_normal.png");
+	//tab 朋友
+	private ImageIcon tab_friends_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/tab/icon_friends_normal.png");
+	//tab 群
+	private ImageIcon tab_group_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/tab/icon_group_normal.png");
+	//tab 最近联系人
+	private ImageIcon tab_last_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/tab/icon_last_normal.png");
+	//tab 微博
+	private ImageIcon tab_wblog_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/tab/icon_wblog_normal.png");
 	
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -281,7 +293,7 @@ public class Main extends JFrame{
 	private Font FONT_12_BOLD = new Font("微软雅黑", 1, 12);
 	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
 	private Font FONT_14_NOBOLD = new Font("微软雅黑", 0, 14);
-	private Font FONT_15_NOBOLD = new Font("微软雅黑", 0, 15);
+	private Font FONT_13_NOBOLD = new Font("微软雅黑", 0, 13);
 	
 	public Main(){
 		//获取屏幕高度宽度
@@ -897,12 +909,12 @@ public class Main extends JFrame{
 		//设置msgbox边框高亮
 		btn_msgbox_border = new JLabel(btn_icon_broder_highlightIcon);
 		btn_msgbox_border.setBorder(null);
-		btn_msgbox_border.setBounds(252, 73, 22, 22);
+		btn_msgbox_border.setBounds(259, 73, 22, 22);
 		btn_msgbox_border.setVisible(false);
 		
 		//设置msgbox按钮
 		btn_msgbox = new JButton();
-		btn_msgbox.setBounds(255, 76, 16, 16);
+		btn_msgbox.setBounds(262, 76, 16, 16);
 		btn_msgbox.setIcon(btn_msgboxIcon);
 		btn_msgbox.setBorderPainted(false);
 		btn_msgbox.setContentAreaFilled(false);
@@ -938,16 +950,19 @@ public class Main extends JFrame{
 		search_textfield.setBounds(5, 100, 254, 25);
 		search_textfield.setBorder(BorderFactory.createEmptyBorder());
 		search_textfield.setOpaque(false);
-		search_textfield.setFont(FONT_15_NOBOLD);
-		search_textfield.setForeground(Color.WHITE);
+		search_textfield.setFont(FONT_13_NOBOLD);
+		search_textfield.setForeground(Color.BLACK);
+		search_textfield.setText("输入关键字搜索联系人");
 		search_textfield.addFocusListener(new FocusListener() {  
     	  public void focusLost(FocusEvent e) {
 			  btn_search.setIcon(btn_search_Icon);
 			  btn_search.setRolloverIcon(btn_search_Icon);
+			  search_textfield.setText("输入关键字搜索联系人");
     	  }
 		  public void focusGained(FocusEvent e) {
 			  btn_search.setIcon(btn_search_enterIcon);
 			  btn_search.setRolloverIcon(btn_search_downIcon);
+			  search_textfield.setText("");
 		  }
         });
 		
@@ -974,6 +989,17 @@ public class Main extends JFrame{
 				System.out.println("cccccccccccccc");
 			}
 		});
+		
+		//选项卡
+		JTabbedPane main_tab = new JTabbedPane();
+		main_tab.setUI(new NewTabbedPane());
+		main_tab.addTab("", tab_contacts_normalIcon, new JLabel("This is tab one."), "Tab #1");
+		main_tab.addTab("", tab_friends_normalIcon, new JLabel("This is tab two."), "Tab #2");
+		main_tab.addTab("", tab_group_normalIcon, new JLabel("This is tab three."),
+				"Tab #3");
+		main_tab.addTab("", tab_wblog_normalIcon, new JLabel("This is tab four."), "Tab #4");
+		main_tab.addTab("", tab_last_normalIcon, new JLabel("This is tab five."), "Tab #5");
+		main_tab.setBounds(0, 129, 285, 395);
 		
 		//添加组件
 		this.setContentPane(main_bg);
@@ -1008,6 +1034,7 @@ public class Main extends JFrame{
 		this.add(search_textfield);
 		this.add(btn_search);
 		this.add(search_textfield_bg);
+		this.add(main_tab);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
