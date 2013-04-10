@@ -28,6 +28,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -283,9 +284,13 @@ public class Main extends JFrame{
 	//设置搜索框背景
 	private JLabel search_textfield_bg = null;
 	//设置搜索框
-	JTextField search_textfield = null;
+	private JTextField search_textfield = null;
 	//设置搜索按钮
-	JButton btn_search = null;
+	private JButton btn_search = null;
+	//设置选项卡
+	private JTabbedPane main_tab = null;
+	//设置好友列表panel
+	private JPanel friendsPanel = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -990,16 +995,21 @@ public class Main extends JFrame{
 			}
 		});
 		
-		//选项卡
-		JTabbedPane main_tab = new JTabbedPane();
+		//选项卡JPanel
+		//设置好友列表panel
+		friendsPanel = new JPanel(null);
+		friendsPanel.setBackground(Color.WHITE);
+		
+		//设置选项卡
+		main_tab = new JTabbedPane();
 		main_tab.setUI(new NewTabbedPane());
-		main_tab.addTab("", tab_contacts_normalIcon, new JLabel("This is tab one."), "Tab #1");
-		main_tab.addTab("", tab_friends_normalIcon, new JLabel("This is tab two."), "Tab #2");
-		main_tab.addTab("", tab_group_normalIcon, new JLabel("This is tab three."),
-				"Tab #3");
-		main_tab.addTab("", tab_wblog_normalIcon, new JLabel("This is tab four."), "Tab #4");
-		main_tab.addTab("", tab_last_normalIcon, new JLabel("This is tab five."), "Tab #5");
-		main_tab.setBounds(0, 129, 285, 395);
+		main_tab.addTab("", tab_contacts_normalIcon, friendsPanel, "联系人");
+		main_tab.addTab("", tab_friends_normalIcon, new JLabel("This is tab two."), "朋友");
+		main_tab.addTab("", tab_group_normalIcon, new JLabel("This is tab three."),"群/讨论组");
+		main_tab.addTab("", tab_wblog_normalIcon, new JLabel("This is tab four."), "微博");
+		main_tab.addTab("", tab_last_normalIcon, new JLabel("This is tab five."), "最近联系人");
+		main_tab.setBounds(0, 126, 285, 395);
+		
 		
 		//添加组件
 		this.setContentPane(main_bg);
