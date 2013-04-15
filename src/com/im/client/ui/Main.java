@@ -28,13 +28,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.KeyStroke;
+import javax.swing.tree.TreePath;
 
 import com.im.client.component.NewTabbedPane;
+import com.im.client.component.NewTreeIconNodeRenderer;
+import com.im.client.component.NewTreeUI;
+import com.im.client.dto.IconTreeNode;
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.im.client.utils.WeatherUtils;
@@ -111,7 +116,7 @@ public class Main extends JFrame{
 	//头像边框
 	private ImageIcon user_image_border_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/user_imgbg_normal.png");
 	//用户头像
-	private ImageIcon user_imageIcon = ImageManageUtils.getImageIcon("images/usericon/user_image.png");
+	private ImageIcon user_imageIcon = ImageManageUtils.getImageIcon("images/usericon/user_image/user_image.png");
 	//用户状态边框高亮
 	private ImageIcon user_border_status_highlightIcon = ImageManageUtils.getImageIcon("images/frame/main/status/allbtn_highlight.png");
 	//用户状态边框点击
@@ -290,7 +295,19 @@ public class Main extends JFrame{
 	//设置选项卡
 	private JTabbedPane main_tab = null;
 	//设置好友列表panel
-	private JPanel friendsPanel = null;
+	private JScrollPane friends_scrollpane = null; 
+	//定义好友列表根节点
+	private IconTreeNode root = null; 
+	//定义好友列表二级节点
+	private IconTreeNode root1 = null;
+	private IconTreeNode root2 = null;
+	private IconTreeNode root3 = null;
+	private IconTreeNode root4 = null;
+	private IconTreeNode root5 = null;
+	//定义好友列表节点渲染器
+	private NewTreeIconNodeRenderer renderer = null;
+	//定义树
+	private JTree tree = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -994,16 +1011,105 @@ public class Main extends JFrame{
 				System.out.println("cccccccccccccc");
 			}
 		});
+
+		//定义根节点
+		root = new IconTreeNode(null, null);
 		
-		//选项卡JPanel
-		//设置好友列表panel
-		friendsPanel = new JPanel(null);
-		friendsPanel.setBackground(Color.WHITE);
+		//好友列表 定义二级节点
+		root1 = new IconTreeNode(null, "我的好友 [0/3]");
+		root2 = new IconTreeNode(null, "我的家人 [5/8]");
+		root3 = new IconTreeNode(null, "我的朋友 [6/11]");
+		root4 = new IconTreeNode(null, "陌生人 [1/4]");
+		root5 = new IconTreeNode(null, "黑名单 [0/0]");
+
+		//二级节点添加叶子节点
+		root1.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/1.png"), "雅君"));
+		root1.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/2.png"), "伟旭"));
+		root1.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/3.png"), "宜群"));
+
+		root2.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
+		root2.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
+
+		root3.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
+		root3.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
+
+		root4.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
+		root4.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
+
+		root5.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
+		root5.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
+
+		//根节点添加二级节点
+		root.add(root1);
+		root.add(root2);
+		root.add(root3);
+		root.add(root4);
+		root.add(root5);
+		
+		//节点渲染器
+		renderer = new NewTreeIconNodeRenderer();
+		//定义树
+		tree = new JTree(root);
+		//设置单元格描述
+		tree.setCellRenderer(renderer);
+		tree.setUI(new NewTreeUI());
+		//设置树是否可编辑
+		tree.setEditable(false);
+		//设置树的根节点是否可视
+		tree.setRootVisible(false);
+        //设置是否显示根节点的“展开/折叠”图标,默认是false   
+		tree.setShowsRootHandles(false);   
+		//设置单击几次展开数节点
+		tree.setToggleClickCount(1);
+
+		// 测试事件
+		tree.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				super.mouseEntered(e);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				super.mouseExited(e);
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				// 双击节点
+				if (e.getClickCount() == 2) {
+					// 获取选中节点路径
+					TreePath path = tree.getSelectionPath();
+					// 通过路径将指针指向该节点
+					IconTreeNode node = (IconTreeNode) path.getLastPathComponent();
+					// 如果该节点是叶子节点
+					if (node.isLeaf()){
+						// DefaultTreeModel
+						// model=(DefaultTreeModel)tree.getModel();//获取该树的模型
+						// model.removeNodeFromParent(node);//从本树删除该节点
+						
+						//修改该节点的图片
+						node.setIcon(new ImageIcon("3.png"));
+						//修改该节点的文本
+						node.setText("双击");
+						//重绘更新树
+						tree.repaint();
+					} else {
+
+					// 不是叶子节点
+					}
+				}
+			}
+		});
+
+		//设置好友列表scrollpane
+		friends_scrollpane = new JScrollPane(tree);
+		friends_scrollpane.setBorder(null);
 		
 		//设置选项卡
 		main_tab = new JTabbedPane();
 		main_tab.setUI(new NewTabbedPane());
-		main_tab.addTab("", tab_contacts_normalIcon, friendsPanel, "联系人");
+		main_tab.addTab("", tab_contacts_normalIcon, friends_scrollpane, "联系人");
 		main_tab.addTab("", tab_friends_normalIcon, new JLabel("This is tab two."), "朋友");
 		main_tab.addTab("", tab_group_normalIcon, new JLabel("This is tab three."),"群/讨论组");
 		main_tab.addTab("", tab_wblog_normalIcon, new JLabel("This is tab four."), "微博");
