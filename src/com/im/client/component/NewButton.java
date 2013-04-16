@@ -3,6 +3,7 @@ package com.im.client.component;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 * Why&What is modified:    
 * Version:				0.1                       
 */
+
 @SuppressWarnings("serial")
 public class NewButton extends JButton{
 

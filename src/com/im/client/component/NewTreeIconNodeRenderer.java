@@ -67,12 +67,10 @@ public class NewTreeIconNodeRenderer extends DefaultTreeCellRenderer {
 		// 设置节点展开/关闭图标
 		if (expanded && !leaf) {
 			// 设置展开的节点的图标
-			this.setIcon(new ImageIcon(
-					"images/frame/main/friendlist/list_down.png"));
+			this.setIcon(new ImageIcon("images/frame/main/friendlist/list_down.png"));
 		} else if (!expanded && !leaf) {
 			// 设置关闭的节点的图标
-			this.setIcon(new ImageIcon(
-					"images/frame/main/friendlist/list_right.png"));
+			this.setIcon(new ImageIcon("images/frame/main/friendlist/list_right.png"));
 		}
 
 		// DefaultTreeCellRenderer默认返回的是一个JLabel

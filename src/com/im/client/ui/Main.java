@@ -29,6 +29,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -36,6 +37,7 @@ import javax.swing.JTree;
 import javax.swing.KeyStroke;
 import javax.swing.tree.TreePath;
 
+import com.im.client.component.NewScrollBarUI;
 import com.im.client.component.NewTabbedPane;
 import com.im.client.component.NewTreeIconNodeRenderer;
 import com.im.client.component.NewTreeUI;
@@ -181,6 +183,24 @@ public class Main extends JFrame{
 	private ImageIcon tab_last_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/tab/icon_last_normal.png");
 	//tab 微博
 	private ImageIcon tab_wblog_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/tab/icon_wblog_normal.png");
+	//mlive
+	private ImageIcon btn_app_mliveIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_mlive_icon.png");
+	//game
+	private ImageIcon btn_app_gameIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_game_icon.png");
+	//pet
+	private ImageIcon btn_app_petIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_pet_icon.png");
+	//music
+	private ImageIcon btn_app_musicIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_music_icon.png");
+	//live
+	private ImageIcon btn_app_liveIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_live_icon.png");
+	//团购
+	private ImageIcon btn_app_group_purchaseIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_group_purchase_icon.png");
+	//pcmgr
+	private ImageIcon btn_app_pcmgrIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_pcmgr_icon.png");
+	//ecommerce
+	private ImageIcon btn_app_ecommerceIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_ecommerce_icon.png");
+	//appboxmgr
+	private ImageIcon btn_app_appbox_mgrIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_appbox_mgr_icon.png");
 	
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -308,6 +328,44 @@ public class Main extends JFrame{
 	private NewTreeIconNodeRenderer renderer = null;
 	//定义树
 	private JTree tree = null;
+	//设置app背景
+	private JLabel appbg = null;
+	//设置mlive边框高亮
+	private JLabel btn_app_mlive_border = null;
+	//设置mlive按钮
+	private JButton btn_app_mlive = null;
+	//设置game边框高亮
+	private JLabel btn_app_game_border = null;
+	//设置game按钮
+	private JButton btn_app_game = null;
+	//设置pet边框高亮
+	private JLabel btn_app_pet_border = null;
+	//设置pet按钮
+	private JButton btn_app_pet = null;
+	//设置music边框高亮
+	private JLabel btn_app_music_border = null;
+	//设置music按钮
+	private JButton btn_app_music = null;
+	//设置live边框高亮
+	private JLabel btn_app_live_border = null;
+	//设置live按钮
+	private JButton btn_app_live = null;
+	//设置团购边框高亮
+	private JLabel btn_app_group_purchase_border = null;
+	//设置团购按钮
+	private JButton btn_app_group_purchase = null;
+	//设置pcmgr边框高亮
+	private JLabel btn_app_pcmgr_border = null;
+	//设置pcmgr按钮
+	private JButton btn_app_pcmgr = null;
+	//设置网购边框高亮
+	private JLabel btn_app_ecommerce_border = null;
+	//设置网购按钮
+	private JButton btn_app_ecommerce = null;
+	//设置appbox边框高亮
+	private JLabel btn_app_appbox_mgr_border = null;
+	//设置appbox按钮
+	private JButton btn_app_appbox_mgr = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -468,7 +526,7 @@ public class Main extends JFrame{
 		statusPopupMenu = new JPopupMenu("JPopupMenu"); 
 	    String[] items = {"我在线上", "Q我吧", "离开", "忙碌", "请勿打扰", "隐身", 
 	    		"离线", "添加状态信息", "关闭所有声音", "锁定QQ", "系统设置...", "我的资料...", "我的QQ中心"};  
-        
+	    
 	    //下拉菜单-我在线上
         imonlineItem = new JMenuItem(items[0], user_imonline_statusIcon);  
         imonlineItem.setFont(FONT_12_NOBOLD);
@@ -667,7 +725,7 @@ public class Main extends JFrame{
 		});
 
 		//设置昵称
-		nickName = new JLabel("蔚蓝de天空");
+		nickName = new JLabel("飞翔de企鹅");
 		nickName.setFont(FONT_14_NOBOLD);
 		nickName.setBounds(100, 37, 75, 17);
 
@@ -1104,7 +1162,10 @@ public class Main extends JFrame{
 
 		//设置好友列表scrollpane
 		friends_scrollpane = new JScrollPane(tree);
+		friends_scrollpane.getVerticalScrollBar().setUI(new NewScrollBarUI());
 		friends_scrollpane.setBorder(null);
+		JScrollBar bar = friends_scrollpane.getVerticalScrollBar();
+		bar.setBackground(new Color(255, 255, 255, 255));
 		
 		//设置选项卡
 		main_tab = new JTabbedPane();
@@ -1114,8 +1175,318 @@ public class Main extends JFrame{
 		main_tab.addTab("", tab_group_normalIcon, new JLabel("This is tab three."),"群/讨论组");
 		main_tab.addTab("", tab_wblog_normalIcon, new JLabel("This is tab four."), "微博");
 		main_tab.addTab("", tab_last_normalIcon, new JLabel("This is tab five."), "最近联系人");
-		main_tab.setBounds(0, 126, 285, 395);
+		main_tab.setBounds(0, 126, 285, 400);
 		
+		//设置app背景
+		appbg = new JLabel();
+		appbg.setBackground(new Color(255, 255, 255, 160));
+		appbg.setBounds(0, 520, 285, 70);
+		appbg.setOpaque(true);
+		
+		//设置mlive边框高亮
+		btn_app_mlive_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_mlive_border.setBorder(null);
+		btn_app_mlive_border.setBounds(3, 533, 22, 22);
+		btn_app_mlive_border.setVisible(false);
+		
+		//设置mlive按钮
+		btn_app_mlive = new JButton();
+		btn_app_mlive.setBounds(6, 536, 16, 16);
+		btn_app_mlive.setIcon(btn_app_mliveIcon);
+		btn_app_mlive.setBorderPainted(false);
+		btn_app_mlive.setContentAreaFilled(false);
+		btn_app_mlive.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_mlive_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_mlive_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_mlive_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_mlive_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置game边框高亮
+		btn_app_game_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_game_border.setBorder(null);
+		btn_app_game_border.setBounds(33, 533, 22, 22);
+		btn_app_game_border.setVisible(false);
+		
+		//设置game按钮
+		btn_app_game = new JButton();
+		btn_app_game.setBounds(36, 536, 16, 16);
+		btn_app_game.setIcon(btn_app_gameIcon);
+		btn_app_game.setBorderPainted(false);
+		btn_app_game.setContentAreaFilled(false);
+		btn_app_game.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_game_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_game_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_game_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_game_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置pet边框高亮
+		btn_app_pet_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_pet_border.setBorder(null);
+		btn_app_pet_border.setBounds(63, 533, 22, 22);
+		btn_app_pet_border.setVisible(false);
+		
+		//设置pet按钮
+		btn_app_pet = new JButton();
+		btn_app_pet.setBounds(66, 536, 16, 16);
+		btn_app_pet.setIcon(btn_app_petIcon);
+		btn_app_pet.setBorderPainted(false);
+		btn_app_pet.setContentAreaFilled(false);
+		btn_app_pet.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_pet_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_pet_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_pet_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_pet_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置music边框高亮
+		btn_app_music_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_music_border.setBorder(null);
+		btn_app_music_border.setBounds(93, 533, 22, 22);
+		btn_app_music_border.setVisible(false);
+		
+		//设置music按钮
+		btn_app_music = new JButton();
+		btn_app_music.setBounds(96, 536, 16, 16);
+		btn_app_music.setIcon(btn_app_musicIcon);
+		btn_app_music.setBorderPainted(false);
+		btn_app_music.setContentAreaFilled(false);
+		btn_app_music.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_music_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_music_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_music_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_music_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置live边框高亮
+		btn_app_live_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_live_border.setBorder(null);
+		btn_app_live_border.setBounds(123, 533, 22, 22);
+		btn_app_live_border.setVisible(false);
+		
+		//设置live按钮
+		btn_app_live = new JButton();
+		btn_app_live.setBounds(126, 536, 16, 16);
+		btn_app_live.setIcon(btn_app_liveIcon);
+		btn_app_live.setBorderPainted(false);
+		btn_app_live.setContentAreaFilled(false);
+		btn_app_live.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_live_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_live_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_live_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_live_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置团购边框高亮
+		btn_app_group_purchase_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_group_purchase_border.setBorder(null);
+		btn_app_group_purchase_border.setBounds(153, 533, 22, 22);
+		btn_app_group_purchase_border.setVisible(false);
+		
+		//设置团购按钮
+		btn_app_group_purchase = new JButton();
+		btn_app_group_purchase.setBounds(156, 536, 16, 16);
+		btn_app_group_purchase.setIcon(btn_app_group_purchaseIcon);
+		btn_app_group_purchase.setBorderPainted(false);
+		btn_app_group_purchase.setContentAreaFilled(false);
+		btn_app_group_purchase.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_group_purchase_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_group_purchase_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_group_purchase_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_group_purchase_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置pcmgr边框高亮
+		btn_app_pcmgr_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_pcmgr_border.setBorder(null);
+		btn_app_pcmgr_border.setBounds(183, 533, 22, 22);
+		btn_app_pcmgr_border.setVisible(false);
+		
+		//设置pcmgr按钮
+		btn_app_pcmgr = new JButton();
+		btn_app_pcmgr.setBounds(186, 536, 16, 16);
+		btn_app_pcmgr.setIcon(btn_app_pcmgrIcon);
+		btn_app_pcmgr.setBorderPainted(false);
+		btn_app_pcmgr.setContentAreaFilled(false);
+		btn_app_pcmgr.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_pcmgr_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_pcmgr_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_pcmgr_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_pcmgr_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+
+		//设置网购边框高亮
+		btn_app_ecommerce_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_ecommerce_border.setBorder(null);
+		btn_app_ecommerce_border.setBounds(213, 533, 22, 22);
+		btn_app_ecommerce_border.setVisible(false);
+		
+		//设置网购按钮
+		btn_app_ecommerce = new JButton();
+		btn_app_ecommerce.setBounds(216, 536, 16, 16);
+		btn_app_ecommerce.setIcon(btn_app_ecommerceIcon);
+		btn_app_ecommerce.setBorderPainted(false);
+		btn_app_ecommerce.setContentAreaFilled(false);
+		btn_app_ecommerce.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_ecommerce_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_ecommerce_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_ecommerce_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_ecommerce_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		//设置appbox边框高亮
+		btn_app_appbox_mgr_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_app_appbox_mgr_border.setBorder(null);
+		btn_app_appbox_mgr_border.setBounds(259, 533, 22, 22);
+		btn_app_appbox_mgr_border.setVisible(false);
+		
+		//设置appbox按钮
+		btn_app_appbox_mgr = new JButton();
+		btn_app_appbox_mgr.setBounds(262, 536, 16, 16);
+		btn_app_appbox_mgr.setIcon(btn_app_appbox_mgrIcon);
+		btn_app_appbox_mgr.setBorderPainted(false);
+		btn_app_appbox_mgr.setContentAreaFilled(false);
+		btn_app_appbox_mgr.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_app_appbox_mgr_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_app_appbox_mgr_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_app_appbox_mgr_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_app_appbox_mgr_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
 		
 		//添加组件
 		this.setContentPane(main_bg);
@@ -1151,6 +1522,26 @@ public class Main extends JFrame{
 		this.add(btn_search);
 		this.add(search_textfield_bg);
 		this.add(main_tab);
+		this.add(btn_app_mlive);
+		this.add(btn_app_mlive_border);
+		this.add(btn_app_game);
+		this.add(btn_app_game_border);
+		this.add(btn_app_pet);
+		this.add(btn_app_pet_border);
+		this.add(btn_app_music);
+		this.add(btn_app_music_border);
+		this.add(btn_app_live);
+		this.add(btn_app_live_border);
+		this.add(btn_app_group_purchase);
+		this.add(btn_app_group_purchase_border);
+		this.add(btn_app_pcmgr);
+		this.add(btn_app_pcmgr_border);
+		this.add(btn_app_ecommerce);
+		this.add(btn_app_ecommerce_border);
+		this.add(btn_app_appbox_mgr);
+		this.add(btn_app_appbox_mgr_border);
+		
+		this.add(appbg);
 		
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);

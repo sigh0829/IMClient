@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.plaf.metal.MetalTextFieldUI;
 
 import com.im.client.utils.ImageManageUtils;
+
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
@@ -27,6 +28,7 @@ import com.im.client.utils.ImageManageUtils;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
+
 @SuppressWarnings("serial")
 public class NewTextField extends JTextField {
 

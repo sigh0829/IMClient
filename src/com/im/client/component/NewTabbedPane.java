@@ -22,6 +22,7 @@ import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
+
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
@@ -36,6 +37,7 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 * Why&What is modified:    
 * Version:				0.1                       
 */
+
 public class NewTabbedPane extends BasicTabbedPaneUI {
 
 	private static final Insets NO_INSETS = new Insets(0, 0, 0, 0);

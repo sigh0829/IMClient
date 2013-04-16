@@ -13,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.plaf.metal.MetalTextFieldUI;
 
 import com.im.client.utils.ImageManageUtils;
+
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
@@ -27,6 +28,7 @@ import com.im.client.utils.ImageManageUtils;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
+
 @SuppressWarnings("serial")
 public class NewPasswordField extends JPasswordField{
 	private Image backgroundLeftImage = ImageManageUtils.getImage("passwordfield_bg_left.png", "frame/login");

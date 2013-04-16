@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 import javax.swing.plaf.basic.BasicTreeUI;
+
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
@@ -18,6 +19,7 @@ import javax.swing.plaf.basic.BasicTreeUI;
 * Why&What is modified:    
 * Version:				0.1                       
 */
+
 public class NewTreeUI extends BasicTreeUI{
 
 	//重写以下两个方法用于去掉节点缩进直线
