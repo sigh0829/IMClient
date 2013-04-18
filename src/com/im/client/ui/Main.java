@@ -27,6 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollBar;
@@ -201,7 +202,71 @@ public class Main extends JFrame{
 	private ImageIcon btn_app_ecommerceIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_ecommerce_icon.png");
 	//appboxmgr
 	private ImageIcon btn_app_appbox_mgrIcon = ImageManageUtils.getImageIcon("images/frame/main/icon/btn_app_appbox_mgr_icon.png");
-	
+	//btn menu normal
+	private ImageIcon btn_menu_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_menu_normal.png");
+	//btn menu highlight
+	private ImageIcon btn_menu_highlightIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_menu_highlight.png");
+	//menu菜单-所有服务
+	private ImageIcon allservices_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_allservices_icon.png");
+	//menu菜单-所有服务-腾讯网
+	private ImageIcon tencent_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/tencent_website_icon.png");
+	//menu菜单-所有服务-空间
+	private ImageIcon space_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/space_icon.png");
+	//menu菜单-所有服务-paipai
+	private ImageIcon paipai_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/paipai_icon.png");
+	//menu菜单-所有服务-soso
+	private ImageIcon soso_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/soso_icon.png");
+	//menu菜单-所有服务-充值
+	private ImageIcon recharge_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/recharge_icon.png");
+	//menu菜单-所有服务-腾讯游戏
+	private ImageIcon game_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/tencent_game_icon.png");
+	//menu菜单-所有服务-手机生活
+	private ImageIcon mobilelife_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/mobile_life_icon.png");
+	//menu菜单-所有服务-财付通
+	private ImageIcon tenpay_SubMenuItemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/allservice/tenpay_icon.png");
+	//menu菜单-QQ会员
+	private ImageIcon vip_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_vip_icon.png");
+	//menu菜单-我的qq中心
+	private ImageIcon mycenter_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_mycenter_icon.png");
+	//menu菜单-工具
+	private ImageIcon tools_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_tools_icon.png");
+	//menu菜单-系统设置
+	private ImageIcon systemSetting_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_system_setting_icon.png");
+	//menu菜单-软件更新
+	private ImageIcon softUpdate_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_soft_update_icon.png");
+	//menu菜单-安全中心
+	private ImageIcon securityCenter_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_safety_center_icon.png");
+	//menu菜单-帮助中心
+	private ImageIcon helpCenter_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_help_center_icon.png");
+	//menu菜单-帮助中心-腾讯客服
+	private ImageIcon customerService_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/help/customer_service.png");
+	//menu菜单-帮助中心-反馈问题
+	private ImageIcon feedback_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/help/feedback.png");
+	//menu菜单-帮助中心-新特性
+	private ImageIcon whats_new_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/help/whats_new.png");
+	//menu菜单-帮助中心-I'm QQ.com
+	private ImageIcon imqqcom_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/help/imqqcom.png");
+	//menu菜单-帮助中心-官方微博
+	private ImageIcon official_wblog_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/help/official_wblog.png");
+	//menu菜单-帮助中心-关于
+	private ImageIcon about_qq_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/help/about.png");
+	//menu菜单-好友管理器
+	private ImageIcon contactMgr_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_contact_mgr.png");
+	//menu菜单-修改密码
+	private ImageIcon changepswd_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_changepswd.png");
+	//menu菜单-更改用户
+	private ImageIcon changeuser_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_switch.png");
+	//menu菜单-锁定QQ
+	private ImageIcon lockqq_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_lock_qq.png");
+	//menu菜单-退出
+	private ImageIcon quite_itemIcon = ImageManageUtils.getImageIcon("images/frame/main/menu/main/menu_exit.png");
+	//设置按钮
+	private ImageIcon btn_setting_Icon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_setting.png");
+	//消息管理
+	private ImageIcon btn_message_Icon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_message.png");
+	//安全概况
+	private ImageIcon btn_security_Icon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_security.png");
+
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
 	//定义一个所有圆角都使用 double坐标指定的矩形
@@ -366,6 +431,50 @@ public class Main extends JFrame{
 	private JLabel btn_app_appbox_mgr_border = null;
 	//设置appbox按钮
 	private JButton btn_app_appbox_mgr = null;
+	//设置menu按钮边框
+	private JLabel btn_menu_border = null;
+	//设置menu按钮
+	private JButton btn_menu = null;
+	//设置menu菜单
+	private JPopupMenu menuPopupMenu = null;
+    //menu下拉菜单-所有服务-子菜单
+    private JMenu allServiceSubMenu = null;
+	//menu下拉菜单-QQ会员
+    private JMenuItem vipMenuItem = null;
+	//menu下拉菜单-我的QQ中心
+    private JMenuItem myCenterMenuItem = null;
+	//menu下拉菜单-工具
+    private JMenuItem toolsMenuItem = null;
+    //menu下拉菜单-系统设置-子菜单
+    private JMenu systemSettingSubMenu = null;
+	//menu下拉菜单-软件更新
+    private JMenuItem softUpdateMenuItem = null;
+    //menu下拉菜单-安全中心-子菜单
+    private JMenu securityCenterSubMenu = null;
+    //menu下拉菜单-帮助中心-子菜单
+    private JMenu helpCenterSubMenu = null;
+	//menu下拉菜单-好友管理器
+    private JMenuItem contactMgrMenuItem = null;
+	//menu下拉菜单-修改密码
+    private JMenuItem changepswdMenuItem = null;
+	//menu下拉菜单-更改用户
+    private JMenuItem changeuserMenuItem = null;
+	//menu下拉菜单-锁定QQ
+    private JMenuItem lockQQMenuItem = null;
+	//menu下拉菜单-退出
+    private JMenuItem quiteMenuItem = null;
+	//设置按钮边框
+	private JLabel btn_setting_border = null;
+	//设置按钮
+	private JButton btn_setting = null;
+	//设置message按钮边框
+	private JLabel btn_message_border = null;
+	//设置message按钮
+	private JButton btn_message = null;
+	//设置security按钮边框
+	private JLabel btn_security_border = null;
+	//设置security按钮
+	private JButton btn_security = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -1454,6 +1563,7 @@ public class Main extends JFrame{
 				btn_app_ecommerce_border.setIcon(btn_icon_broder_pressIcon);
 			}
 		});
+
 		//设置appbox边框高亮
 		btn_app_appbox_mgr_border = new JLabel(btn_icon_broder_highlightIcon);
 		btn_app_appbox_mgr_border.setBorder(null);
@@ -1485,6 +1595,400 @@ public class Main extends JFrame{
 			public void mousePressed(MouseEvent e) {
 				System.out.println("cccccccccccccc");
 				btn_app_appbox_mgr_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+
+		//设置menu菜单
+		menuPopupMenu = new JPopupMenu("MenuPopupMenu"); 
+	    String[] menuItems = {"所有服务", "QQ会员", "我的QQ中心", "工具", "系统设置", 
+	    		"软件升级", "安全中心", "帮助", "好友管理器", "修改密码", "更改用户", "锁定QQ", "退出"};  
+
+        //menu下拉菜单-所有服务-子菜单
+        allServiceSubMenu = new JMenu(menuItems[0]);
+        allServiceSubMenu.setIcon(allservices_itemIcon);
+        allServiceSubMenu.setFont(FONT_12_NOBOLD);
+        String[] allServiceSubMenuItem = {"腾讯网", "QQ空间", "拍拍购物", "SOSO搜索", 
+        		"QQ充值", "腾讯游戏", "手机生活", "新闻资讯", "财付通"};
+        //腾讯网
+        JMenuItem tencentSubMenuItem = new JMenuItem(allServiceSubMenuItem[0], tencent_SubMenuItemIcon);
+        tencentSubMenuItem.setFont(FONT_12_NOBOLD);
+        //QQ空间
+        JMenuItem spaceSubMenuItem = new JMenuItem(allServiceSubMenuItem[1], space_SubMenuItemIcon);
+        spaceSubMenuItem.setFont(FONT_12_NOBOLD);
+        //拍拍购物
+        JMenuItem paipaiSubMenuItem = new JMenuItem(allServiceSubMenuItem[2], paipai_SubMenuItemIcon);
+        paipaiSubMenuItem.setFont(FONT_12_NOBOLD);
+        //SOSO搜索
+        JMenuItem sosoSubMenuItem = new JMenuItem(allServiceSubMenuItem[3], soso_SubMenuItemIcon);
+        sosoSubMenuItem.setFont(FONT_12_NOBOLD);
+        //QQ充值
+        JMenuItem rechargeSubMenuItem = new JMenuItem(allServiceSubMenuItem[4], recharge_SubMenuItemIcon);
+        rechargeSubMenuItem.setFont(FONT_12_NOBOLD);
+        //腾讯游戏
+        JMenuItem tencentGameSubMenuItem = new JMenuItem(allServiceSubMenuItem[5], game_SubMenuItemIcon);
+        tencentGameSubMenuItem.setFont(FONT_12_NOBOLD);
+        //手机生活
+        JMenuItem mobileLifeSubMenuItem = new JMenuItem(allServiceSubMenuItem[6], mobilelife_SubMenuItemIcon);
+        mobileLifeSubMenuItem.setFont(FONT_12_NOBOLD);
+        //新闻资讯
+        JMenuItem newsSubMenuItem = new JMenuItem(allServiceSubMenuItem[7], tencent_SubMenuItemIcon);
+        newsSubMenuItem.setFont(FONT_12_NOBOLD);
+        //财付通
+        JMenuItem tenpaySubMenuItem = new JMenuItem(allServiceSubMenuItem[8], tenpay_SubMenuItemIcon);
+        tenpaySubMenuItem.setFont(FONT_12_NOBOLD);
+        //所有服务下拉菜单添加条目
+        allServiceSubMenu.add(tencentSubMenuItem);
+        allServiceSubMenu.add(spaceSubMenuItem);
+        allServiceSubMenu.add(paipaiSubMenuItem);
+        allServiceSubMenu.add(sosoSubMenuItem);
+        allServiceSubMenu.addSeparator(); 
+        allServiceSubMenu.add(rechargeSubMenuItem);
+        allServiceSubMenu.add(tencentGameSubMenuItem);
+        allServiceSubMenu.add(mobileLifeSubMenuItem);
+        allServiceSubMenu.add(newsSubMenuItem);
+        allServiceSubMenu.add(tenpaySubMenuItem);
+        
+	    //menu下拉菜单-QQ会员
+        vipMenuItem = new JMenuItem(menuItems[1], vip_itemIcon);  
+        vipMenuItem.setFont(FONT_12_NOBOLD);
+        vipMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+        
+	    //menu下拉菜单-我的QQ中心
+        myCenterMenuItem = new JMenuItem(menuItems[2], mycenter_itemIcon);  
+        myCenterMenuItem.setFont(FONT_12_NOBOLD);
+        myCenterMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+        
+	    //menu下拉菜单-工具
+        toolsMenuItem = new JMenuItem(menuItems[3], tools_itemIcon);  
+        toolsMenuItem.setFont(FONT_12_NOBOLD);
+        toolsMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+        
+	    //menu下拉菜单-系统设置
+        systemSettingSubMenu = new JMenu(menuItems[4]);
+        systemSettingSubMenu.setIcon(systemSetting_itemIcon);
+        systemSettingSubMenu.setFont(FONT_12_NOBOLD);
+        String[] systemSettingSubMenuItem = {"个人资料", "基本设置", "安全设置", "隐私设置"};
+        //个人资料
+        JMenuItem userInfoSubMenuItem = new JMenuItem(systemSettingSubMenuItem[0]);
+        userInfoSubMenuItem.setFont(FONT_12_NOBOLD);
+        //基本设置
+        JMenuItem basicSettingSubMenuItem = new JMenuItem(systemSettingSubMenuItem[1]);
+        basicSettingSubMenuItem.setFont(FONT_12_NOBOLD);
+        //安全设置
+        JMenuItem securitySettingSubMenuItem = new JMenuItem(systemSettingSubMenuItem[2]);
+        securitySettingSubMenuItem.setFont(FONT_12_NOBOLD);
+        //隐私设置
+        JMenuItem privacySettingSubMenuItem = new JMenuItem(systemSettingSubMenuItem[3]);
+        privacySettingSubMenuItem.setFont(FONT_12_NOBOLD);
+        //系统设置下拉菜单添加条目
+        systemSettingSubMenu.add(userInfoSubMenuItem);
+        systemSettingSubMenu.add(basicSettingSubMenuItem);
+        systemSettingSubMenu.add(securitySettingSubMenuItem);
+        systemSettingSubMenu.add(privacySettingSubMenuItem);
+        
+	    //menu下拉菜单-软件升级
+        softUpdateMenuItem = new JMenuItem(menuItems[5], softUpdate_itemIcon);  
+        softUpdateMenuItem.setFont(FONT_12_NOBOLD);
+        softUpdateMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+
+	    //menu下拉菜单-安全中心
+        securityCenterSubMenu = new JMenu(menuItems[6]);
+        securityCenterSubMenu.setIcon(securityCenter_itemIcon);
+        securityCenterSubMenu.setFont(FONT_12_NOBOLD);
+        String[] securityCenterSubMenuItem = {"安全沟通", "安全中心首页", "申请密码保护", 
+        		"举报恶意行为", "QQ安全帮助"};
+        //安全沟通
+        JMenuItem securityCommunication = new JMenuItem(securityCenterSubMenuItem[0]);
+        securityCommunication.setIcon(securityCenter_itemIcon);
+        securityCommunication.setFont(FONT_12_NOBOLD);
+        //安全中心首页
+        JMenuItem securityCenterIndex = new JMenuItem(securityCenterSubMenuItem[1]);
+        securityCenterIndex.setFont(FONT_12_NOBOLD);
+        //申请密码保护
+        JMenuItem applyPasswordProtected = new JMenuItem(securityCenterSubMenuItem[2]);
+        applyPasswordProtected.setFont(FONT_12_NOBOLD);
+        //举报恶意行为
+        JMenuItem reportMaliciousAct = new JMenuItem(securityCenterSubMenuItem[3]);
+        reportMaliciousAct.setFont(FONT_12_NOBOLD);
+        //QQ安全帮助
+        JMenuItem securityHelp = new JMenuItem(securityCenterSubMenuItem[4]);
+        securityHelp.setFont(FONT_12_NOBOLD);
+        //安全中下拉菜单添加条目
+        securityCenterSubMenu.add(securityCommunication);
+        securityCenterSubMenu.add(securityCenterIndex);
+        securityCenterSubMenu.add(applyPasswordProtected);
+        securityCenterSubMenu.add(reportMaliciousAct);
+        securityCenterSubMenu.add(securityHelp);
+
+	    //menu下拉菜单-帮助中心
+        helpCenterSubMenu = new JMenu(menuItems[7]);
+        helpCenterSubMenu.setIcon(helpCenter_itemIcon);
+        helpCenterSubMenu.setFont(FONT_12_NOBOLD);
+        String[] helpCenterSubMenuItem = {"使用帮助", "腾讯客服", "反馈问题", 
+        		"QQ新特性", "I'm QQ官网", "QQ官方微博", "关于QQ2013"};
+        //使用帮助
+        JMenuItem userHelp = new JMenuItem(helpCenterSubMenuItem[0]);
+        userHelp.setIcon(helpCenter_itemIcon);
+        userHelp.setFont(FONT_12_NOBOLD);
+        //腾讯客服
+        JMenuItem customerService = new JMenuItem(helpCenterSubMenuItem[1]);
+        customerService.setIcon(customerService_itemIcon);
+        customerService.setFont(FONT_12_NOBOLD);
+        //反馈问题
+        JMenuItem feedback = new JMenuItem(helpCenterSubMenuItem[2]);
+        feedback.setIcon(feedback_itemIcon);
+        feedback.setFont(FONT_12_NOBOLD);
+        //QQ新特性
+        JMenuItem whats_new = new JMenuItem(helpCenterSubMenuItem[3]);
+        whats_new.setIcon(whats_new_itemIcon);
+        whats_new.setFont(FONT_12_NOBOLD);
+        //I'm QQ官网
+        JMenuItem imqqcom = new JMenuItem(helpCenterSubMenuItem[4]);
+        imqqcom.setIcon(imqqcom_itemIcon);
+        imqqcom.setFont(FONT_12_NOBOLD);
+        //QQ官方微博
+        JMenuItem official_wblog = new JMenuItem(helpCenterSubMenuItem[5]);
+        official_wblog.setIcon(official_wblog_itemIcon);
+        official_wblog.setFont(FONT_12_NOBOLD);
+        //关于QQ2013
+        JMenuItem about_qq = new JMenuItem(helpCenterSubMenuItem[6]);
+        about_qq.setIcon(about_qq_itemIcon);
+        about_qq.setFont(FONT_12_NOBOLD);
+        //帮助中心中下拉菜单添加条目
+        helpCenterSubMenu.add(userHelp);
+        helpCenterSubMenu.add(customerService);
+        helpCenterSubMenu.add(feedback);
+        helpCenterSubMenu.addSeparator();  
+        helpCenterSubMenu.add(whats_new);
+        helpCenterSubMenu.addSeparator();  
+        helpCenterSubMenu.add(imqqcom);
+        helpCenterSubMenu.add(official_wblog);
+        helpCenterSubMenu.add(about_qq);
+        
+	    //menu下拉菜单-好友管理
+        contactMgrMenuItem = new JMenuItem(menuItems[8], contactMgr_itemIcon);  
+        contactMgrMenuItem.setFont(FONT_12_NOBOLD);
+        contactMgrMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+
+	    //menu下拉菜单-修改密码
+        changepswdMenuItem = new JMenuItem(menuItems[9], changepswd_itemIcon);  
+        changepswdMenuItem.setFont(FONT_12_NOBOLD);
+        changepswdMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+        
+	    //menu下拉菜单-更改用户
+        changeuserMenuItem = new JMenuItem(menuItems[10], changeuser_itemIcon);  
+        changeuserMenuItem.setFont(FONT_12_NOBOLD);
+        changeuserMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+        
+	    //menu下拉菜单-锁定QQ
+        lockQQMenuItem = new JMenuItem(menuItems[11], lockqq_itemIcon);  
+        lockQQMenuItem.setFont(FONT_12_NOBOLD);
+        lockQQMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+        
+	    //menu下拉菜单-退出
+        quiteMenuItem = new JMenuItem(menuItems[12], quite_itemIcon);  
+        quiteMenuItem.setFont(FONT_12_NOBOLD);
+        quiteMenuItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+
+            }  
+        }); 
+        
+        //menu下拉菜单添加条目
+        menuPopupMenu.add(allServiceSubMenu); 
+        menuPopupMenu.add(vipMenuItem);  
+        menuPopupMenu.add(myCenterMenuItem);  
+        menuPopupMenu.addSeparator(); 
+        menuPopupMenu.add(toolsMenuItem);  
+        menuPopupMenu.add(systemSettingSubMenu);  
+        menuPopupMenu.add(softUpdateMenuItem);  
+        menuPopupMenu.addSeparator();  
+        menuPopupMenu.add(securityCenterSubMenu);  
+        menuPopupMenu.add(helpCenterSubMenu);  
+        menuPopupMenu.addSeparator();  
+        menuPopupMenu.add(contactMgrMenuItem);  
+        menuPopupMenu.add(changepswdMenuItem); 
+        menuPopupMenu.add(changeuserMenuItem);  
+        menuPopupMenu.add(lockQQMenuItem);  
+        menuPopupMenu.add(quiteMenuItem);  
+		
+		//设置menu按钮边框高亮
+		btn_menu_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_menu_border.setBorder(null);
+		btn_menu_border.setBounds(3, 563, 22, 22);
+		btn_menu_border.setVisible(false);
+		
+		//设置menu按钮按钮
+		btn_menu = new JButton();
+		btn_menu.setBounds(6, 566, 16, 16);
+		btn_menu.setIcon(btn_menu_normalIcon);
+		btn_menu.setBorderPainted(false);
+		btn_menu.setContentAreaFilled(false);
+		btn_menu.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                if(menuPopupMenu.getSubElements().length != 0) {  
+                	//在组件调用者的坐标空间中的位置 X、Y 显示弹出菜单
+                	menuPopupMenu.show(Main.this, 3, 226);  
+                    //请求此 Component 获取输入焦点
+                	menuPopupMenu.requestFocus();  
+                }  
+            }  
+        });  
+		btn_menu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_menu_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_menu_border.setVisible(false);
+				btn_menu.setIcon(btn_menu_normalIcon);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_menu_border.setVisible(true);
+				btn_menu.setIcon(btn_menu_highlightIcon);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_menu_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置setting按钮边框高亮
+		btn_setting_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_setting_border.setBorder(null);
+		btn_setting_border.setBounds(33, 563, 22, 22);
+		btn_setting_border.setVisible(false);
+		
+		//设置setting按钮按钮
+		btn_setting = new JButton();
+		btn_setting.setBounds(36, 566, 16, 16);
+		btn_setting.setIcon(btn_setting_Icon);
+		btn_setting.setBorderPainted(false);
+		btn_setting.setContentAreaFilled(false);
+		btn_setting.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_setting_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_setting_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_setting_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_setting_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置message按钮边框高亮
+		btn_message_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_message_border.setBorder(null);
+		btn_message_border.setBounds(63, 563, 22, 22);
+		btn_message_border.setVisible(false);
+		
+		//设置message按钮按钮
+		btn_message = new JButton();
+		btn_message.setBounds(66, 566, 16, 16);
+		btn_message.setIcon(btn_message_Icon);
+		btn_message.setBorderPainted(false);
+		btn_message.setContentAreaFilled(false);
+		btn_message.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_message_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_message_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_message_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_message_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置security按钮边框高亮
+		btn_security_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_security_border.setBorder(null);
+		btn_security_border.setBounds(93, 563, 22, 22);
+		btn_security_border.setVisible(false);
+		
+		//设置security按钮按钮
+		btn_security = new JButton();
+		btn_security.setBounds(96, 566, 16, 16);
+		btn_security.setIcon(btn_security_Icon);
+		btn_security.setBorderPainted(false);
+		btn_security.setContentAreaFilled(false);
+		btn_security.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_security_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_security_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_security_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_security_border.setIcon(btn_icon_broder_pressIcon);
 			}
 		});
 		
@@ -1540,6 +2044,14 @@ public class Main extends JFrame{
 		this.add(btn_app_ecommerce_border);
 		this.add(btn_app_appbox_mgr);
 		this.add(btn_app_appbox_mgr_border);
+		this.add(btn_menu);
+		this.add(btn_menu_border);
+		this.add(btn_setting);
+		this.add(btn_setting_border);
+		this.add(btn_message);
+		this.add(btn_message_border);
+		this.add(btn_security);
+		this.add(btn_security_border);
 		
 		this.add(appbg);
 		
