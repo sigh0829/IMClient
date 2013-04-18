@@ -36,6 +36,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.tree.TreePath;
 
 import com.im.client.component.NewScrollBarUI;
@@ -266,6 +267,10 @@ public class Main extends JFrame{
 	private ImageIcon btn_message_Icon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_message.png");
 	//安全概况
 	private ImageIcon btn_security_Icon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_security.png");
+	//圈子按钮
+	private ImageIcon btn_circle_Icon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_circle.png");
+	//查找按钮
+	private ImageIcon btn_find_Icon = ImageManageUtils.getImageIcon("images/frame/main/menu/btn_find.png");
 
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -475,6 +480,14 @@ public class Main extends JFrame{
 	private JLabel btn_security_border = null;
 	//设置security按钮
 	private JButton btn_security = null;
+	//设置圈子按钮边框
+	private JLabel btn_circle_border = null;
+	//设置圈子按钮
+	private JButton btn_circle = null;
+	//设置查找按钮边框
+	private JLabel btn_find_border = null;
+	//设置查找按钮
+	private JButton btn_find = null;
 
 	//颜色绿
 	private Color GREEN = new Color(154,205,50);
@@ -1992,6 +2005,75 @@ public class Main extends JFrame{
 			}
 		});
 		
+		//设置圈子按钮边框高亮
+		btn_circle_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_circle_border.setBorder(null);
+		btn_circle_border.setBounds(123, 563, 22, 22);
+		btn_circle_border.setVisible(false);
+		
+		//设置圈子按钮
+		btn_circle = new JButton();
+		btn_circle.setBounds(126, 566, 16, 16);
+		btn_circle.setIcon(btn_circle_Icon);
+		btn_circle.setHorizontalTextPosition(SwingConstants.RIGHT);
+		btn_circle.setBorderPainted(false);
+		btn_circle.setContentAreaFilled(false);
+		btn_circle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_circle_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_circle_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_circle_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_circle_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
+		//设置查找按钮边框高亮
+		btn_find_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_find_border.setBorder(null);
+		btn_find_border.setBounds(153, 563, 22, 22);
+		btn_find_border.setVisible(false);
+		
+		//设置查找按钮
+		btn_find = new JButton();
+		btn_find.setBounds(156, 566, 16, 16);
+		btn_find.setIcon(btn_find_Icon);
+		btn_find.setBorderPainted(false);
+		btn_find.setContentAreaFilled(false);
+		btn_find.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				System.out.println("1");
+				btn_find_border.setIcon(btn_icon_broder_highlightIcon);
+				btn_find_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("2");
+				btn_find_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("cccccccccccccc");
+				btn_find_border.setIcon(btn_icon_broder_pressIcon);
+			}
+		});
+		
 		//添加组件
 		this.setContentPane(main_bg);
 		this.add(btn_close);
@@ -2052,6 +2134,10 @@ public class Main extends JFrame{
 		this.add(btn_message_border);
 		this.add(btn_security);
 		this.add(btn_security_border);
+		this.add(btn_circle);
+		this.add(btn_circle_border);
+		this.add(btn_find);
+		this.add(btn_find_border);
 		
 		this.add(appbg);
 		
