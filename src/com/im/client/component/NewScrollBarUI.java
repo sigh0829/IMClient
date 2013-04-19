@@ -17,7 +17,7 @@ import com.im.client.utils.ImageManageUtils;
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
-* Module ID:			1    
+* Module ID:			2    
 * Comments:  			ScrollBarUI                                        
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                         

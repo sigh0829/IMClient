@@ -13,7 +13,8 @@ import com.im.client.dto.IconTreeNode;
 
 /**
  * CopyRright (c)2013: 			InstantMessage 
- * Project: 					InstantMessageClient Module ID: 1
+ * Project: 					InstantMessageClient 
+ * Module ID: 					2
  * Comments: 					重写DefaultTreeCellRenderer 
  * JDK version used: 			JDK 1.7 
  * NameSpace:					com.im.client.component 

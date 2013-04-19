@@ -8,7 +8,7 @@ import javax.swing.plaf.basic.BasicTreeUI;
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
-* Module ID:			1    
+* Module ID:			2   
 * Comments:  			重写BasicTreeUI                                          
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                         

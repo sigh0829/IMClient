@@ -52,7 +52,7 @@ import com.sun.awt.AWTUtilities;
 /** 
 * CopyRright (c)2013:	InstantMessage                          
 * Project:				InstantMessageClient                                          
-* Module ID:			1    
+* Module ID:			2    
 * Comments:  			IM主界面                                           
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.ui                         
@@ -63,6 +63,7 @@ import com.sun.awt.AWTUtilities;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
+
 @SuppressWarnings("serial")
 public class Main extends JFrame{
 
@@ -520,6 +521,7 @@ public class Main extends JFrame{
 		this.setUndecorated(true);
 		//设置任务栏图标
 		this.setIconImage(taskbar_logoIcon.getImage());
+		//设置背景颜色
 		this.setBackground(GREEN);
 		//定义一个所有圆角都使用 double坐标指定的矩形
 		shape = new RoundRectangle2D.Double(0, 0, 
