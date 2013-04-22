@@ -77,8 +77,8 @@ public class MiniLogin extends JFrame{
 	private ImageIcon btn_mini_pressIcon = ImageManageUtils.getImageIcon("images/common/btn_minimize_press.png");
 	//用户头像
 	private ImageIcon user_imageIcon = ImageManageUtils.getImageIcon("images/usericon/user_image/user_image.png");
-	private ImageIcon user_image_bg_normalIcon = ImageManageUtils.getImageIcon("images/usericon/user_imgbg_normal.png");
-	private ImageIcon user_image_bg_hoverIcon = ImageManageUtils.getImageIcon("images/usericon/user_imgbg_hover.png");
+	private ImageIcon user_image_bg_normalIcon = ImageManageUtils.getImageIcon("images/usericon/login_head_bkg_normal.png");
+	private ImageIcon user_image_bg_hoverIcon = ImageManageUtils.getImageIcon("images/usericon/login_head_bkg_highlight.png");
 	//密码框中的键盘
 	private ImageIcon pwd_keyboard_Icon = ImageManageUtils.getImageIcon("images/frame/login/btn_loginpwd_keyboard.png");
 	//输入框边框
@@ -298,13 +298,13 @@ public class MiniLogin extends JFrame{
 		//设置头像
 		//头像边框
 		user_image_normalbg = new JLabel(user_image_bg_normalIcon);
-		user_image_normalbg.setBounds(20, 140, 84, 84);
+		user_image_normalbg.setBounds(15, 140, 87, 87);
 		//头像图片
 		user_image = new JLabel(user_imageIcon);
-		user_image.setBounds(22, 142, 80, 80);
+		user_image.setBounds(15, 140, 87, 87);
 		//头像边框高亮
 		user_image_hoverbg = new JLabel(user_image_bg_hoverIcon);
-		user_image_hoverbg.setBounds(20, 140, 84, 84);
+		user_image_hoverbg.setBounds(13, 138, 91, 91);
 		user_image_hoverbg.setVisible(false);
 		user_image.addMouseListener(new MouseListener() {
 			

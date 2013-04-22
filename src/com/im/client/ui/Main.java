@@ -839,7 +839,6 @@ public class Main extends JFrame{
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				user_stauts_hightlight_border.setVisible(true);
-				
 			}
 			
 			@Override
