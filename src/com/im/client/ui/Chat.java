@@ -1,9 +1,16 @@
 package com.im.client.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,13 +18,20 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
+import com.im.client.component.NewScrollBarUI;
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.sun.awt.AWTUtilities;
@@ -49,7 +63,7 @@ public class Chat extends JFrame{
 	private int screenHeight = 0;
 
 	//登录界面背景图片
-	private ImageIcon main_bg_Icon = ImageManageUtils.getImageIcon("images/background/chat/main_bg_snail.jpg");
+	private ImageIcon main_bg_Icon = ImageManageUtils.getImageIcon("images/background/common/main_bg_snail.jpg");
 	//关闭按钮
 	private ImageIcon btn_close_normalIcon = ImageManageUtils.getImageIcon("images/common/btn_close_normal.png");
 	//关闭按钮高亮
@@ -136,6 +150,58 @@ public class Chat extends JFrame{
 	private ImageIcon reportIcon = ImageManageUtils.getImageIcon("images/frame/chat/icon/menu/app/report_icon.png");
 	//应用 - 等级PK
 	private ImageIcon levelPKIcon = ImageManageUtils.getImageIcon("images/frame/chat/icon/menu/app/level_pk_icon.png");
+	//消息面板提示
+	private ImageIcon tipInfoIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/tip_info_icon.png");
+	//消息面板-字体选择
+	private ImageIcon btn_font_chooseIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_font.png");
+	//消息面板-字体选择工具栏
+	private ImageIcon btn_windows_default_fontIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_sysfont_tab_button.png");
+	//字体选择工具栏-加粗
+	private ImageIcon btn_font_boldIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/midtoolbarextup_font/bold.png");
+	//字体选择工具栏-倾斜
+	private ImageIcon btn_font_italicIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/midtoolbarextup_font/italic.png");
+	//字体选择工具栏-下划线
+	private ImageIcon btn_font_underlineIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/midtoolbarextup_font/underline.png");
+	//字体选择工具栏-	颜色
+	private ImageIcon btn_font_colorIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/midtoolbarextup_font/color.png");
+	//表情
+	private ImageIcon btn_faceIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_face.png");
+	//魔法表情
+	private ImageIcon btn_magic_faceIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_magic_face.png");
+	//窗口抖动
+	private ImageIcon btn_window_shakeIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_window_shake.png");
+	//辅助输入
+	private ImageIcon btn_input_assistIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_input_assist.png");
+	//分隔符
+	private ImageIcon cutlineIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_cutline.png");
+	//发送图片
+	private ImageIcon btn_send_pictureIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_send_picture.png");
+	//截图
+	private ImageIcon btn_cut_pictureIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_cut.png");
+	//更多应用
+	private ImageIcon btn_moreIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_more.png");
+	//消息记录
+	private ImageIcon btn_message_recordIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/aio_quickbar_message_record.png");
+	//消息记录边框
+	private ImageIcon btn_msgrecord_broderIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/btn_msgrecord_broder.png");
+	//关闭按钮
+	private ImageIcon btn_chat_close_normalIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_close_normal.png");
+	//关闭按钮高亮
+	private ImageIcon btn_chat_close_hoverIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_close_highlight.png");
+	//关闭按钮被点击
+	private ImageIcon btn_chat_close_pressIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_close_focus.png");
+	//发送left按钮
+	private ImageIcon btn_send_left_normalIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_left_normal.png");
+	//发送left按钮高亮
+	private ImageIcon btn_send_left_hoverIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_left_focus_normal.png");
+	//发送left按钮被点击
+	private ImageIcon btn_send_left_pressIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_left_focus_down.png");
+	//发送right按钮
+	private ImageIcon btn_send_right_normalIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_right_normal.png");
+	//发送right按钮高亮
+	private ImageIcon btn_send_right_hoverIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_right_focus_normal.png");
+	//发送right按钮被点击
+	private ImageIcon btn_send_right_pressIcon = ImageManageUtils.getImageIcon("images/frame/chat/message/toolbar/bottombtn/btn_right_focus_down.png");
 	
 	//背景图片
     private JLabel main_bg = null;
@@ -251,6 +317,104 @@ public class Chat extends JFrame{
     private JMenuItem reportItem = null;
     //应用 - 等级PK
     private JMenuItem levelPKItem = null;
+    //聊天界面中心面板
+    private JPanel chatPanel = null;
+	//聊天界面消息内容面板
+    private JPanel msgContentPanel = null;
+	//聊天界面输入面板
+    private JPanel msgInputPanel = null;
+    //聊天界面消息内容面板提示label
+	private JLabel msgTip = null;
+	//聊天消息
+	private JTextArea msgContentTextArea = null;
+	//消息多行文本滚动条
+	private JScrollPane msgContentScrollPane = null;
+	//消息输入顶部工具栏
+	private JPanel msgInputTopToolBarPanel = null;
+	//消息输入顶部工具栏中心Panel
+	private JPanel msgInputTopToolBarCenterPanel = null;
+	//消息输入顶部工具栏底部panel
+	private JPanel msgInputTopToolBarSouthPanel = null;
+	//设置字体选择工具按钮
+	private JButton btn_font_choose = null;
+	//字体设置是否可见
+	private boolean visibleFlag = false;
+	//消息输入多行文本
+	private JTextArea msgInputTextArea = null;
+	//消息输入底部工具栏面板
+	private JPanel msgInputBottomToolBarPanel = null;
+	//文字按钮是否显示按钮边框
+	private boolean borderFlag = false;
+	private int buttonClickCount = 0;
+	//字体选择工具栏
+	private JButton btn_windows_default_font = null;
+	//布局管理器
+	private FlowLayout flowLayout = null;
+	//字体选择工具栏-字体下拉列表
+	private JComboBox<String> fontComboBox = null;
+	//字体选择工具栏-字体大小下拉列表
+	private JComboBox<Integer> fontSizeComboBox = null;
+	//设置字体加粗按钮
+	private JButton btn_font_bold = null;
+	//加粗按钮是否显示按钮边框
+	private boolean fontBoldFlag = false;
+	private int fontBoldClickCount = 0;
+	//设置字体倾斜按钮
+	private JButton btn_font_italic = null;
+	//倾斜按钮是否显示按钮边框
+	private boolean fontItalicFlag = false;
+	private int fontItalicClickCount = 0;
+	//设置字体下划线按钮
+	private JButton btn_font_underline = null;
+	//下划线按钮是否显示按钮边框
+	private boolean fontUnderlineFlag = false;
+	private int fontUnderlineClickCount = 0;
+	//设置字体颜色按钮
+	private JButton btn_font_color = null;
+	//设置字体选择工具边框高亮
+	private JLabel btn_font_choose_border = null;
+	//设置表情按钮
+	private JButton btn_face = null;
+	//设置表情边框高亮
+	private JLabel btn_face_border = null;
+	//设置魔法表情按钮
+	private JButton btn_magic_face = null;
+	//设置魔法表情边框高亮
+	private JLabel btn_magic_face_border = null;
+	//设置窗口抖动按钮
+	private JButton btn_window_shake = null;
+	//设置窗口抖动边框高亮
+	private JLabel btn_window_shake_border = null;
+	//设置辅助输入按钮
+	private JButton btn_input_assist = null;
+	//设置辅助输入边框高亮
+	private JLabel btn_input_assist_border = null;
+	//设置分割
+	private JLabel aio_cutline = null;
+	//设置发送图片按钮
+	private JButton btn_send_picture = null;
+	//设置发送图片边框高亮
+	private JLabel btn_send_picture_border = null;
+	//设置截图按钮
+	private JButton btn_cut_picture = null;
+	//设置截图按钮边框高亮
+	private JLabel btn_cut_picture_border = null;
+	//设置分割
+	private JLabel aio_cutline2 = null;
+	//设置更多边框高亮
+	private JLabel btn_more_border = null;
+	//设置更多边框高亮
+	private JButton btn_more = null;
+	//设置消息记录按钮
+	private JButton btn_message_record = null;
+	//设置消息记录边框高亮
+	private JLabel btn_message_record_border = null;
+	//设置关闭按钮
+	private JButton btn_chat_close = null;
+	//设置发送按钮left
+	private JButton btn_send_left = null;
+	//设置发送按钮right
+	private JButton btn_send_right = null;
 
 	//窗体是否完全不透明
 	private boolean isWindowOpaque = true;
@@ -261,7 +425,7 @@ public class Chat extends JFrame{
 	private Shape shape = null;
 	
 	//颜色绿
-	private Color GREEN = new Color(154,205,50);
+	private Color GREEN = new Color(120, 186, 0);
 	//字体
 	private Font FONT_15_NOBOLD = new Font("微软雅黑", 0, 15);
 	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
@@ -276,6 +440,9 @@ public class Chat extends JFrame{
 		initUI();
 	}	
 	
+	/**
+	 * 
+	 */
 	public void initUI(){
 		this.setTitle("IM2013");
 		this.setLayout(null);
@@ -305,7 +472,8 @@ public class Chat extends JFrame{
 			@Override
 			protected void paintComponent(Graphics g) {
 				// 图片随窗体大小而变化
-                g.drawImage(main_bg_Icon.getImage(), 0, 0, Chat.this);
+                g.drawImage(main_bg_Icon.getImage(), 
+                		(windowWidth-main_bg_Icon.getIconWidth()), 0, Chat.this);
 			}
         };
         
@@ -334,7 +502,52 @@ public class Chat extends JFrame{
 		btn_max.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Chat.this.setExtendedState(JFrame.ICONIFIED);
+				if (Chat.this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
+					//最大化恢复操作
+					//窗口的宽度和窗口的高度
+					windowWidth = 545;
+					windowHeight = 515;
+					
+					AWTUtilities.setWindowShape(Chat.this,
+							new RoundRectangle2D.Double(0, 0, windowWidth, windowHeight, 6.5d, 6.5d));
+					Chat.this.setBounds((screenWidth - windowWidth) / 2, (screenHeight - windowHeight) / 2,
+							windowWidth, windowHeight);
+
+					chatPanel.setBounds(0, 100, windowWidth, (windowHeight-100));
+					btn_close.setBounds((windowWidth-30), 0, 30, 20);
+					btn_max.setBounds((windowWidth-30-28), 0, 28, 20);
+					btn_mini.setBounds((windowWidth-30-28-30), 0, 30, 20);
+					btn_frameset.setBounds((windowWidth-30-28-30-28), 0, 28, 20);
+					btn_message_record.setBounds(windowWidth-110, 5, 110, 20);
+					btn_message_record_border.setBounds(windowWidth-95, 5, 82, 22);
+					btn_chat_close.setBounds((windowWidth-175), 5, 75, 24);
+					btn_send_left.setBounds((windowWidth-100), 5, 81, 24);
+					btn_send_right.setBounds((windowWidth-29), 5, 20, 24);
+					
+					Chat.this.setExtendedState(JFrame.NORMAL);
+				} else {
+					// 最大化操作
+					AWTUtilities.setWindowShape(Chat.this,
+							new RoundRectangle2D.Double(0, 0, screenWidth, screenHeight, 6.5d, 6.5d));
+					
+					Chat.this.setBounds(0, 0, screenWidth, screenHeight);
+					
+					chatPanel.setBounds(0, 100, screenWidth, screenHeight-100);
+					btn_close.setBounds((screenWidth-30), 0, 30, 20);
+					btn_max.setBounds((screenWidth-30-28), 0, 28, 20);
+					btn_mini.setBounds((screenWidth-30-28-30), 0, 30, 20);
+					btn_frameset.setBounds((screenWidth-30-28-30-28), 0, 28, 20);
+					btn_message_record.setBounds(screenWidth-110, 5, 110, 20);
+					btn_message_record_border.setBounds(screenWidth-95, 5, 82, 22);
+					btn_chat_close.setBounds((screenWidth-175), 5, 75, 24);
+					btn_send_left.setBounds((screenWidth-100), 5, 81, 24);
+					btn_send_right.setBounds((screenWidth-29), 5, 20, 24);
+					
+					Chat.this.revalidate();
+					Chat.this.repaint(1);
+					Chat.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+				}
 			}
 		});
 		
@@ -1059,6 +1272,680 @@ public class Chat extends JFrame{
 			}
 		});
 		
+		//聊天界面中心面板
+		chatPanel = new JPanel(new BorderLayout());
+		chatPanel.setBounds(0, 100, windowWidth, (windowHeight-100));
+		//chatPanel.setPreferredSize(new Dimension(windowWidth, (windowHeight-100)));
+		chatPanel.setBackground(new Color(255, 255, 255, 100));
+		
+		//聊天界面消息内容面板
+		msgContentPanel = new JPanel(new BorderLayout());
+		//设置半透明有重影
+		//msgContentPanel.setBackground(new Color(255, 255, 255, 100));
+		msgContentPanel.setBackground(new Color(255, 255, 255));
+		
+		//提示label
+		msgTip = new JLabel("交谈中请勿轻信汇款、中奖信息、陌生电话，勿使用外挂软件。", 
+				tipInfoIcon, SwingConstants.LEFT);
+		msgTip.setFont(FONT_12_NOBOLD);
+		msgContentPanel.add(BorderLayout.NORTH, msgTip);
+		
+		//聊天消息
+		msgContentTextArea = new JTextArea();
+		//设置多行文本透明（字体会重影，问题尚未解决！）
+		//msgContentTextArea.setOpaque(false);
+		//自动换行
+		msgContentTextArea.setLineWrap(true);
+		//设置不可编辑
+		//msgContentTextArea.setEditable(false);
+		//换行方式-以单词末尾换行
+		msgContentTextArea.setWrapStyleWord(false);
+		//设置字体
+		msgContentTextArea.setFont(FONT_12_NOBOLD);
+		//设置内边距
+		msgContentTextArea.setMargin(new Insets(10, 10, 5, 5));
+		msgContentTextArea.setText("sdkfajsdfasdfasdfasdfsdfs");
+		
+		//消息多行文本滚动条
+		msgContentScrollPane = new JScrollPane(msgContentTextArea);
+		//设置成透明
+		msgContentScrollPane.setOpaque(false);
+		msgContentScrollPane.getViewport().setOpaque(false);
+		//设置滚动条样式
+		msgContentScrollPane.getVerticalScrollBar().setUI(new NewScrollBarUI());
+		msgContentScrollPane.setBorder(BorderFactory.createEmptyBorder());
+		//消息内容面板添加组件
+		msgContentPanel.add(BorderLayout.CENTER, msgContentScrollPane);
+		
+		//聊天界面输入面板
+		msgInputPanel = new JPanel(new BorderLayout());
+		msgInputPanel.setBackground(new Color(255, 255, 255, 200));
+		
+		//消息输入工具栏面板
+		msgInputTopToolBarPanel = new JPanel(new BorderLayout());
+		msgInputTopToolBarPanel.setBackground(Color.black);
+		//字体选择panel
+		//布局管理器
+		flowLayout = new FlowLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		msgInputTopToolBarCenterPanel = new JPanel(flowLayout);
+		msgInputTopToolBarCenterPanel.setBackground(new Color(225, 239, 199));
+		//消息输入工具栏
+		msgInputTopToolBarSouthPanel = new JPanel(null);
+		msgInputTopToolBarSouthPanel.setBackground(new Color(225, 239, 199));
+		msgInputTopToolBarSouthPanel.setPreferredSize(new Dimension(windowWidth, 30));
+
+		//系统默认字体列表
+		btn_windows_default_font = new JButton();
+		btn_windows_default_font.setBounds(5, 5, 20, 20);
+		btn_windows_default_font.setPreferredSize(new Dimension(20, 20));
+		btn_windows_default_font.setIcon(btn_windows_default_fontIcon);
+		btn_windows_default_font.setBorderPainted(true);
+		btn_windows_default_font.setContentAreaFilled(false);
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		String[] fontList = ge.getAvailableFontFamilyNames();
+		//字体选择工具栏-字体下拉列表
+		fontComboBox = new JComboBox<String>(fontList);  
+		//字体选择工具栏-字体大小下拉列表
+		Integer[] fontSizeList = new Integer[15];
+		for(int i = 0; i<=14; i++){
+			fontSizeList[i] = i+8;
+		}
+		fontSizeComboBox = new JComboBox<Integer>(fontSizeList);  
+		//设置字体加粗按钮
+		btn_font_bold = new JButton();
+		btn_font_bold.setPreferredSize(new Dimension(20, 20));
+		btn_font_bold.setIcon(btn_font_boldIcon);
+		btn_font_bold.setBorderPainted(false);
+		btn_font_bold.setContentAreaFilled(false);
+		btn_font_bold.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(fontBoldFlag){
+					btn_font_bold.setBorderPainted(true);
+				}else{
+					btn_font_bold.setBorderPainted(false);
+				}
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_font_bold.setBorderPainted(true);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_font_bold.setBorderPainted(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if((e.getClickCount() + fontBoldClickCount)%2 == 1){
+					fontBoldFlag = true;
+					fontBoldClickCount = 1;
+				}else{
+					fontBoldFlag = false;
+					fontBoldClickCount= 0;
+				}
+				btn_font_bold.setBorderPainted(true);
+			}
+		});
+		//设置字体倾斜按钮
+		btn_font_italic = new JButton();
+		btn_font_italic.setPreferredSize(new Dimension(20, 20));
+		btn_font_italic.setIcon(btn_font_italicIcon);
+		btn_font_italic.setBorderPainted(false);
+		btn_font_italic.setContentAreaFilled(false);
+		btn_font_italic.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(fontItalicFlag){
+					btn_font_italic.setBorderPainted(true);
+				}else{
+					btn_font_italic.setBorderPainted(false);
+				}
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_font_italic.setBorderPainted(true);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_font_italic.setBorderPainted(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if((e.getClickCount() + fontItalicClickCount)%2 == 1){
+					fontItalicFlag = true;
+					fontItalicClickCount = 1;
+				}else{
+					fontItalicFlag = false;
+					fontItalicClickCount= 0;
+				}
+				btn_font_italic.setBorderPainted(true);
+			}
+			
+		});
+		//设置字体下划线按钮
+		btn_font_underline = new JButton();
+		btn_font_underline.setPreferredSize(new Dimension(20, 20));
+		btn_font_underline.setIcon(btn_font_underlineIcon);
+		btn_font_underline.setBorderPainted(false);
+		btn_font_underline.setContentAreaFilled(false);
+		btn_font_underline.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(fontUnderlineFlag){
+					btn_font_underline.setBorderPainted(true);
+				}else{
+					btn_font_underline.setBorderPainted(false);
+				}
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_font_underline.setBorderPainted(true);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_font_underline.setBorderPainted(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if((e.getClickCount() + fontUnderlineClickCount)%2 == 1){
+					fontUnderlineFlag = true;
+					fontUnderlineClickCount = 1;
+				}else{
+					fontUnderlineFlag = false;
+					fontUnderlineClickCount= 0;
+				}
+				btn_font_underline.setBorderPainted(true);
+			}
+		});
+		//设置字体颜色按钮
+		btn_font_color = new JButton();
+		btn_font_color.setPreferredSize(new Dimension(20, 20));
+		btn_font_color.setIcon(btn_font_colorIcon);
+		btn_font_color.setBorderPainted(false);
+		btn_font_color.setContentAreaFilled(false);
+		btn_font_color.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+					btn_font_color.setBorderPainted(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_font_color.setBorderPainted(true);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+		
+		//添加文字工具
+		msgInputTopToolBarCenterPanel.add(btn_windows_default_font);
+		msgInputTopToolBarCenterPanel.add(fontComboBox);
+		msgInputTopToolBarCenterPanel.add(fontSizeComboBox);
+		msgInputTopToolBarCenterPanel.add(btn_font_bold);
+		msgInputTopToolBarCenterPanel.add(btn_font_italic);
+		msgInputTopToolBarCenterPanel.add(btn_font_underline);
+		msgInputTopToolBarCenterPanel.add(btn_font_color);
+		
+		//设置字体选择工具边框高亮
+		btn_font_choose_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_font_choose_border.setBorder(null);
+		btn_font_choose_border.setBounds(4, 4, 22, 22);
+		btn_font_choose_border.setVisible(false);
+
+		//设置字体选择工具按钮
+		btn_font_choose = new JButton();
+		btn_font_choose.setBounds(5, 5, 20, 20);
+		btn_font_choose.setPreferredSize(new Dimension(20, 20));
+		btn_font_choose.setIcon(btn_font_chooseIcon);
+		btn_font_choose.setBorderPainted(false);
+		btn_font_choose.setContentAreaFilled(false);
+		btn_font_choose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	if(!visibleFlag){
+            		visibleFlag = true;
+            		//添加字体选择工具
+            		msgInputTopToolBarPanel.add(BorderLayout.CENTER, msgInputTopToolBarCenterPanel);
+            		//重新刷新界面panel
+            		msgInputTopToolBarPanel.revalidate();
+            		msgInputTopToolBarPanel.repaint(1);
+            	}else{
+            		visibleFlag = false;
+            		//移除组件
+            		msgInputTopToolBarPanel.remove(msgInputTopToolBarCenterPanel);
+            		//刷新
+            		msgInputTopToolBarPanel.revalidate();
+            		msgInputTopToolBarPanel.repaint(1);
+            	}
+            	
+            }
+        });
+		btn_font_choose.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if(borderFlag){
+					btn_font_choose_border.setVisible(true);
+				}else{
+					btn_font_choose_border.setVisible(false);
+				}
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_font_choose_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_font_choose_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if((e.getClickCount() + buttonClickCount)%2 == 1){
+					borderFlag = true;
+					buttonClickCount = 1;
+				}else{
+					borderFlag = false;
+					buttonClickCount= 0;
+				}
+				btn_font_choose_border.setVisible(true);
+			}
+			
+		});
+		
+		//设置表情边框高亮
+		btn_face_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_face_border.setBorder(null);
+		btn_face_border.setBounds(29, 4, 22, 22);
+		btn_face_border.setVisible(false);
+		
+		//设置表情按钮
+		btn_face = new JButton();
+		btn_face.setBounds(30, 5, 20, 20);
+		btn_face.setPreferredSize(new Dimension(20, 20));
+		btn_face.setIcon(btn_faceIcon);
+		btn_face.setBorderPainted(false);
+		btn_face.setContentAreaFilled(false);
+		btn_face.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_face_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_face_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_face_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
+		//设置魔法表情边框高亮
+		btn_magic_face_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_magic_face_border.setBorder(null);
+		btn_magic_face_border.setBounds(54, 4, 22, 22);
+		btn_magic_face_border.setVisible(false);
+		
+		//设置魔法表情按钮
+		btn_magic_face = new JButton();
+		btn_magic_face.setBounds(55, 5, 20, 20);
+		btn_magic_face.setPreferredSize(new Dimension(20, 20));
+		btn_magic_face.setIcon(btn_magic_faceIcon);
+		btn_magic_face.setBorderPainted(false);
+		btn_magic_face.setContentAreaFilled(false);
+		btn_magic_face.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_magic_face_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_magic_face_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_magic_face_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
+		//设置窗口抖动边框高亮
+		btn_window_shake_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_window_shake_border.setBorder(null);
+		btn_window_shake_border.setBounds(79, 4, 22, 22);
+		btn_window_shake_border.setVisible(false);
+		
+		//设置窗口抖动按钮
+		btn_window_shake = new JButton();
+		btn_window_shake.setBounds(80, 5, 20, 20);
+		btn_window_shake.setPreferredSize(new Dimension(20, 20));
+		btn_window_shake.setIcon(btn_window_shakeIcon);
+		btn_window_shake.setBorderPainted(false);
+		btn_window_shake.setContentAreaFilled(false);
+		btn_window_shake.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_window_shake_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_window_shake_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_window_shake_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
+		//设置辅助输入边框高亮
+		btn_input_assist_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_input_assist_border.setBorder(null);
+		btn_input_assist_border.setBounds(104, 4, 22, 22);
+		btn_input_assist_border.setVisible(false);
+		
+		//设置辅助输入按钮
+		btn_input_assist = new JButton();
+		btn_input_assist.setBounds(105, 5, 20, 20);
+		btn_input_assist.setPreferredSize(new Dimension(20, 20));
+		btn_input_assist.setIcon(btn_input_assistIcon);
+		btn_input_assist.setBorderPainted(false);
+		btn_input_assist.setContentAreaFilled(false);
+		btn_input_assist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_input_assist_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_input_assist_border.setVisible(true);
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_input_assist_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+
+		//设置分割
+		aio_cutline = new JLabel(cutlineIcon);
+		aio_cutline.setBounds(128, 5, 2, 20);
+		
+		//设置发送图片边框高亮
+		btn_send_picture_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_send_picture_border.setBorder(null);
+		btn_send_picture_border.setBounds(134, 4, 22, 22);
+		btn_send_picture_border.setVisible(false);
+		
+		//设置发送图片按钮
+		btn_send_picture = new JButton();
+		btn_send_picture.setBounds(135, 5, 20, 20);
+		btn_send_picture.setPreferredSize(new Dimension(20, 20));
+		btn_send_picture.setIcon(btn_send_pictureIcon);
+		btn_send_picture.setBorderPainted(false);
+		btn_send_picture.setContentAreaFilled(false);
+		btn_send_picture.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_send_picture_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_send_picture_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_send_picture_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
+		//设置截图边框高亮
+		btn_cut_picture_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_cut_picture_border.setBorder(null);
+		btn_cut_picture_border.setBounds(159, 4, 22, 22);
+		btn_cut_picture_border.setVisible(false);
+		
+		//设置截图按钮
+		btn_cut_picture = new JButton();
+		btn_cut_picture.setBounds(160, 5, 20, 20);
+		btn_cut_picture.setPreferredSize(new Dimension(20, 20));
+		btn_cut_picture.setIcon(btn_cut_pictureIcon);
+		btn_cut_picture.setBorderPainted(false);
+		btn_cut_picture.setContentAreaFilled(false);
+		btn_cut_picture.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_cut_picture_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_cut_picture_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_cut_picture_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+
+		//设置分割
+		aio_cutline2 = new JLabel(cutlineIcon);
+		aio_cutline2.setBounds(183, 5, 2, 20);
+		
+		//设置更多边框高亮
+		btn_more_border = new JLabel(btn_icon_broder_highlightIcon);
+		btn_more_border.setBorder(null);
+		btn_more_border.setBounds(186, 4, 22, 22);
+		btn_more_border.setVisible(false);
+		
+		//设置更多按钮
+		btn_more = new JButton();
+		btn_more.setBounds(187, 5, 20, 20);
+		btn_more.setPreferredSize(new Dimension(20, 20));
+		btn_more.setIcon(btn_moreIcon);
+		btn_more.setBorderPainted(false);
+		btn_more.setContentAreaFilled(false);
+		btn_more.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_more_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_more_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_more_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		
+		//设置消息记录边框高亮
+		btn_message_record_border = new JLabel(btn_msgrecord_broderIcon);
+		btn_message_record_border.setBorder(null);
+		btn_message_record_border.setBounds(windowWidth-95, 5, 82, 22);
+		btn_message_record_border.setVisible(false);
+		
+		//设置消息记录按钮
+		btn_message_record = new JButton("消息记录");
+		//btn_message_record.setBounds(202, 5, 110, 20);
+		btn_message_record.setBounds(windowWidth-110, 5, 110, 20);
+		//btn_message_record.setPreferredSize(new Dimension(20, 20));
+		btn_message_record.setIcon(btn_message_recordIcon);
+		btn_message_record.setFont(FONT_12_NOBOLD);
+		btn_message_record.setBorderPainted(false);
+		btn_message_record.setContentAreaFilled(false);
+		btn_message_record.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btn_message_record_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btn_message_record_border.setVisible(true);
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btn_message_record_border.setVisible(true);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+
+		msgInputTopToolBarSouthPanel.add(btn_font_choose);
+		msgInputTopToolBarSouthPanel.add(btn_font_choose_border);
+		msgInputTopToolBarSouthPanel.add(btn_face);
+		msgInputTopToolBarSouthPanel.add(btn_face_border);
+		msgInputTopToolBarSouthPanel.add(btn_magic_face);
+		msgInputTopToolBarSouthPanel.add(btn_magic_face_border);
+		msgInputTopToolBarSouthPanel.add(btn_window_shake);
+		msgInputTopToolBarSouthPanel.add(btn_window_shake_border);
+		msgInputTopToolBarSouthPanel.add(btn_input_assist);
+		msgInputTopToolBarSouthPanel.add(btn_input_assist_border);
+		msgInputTopToolBarSouthPanel.add(aio_cutline);
+		msgInputTopToolBarSouthPanel.add(btn_send_picture);
+		msgInputTopToolBarSouthPanel.add(btn_send_picture_border);
+		msgInputTopToolBarSouthPanel.add(btn_cut_picture);
+		msgInputTopToolBarSouthPanel.add(btn_cut_picture_border);
+		msgInputTopToolBarSouthPanel.add(aio_cutline2);
+		msgInputTopToolBarSouthPanel.add(btn_more);
+		msgInputTopToolBarSouthPanel.add(btn_more_border);
+		msgInputTopToolBarSouthPanel.add(btn_message_record);
+		msgInputTopToolBarSouthPanel.add(btn_message_record_border);
+		
+		msgInputTopToolBarPanel.add(BorderLayout.SOUTH, msgInputTopToolBarSouthPanel);
+		
+		//消息输入多行文本
+		msgInputTextArea = new JTextArea();
+		msgInputTextArea.setRows(6);
+		
+		//消息输入底部工具栏面板
+		msgInputBottomToolBarPanel = new JPanel(null);
+		msgInputBottomToolBarPanel.setBackground(new Color(225, 239, 199));
+		msgInputBottomToolBarPanel.setPreferredSize(new Dimension(windowWidth, 35));
+		
+		//设置关闭按钮
+		btn_chat_close = new JButton("关闭(C)");
+		btn_chat_close.setBounds((windowWidth-175), 5, 75, 24);
+		btn_chat_close.setIcon(btn_chat_close_normalIcon);
+		btn_chat_close.setRolloverIcon(btn_chat_close_hoverIcon);
+		btn_chat_close.setPressedIcon(btn_chat_close_pressIcon);
+		btn_chat_close.setBorderPainted(false);
+		btn_chat_close.setContentAreaFilled(false);
+		btn_chat_close.setFont(FONT_12_NOBOLD);
+		//设置文字在按钮水平垂直上的位置
+		btn_chat_close.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn_chat_close.setVerticalTextPosition(SwingConstants.CENTER);
+
+		//设置发送按钮left
+		btn_send_left = new JButton("发送(S)");
+		btn_send_left.setBounds((windowWidth-100), 5, 81, 24);
+		btn_send_left.setIcon(btn_send_left_normalIcon);
+		btn_send_left.setRolloverIcon(btn_send_left_hoverIcon);
+		btn_send_left.setPressedIcon(btn_send_left_pressIcon);
+		btn_send_left.setBorderPainted(false);
+		btn_send_left.setContentAreaFilled(false);
+		btn_send_left.setFont(FONT_12_NOBOLD);
+		//设置文字在按钮水平垂直上的位置
+		btn_send_left.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn_send_left.setVerticalTextPosition(SwingConstants.CENTER);
+		
+		//设置发送按钮right
+		btn_send_right = new JButton();
+		btn_send_right.setBounds((windowWidth-29), 5, 20, 24);
+		btn_send_right.setIcon(btn_send_right_normalIcon);
+		btn_send_right.setRolloverIcon(btn_send_right_hoverIcon);
+		btn_send_right.setPressedIcon(btn_send_right_pressIcon);
+		btn_send_right.setBorderPainted(false);
+		btn_send_right.setContentAreaFilled(false);
+		btn_send_right.setFont(FONT_12_NOBOLD);
+		//设置文字在按钮水平垂直上的位置
+		btn_send_right.setHorizontalTextPosition(SwingConstants.CENTER);
+		btn_send_right.setVerticalTextPosition(SwingConstants.CENTER);
+		
+		
+
+		msgInputBottomToolBarPanel.add(btn_chat_close);
+		msgInputBottomToolBarPanel.add(btn_send_left);
+		msgInputBottomToolBarPanel.add(btn_send_right);
+		
+		//消息输入面板添加组件
+		msgInputPanel.add(BorderLayout.NORTH, msgInputTopToolBarPanel);
+		msgInputPanel.add(BorderLayout.CENTER, msgInputTextArea);
+		msgInputPanel.add(BorderLayout.SOUTH, msgInputBottomToolBarPanel);
+		
+		//聊天界面中心面板添加组件
+		chatPanel.add(BorderLayout.CENTER, msgContentPanel);
+		chatPanel.add(BorderLayout.SOUTH, msgInputPanel);
+		
 		//添加组件
 		this.setContentPane(main_bg);
 		this.add(btn_close);
@@ -1086,7 +1973,35 @@ public class Chat extends JFrame{
 		this.add(btn_remote_help_border);
 		this.add(btn_app);
 		this.add(btn_app_border);
+		this.add(chatPanel);
+
+		//添加界面拖拽移动监听器
+		this.addMouseListener(moveWindowListener);
+		this.addMouseMotionListener(moveWindowListener); 
 	}
+	
+	//界面拖拽移动监听器内部类
+	private MouseAdapter moveWindowListener = new MouseAdapter() {
+
+        private Point lastPoint = null;
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            lastPoint = e.getLocationOnScreen();
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e){  
+            Point point = e.getLocationOnScreen();
+            int offsetX = point.x - lastPoint.x;
+            int offsetY = point.y - lastPoint.y;
+            Rectangle bounds = Chat.this.getBounds();
+            bounds.x += offsetX;
+            bounds.y += offsetY;
+            Chat.this.setBounds(bounds);
+            lastPoint = point;
+        }
+	};
 	
 	public static void main(String[] args) {
 		new Chat().setVisible(true);

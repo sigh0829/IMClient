@@ -79,7 +79,7 @@ public class Main extends JFrame{
 	private boolean isWindowOpaque = true;
 
 	//登录界面背景图片
-	private ImageIcon main_bg_Icon = ImageManageUtils.getImageIcon("images/background/main/main_bg_snail.jpg");
+	private ImageIcon main_bg_Icon = ImageManageUtils.getImageIcon("images/background/common/main_bg_snail.jpg");
 	//系统任务栏图标
 	private ImageIcon taskbar_logoIcon = ImageManageUtils.getImageIcon("images/common/taskBarIcon.png");
 	//系统托盘图标
@@ -567,7 +567,7 @@ public class Main extends JFrame{
 			@Override
 			protected void paintComponent(Graphics g) {
 				// 图片随窗体大小而变化
-                g.drawImage(main_bg_Icon.getImage(), 0, 0, Main.this);
+                g.drawImage(main_bg_Icon.getImage(), (windowWidth-main_bg_Icon.getIconWidth()), 0, Main.this);
 			}
         	
         };
@@ -2146,7 +2146,6 @@ public class Main extends JFrame{
 		this.addMouseListener(moveWindowListener);
 		this.addMouseMotionListener(moveWindowListener); 
 	}
-	
 	
 	//界面拖拽移动监听器内部类
 	private MouseAdapter moveWindowListener = new MouseAdapter() {
