@@ -543,6 +543,9 @@ public class Chat extends JFrame{
 					btn_send_left.setBounds((screenWidth-100), 5, 81, 24);
 					btn_send_right.setBounds((screenWidth-29), 5, 20, 24);
 					
+					windowWidth = screenWidth;
+					windowHeight = screenHeight;
+					
 					Chat.this.revalidate();
 					Chat.this.repaint(1);
 					Chat.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -1275,7 +1278,6 @@ public class Chat extends JFrame{
 		//聊天界面中心面板
 		chatPanel = new JPanel(new BorderLayout());
 		chatPanel.setBounds(0, 100, windowWidth, (windowHeight-100));
-		//chatPanel.setPreferredSize(new Dimension(windowWidth, (windowHeight-100)));
 		chatPanel.setBackground(new Color(255, 255, 255, 100));
 		
 		//聊天界面消息内容面板
@@ -1297,7 +1299,7 @@ public class Chat extends JFrame{
 		//自动换行
 		msgContentTextArea.setLineWrap(true);
 		//设置不可编辑
-		//msgContentTextArea.setEditable(false);
+		msgContentTextArea.setEditable(false);
 		//换行方式-以单词末尾换行
 		msgContentTextArea.setWrapStyleWord(false);
 		//设置字体
@@ -1831,9 +1833,7 @@ public class Chat extends JFrame{
 		
 		//设置消息记录按钮
 		btn_message_record = new JButton("消息记录");
-		//btn_message_record.setBounds(202, 5, 110, 20);
 		btn_message_record.setBounds(windowWidth-110, 5, 110, 20);
-		//btn_message_record.setPreferredSize(new Dimension(20, 20));
 		btn_message_record.setIcon(btn_message_recordIcon);
 		btn_message_record.setFont(FONT_12_NOBOLD);
 		btn_message_record.setBorderPainted(false);
@@ -1930,8 +1930,6 @@ public class Chat extends JFrame{
 		//设置文字在按钮水平垂直上的位置
 		btn_send_right.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn_send_right.setVerticalTextPosition(SwingConstants.CENTER);
-		
-		
 
 		msgInputBottomToolBarPanel.add(btn_chat_close);
 		msgInputBottomToolBarPanel.add(btn_send_left);

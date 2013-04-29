@@ -27,6 +27,7 @@ import com.im.client.component.NewButton;
 import com.im.client.component.NewCheckbox;
 import com.im.client.component.NewPasswordField;
 import com.im.client.component.NewTextField;
+import com.im.client.utils.DateUtils;
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.sun.awt.AWTUtilities;
@@ -45,6 +46,7 @@ import com.sun.awt.AWTUtilities;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
+
 @SuppressWarnings("serial")
 public class MiniLogin extends JFrame{
 
@@ -60,7 +62,10 @@ public class MiniLogin extends JFrame{
 	private boolean isWindowOpaque = true;
 
 	//登录界面背景图片
-	private ImageIcon login_bg_Icon = ImageManageUtils.getImageIcon("images/background/login/login_bg_noon.jpg");
+	private ImageIcon login_bg_morningIcon = ImageManageUtils.getImageIcon("images/background/login/login_bg_morning.jpg");
+	private ImageIcon login_bg_noonIcon = ImageManageUtils.getImageIcon("images/background/login/login_bg_noon.jpg");
+	private ImageIcon login_bg_afternoonIcon = ImageManageUtils.getImageIcon("images/background/login/login_bg_afternoon.jpg");
+	private ImageIcon login_bg_nightIcon = ImageManageUtils.getImageIcon("images/background/login/login_bg_night.jpg");
 	//登录界面背景材质图片
 	private ImageIcon login_bg_textureIcon = ImageManageUtils.getImageIcon("images/frame/login/bg_texture.png");
 	//关闭按钮
@@ -141,6 +146,8 @@ public class MiniLogin extends JFrame{
 	//背景图片
     private JLabel login_bg = null;
 	private JLabel login_bg_texture = null; 
+	//背景图片时间
+	private DateUtils dateUtils = null;
 	//关闭按钮
 	private JButton btn_close = null;
 	//最小化按钮
@@ -188,7 +195,7 @@ public class MiniLogin extends JFrame{
 	private Color BLACK = new Color(64, 64, 64);
 	//字体
 	private Font FONT_12_BOLD = new Font("微软雅黑", 0, 12);
-	private Font FONT_14_BOLD = new Font("微软雅黑", 1, 14);
+	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
 	
 	public MiniLogin(){
 		//获取屏幕高度宽度
@@ -251,7 +258,18 @@ public class MiniLogin extends JFrame{
 		} 
 		
 		//设置背景图片
-		login_bg = new JLabel(login_bg_Icon);  
+		dateUtils = new DateUtils();
+		login_bg = new JLabel();  
+		//判断当前时间以确定背景图片
+		if("morning".equals(dateUtils.getCurrentHours())){
+			login_bg.setIcon(login_bg_morningIcon);
+		}else if("afternoon".equals(dateUtils.getCurrentHours())){
+			login_bg.setIcon(login_bg_afternoonIcon);
+		}else if("night".equals(dateUtils.getCurrentHours())){
+			login_bg.setIcon(login_bg_nightIcon);
+		}else if("noon".equals(dateUtils.getCurrentHours())){
+			login_bg.setIcon(login_bg_noonIcon);
+		}
 		login_bg.setBounds(0, 0, windowWidth, windowHeight);
 		login_bg_texture = new JLabel(login_bg_textureIcon);  
 		login_bg_texture.setBounds(0, 0, windowWidth, windowHeight);
@@ -646,7 +664,7 @@ public class MiniLogin extends JFrame{
 		//正在登录号码
 		loginingAccount = new JLabel("正在登录(" + "921728078" + ")...");
 		loginingAccount.setBounds(120, 142, 200, 30);
-		loginingAccount.setFont(FONT_14_BOLD);
+		loginingAccount.setFont(FONT_12_NOBOLD);
 		loginingAccount.setForeground(Color.WHITE);
 		loginingAccount.setVisible(false);
 		

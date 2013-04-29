@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
+
 public class ImageManageUtils {
 
 	//图片路径前缀
