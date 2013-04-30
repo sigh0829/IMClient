@@ -29,6 +29,7 @@ import com.im.client.component.NewPasswordField;
 import com.im.client.component.NewTextField;
 import com.im.client.utils.DateUtils;
 import com.im.client.utils.ImageManageUtils;
+import com.im.client.utils.KeyboardUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.sun.awt.AWTUtilities;
 
@@ -167,7 +168,7 @@ public class MiniLogin extends JFrame{
 	//密码框边框
 	private JLabel pass_textfield_border = null;
 	//密码框
-	private NewPasswordField password_field = null;
+	public static NewPasswordField password_field = null;
 	//注册新用户按钮
 	private JButton btn_register = null;
 	//忘记密码按钮
@@ -190,9 +191,11 @@ public class MiniLogin extends JFrame{
 	private JLabel loginingIcon = null;
 	//正在登录号码
 	private JLabel loginingAccount = null;
+	//软键盘
+	private KeyboardUtils keyboardUtils = null;
 	
 	//颜色灰
-	private Color BLACK = new Color(64, 64, 64);
+	private Color BLACK = new Color(32, 32, 32);
 	//字体
 	private Font FONT_12_BOLD = new Font("微软雅黑", 0, 12);
 	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
@@ -428,7 +431,8 @@ public class MiniLogin extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+					keyboardUtils = new KeyboardUtils(null, 111 + (screenWidth - windowWidth)/2, 200 + (screenHeight - windowHeight)/2);
+					keyboardUtils.setVisible(true);
 			}
 		});
 

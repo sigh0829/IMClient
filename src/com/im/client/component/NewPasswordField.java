@@ -1,6 +1,7 @@
 package com.im.client.component;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,7 +11,7 @@ import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.plaf.metal.MetalTextFieldUI;
+import javax.swing.plaf.basic.BasicPasswordFieldUI;
 
 import com.im.client.utils.ImageManageUtils;
 
@@ -30,28 +31,33 @@ import com.im.client.utils.ImageManageUtils;
 */ 
 
 @SuppressWarnings("serial")
-public class NewPasswordField extends JPasswordField{
+public class NewPasswordField extends JPasswordField {
+	
+	//密码框背景图片
 	private Image backgroundLeftImage = ImageManageUtils.getImage("passwordfield_bg_left.png", "frame/login");
 	private Image backgroundRightImage = ImageManageUtils.getImage("passwordfield_bg_right.png", "frame/login");
-	private Image textfield_backgroundImage = ImageManageUtils.getImage("passwordfield_bg.png", "frame/login");
+	private Image passwordfield_backgroundImage = ImageManageUtils.getImage("passwordfield_bg.png", "frame/login");
+	
+	//字体
 	private Font FONT_12_BOLD = new Font("宋体", 0, 13);
+	
+	//颜色
 	Color BLACK = new Color(0,0,0);
 
 	public NewPasswordField(ImageIcon keyboard_Icon) {
 		super();
 		init(keyboard_Icon);
-		this.setEchoChar('*');
 		this.getInsets();
 		this.setFont(FONT_12_BOLD);
 		this.setForeground(BLACK);
 	}
-	
-    public Insets getInsets() {
-        return new Insets(0, 25, 0, 10);
+
+	public Insets getInsets() {
+        return new Insets(0, 5, 0, 5);
     }
 
     private void init(final ImageIcon keyboard_Icon) {
-		this.setUI(new MetalTextFieldUI() {
+		this.setUI(new BasicPasswordFieldUI() {
 			@Override
 			protected void paintBackground(Graphics g) {
 				Graphics2D g2d = (Graphics2D) g;
@@ -61,13 +67,13 @@ public class NewPasswordField extends JPasswordField{
 				//平铺背景图片
 				while (true) {
 					//绘制图片
-					g2d.drawImage(textfield_backgroundImage, x, 0, null);
+					g2d.drawImage(passwordfield_backgroundImage, x, 0, null);
 					//如果绘制完毕，退出循环
 					if (x > getSize().width){
 						break;
 					}else{
 						//如果在当前行，得到下一个图片的坐标位置
-						x += textfield_backgroundImage.getWidth(null);
+						x += passwordfield_backgroundImage.getWidth(null);
 					}
 				}
 				g2d.drawImage(backgroundLeftImage, 0, 0, null);
@@ -75,7 +81,8 @@ public class NewPasswordField extends JPasswordField{
 						- backgroundRightImage.getWidth(null), 0, null);
 				//设置输入框按钮
 				JLabel label_keyboard_Icon = new JLabel(keyboard_Icon);
-				label_keyboard_Icon.setBounds(2, 2, 20, 20);
+				label_keyboard_Icon.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				label_keyboard_Icon.setBounds(getWidth()-23, 2, 20, 20);
 				NewPasswordField.this.add(label_keyboard_Icon);
 			}
 		});

@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
+
 public class ScreenSizeUtils {
 	
 	//屏幕的宽度和屏幕的高度

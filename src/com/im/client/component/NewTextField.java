@@ -1,6 +1,7 @@
 package com.im.client.component;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -32,11 +33,15 @@ import com.im.client.utils.ImageManageUtils;
 @SuppressWarnings("serial")
 public class NewTextField extends JTextField {
 
+	//输入框背景图片
 	private Image backgroundLeftImage = ImageManageUtils.getImage("textfield_bg_left.png", "frame/login");
 	private Image backgroundRightImage = ImageManageUtils.getImage("textfield_bg_right.png", "frame/login");
 	private Image textfield_backgroundImage = ImageManageUtils.getImage("textfield_bg.png", "frame/login");
+	
+	//字体
 	private Font FONT_13_BOLD = new Font("宋体", 0, 13);
-	//private Font FONT_11_BOLD = new Font("宋体", 0, 11);
+
+	//颜色
 	private Color BLACK = new Color(0,0,0);
 
 	public NewTextField(ImageIcon avatar) {
@@ -49,7 +54,7 @@ public class NewTextField extends JTextField {
 	}
 	
     public Insets getInsets() {
-        return new Insets(0, 25, 0, 10);
+        return new Insets(0, 5, 0, 5);
     }
 
     private void init(final ImageIcon avatar) {
@@ -74,11 +79,11 @@ public class NewTextField extends JTextField {
 					}
 				}
 				g2d.drawImage(backgroundLeftImage, 0, 0, null);
-				g2d.drawImage(backgroundRightImage, getWidth()
-						- backgroundRightImage.getWidth(null), 0, null);
+				g2d.drawImage(backgroundRightImage, getWidth() - backgroundRightImage.getWidth(null), 0, null);
 				//设置输入框按钮
 				JLabel label_avatar = new JLabel(avatar);
-				label_avatar.setBounds(2, 2, 20, 20);
+				label_avatar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				label_avatar.setBounds(getWidth()-23, 2, 20, 20);
 				NewTextField.this.add(label_avatar);
 			}
 
