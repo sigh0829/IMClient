@@ -30,6 +30,7 @@ import com.im.client.component.NewTextField;
 import com.im.client.utils.DateUtils;
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.KeyboardUtils;
+import com.im.client.utils.LimitedDocumentUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.sun.awt.AWTUtilities;
 
@@ -193,6 +194,8 @@ public class MiniLogin extends JFrame{
 	private JLabel loginingAccount = null;
 	//软键盘
 	private KeyboardUtils keyboardUtils = null;
+	//输入框最大长度及类型限定
+	private LimitedDocumentUtils limitedDocumentUtils = null;
 	
 	//颜色灰
 	private Color BLACK = new Color(32, 32, 32);
@@ -365,7 +368,13 @@ public class MiniLogin extends JFrame{
 		//设置帐号输入框
 		user_field = new NewTextField(avatarIcon);
 		user_field.setBorder(null);
-		user_field.setBounds(111, 142, 190, 24);
+		user_field.setBounds(111, 142, 190, 24); 
+		//设置输入框参数能输入的最大长度
+		limitedDocumentUtils = new LimitedDocumentUtils(10);
+		//只能输入的字符
+		limitedDocumentUtils.setAllowChar("0123456789");
+		//运用到文本框中
+		user_field.setDocument(limitedDocumentUtils);
 		user_field.addMouseListener(new MouseListener() {
 			
 			@Override

@@ -18,6 +18,7 @@ import com.im.client.dto.Weather;
 * Why&What is modified:    
 * Version:				0.1                       
 */ 
+
 public class WeatherUtils {
 	
 	private String currentWeatherStatus = null;
