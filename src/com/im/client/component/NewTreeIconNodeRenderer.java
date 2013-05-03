@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import com.im.client.dto.IconTreeNode;
+import com.im.common.dto.IconTreeNode;
 
 /**
  * CopyRright (c)2013: 			InstantMessage 

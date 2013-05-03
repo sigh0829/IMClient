@@ -21,17 +21,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.im.client.component.NewButton;
 import com.im.client.component.NewCheckbox;
 import com.im.client.component.NewPasswordField;
 import com.im.client.component.NewTextField;
+import com.im.client.function.IMLoginManager;
 import com.im.client.utils.DateUtils;
 import com.im.client.utils.ImageManageUtils;
-import com.im.client.utils.KeyboardUtils;
 import com.im.client.utils.LimitedDocumentUtils;
 import com.im.client.utils.ScreenSizeUtils;
+import com.im.common.dto.MessageType;
+import com.im.common.dto.User;
 import com.sun.awt.AWTUtilities;
 
 /** 
@@ -87,47 +90,47 @@ public class MiniLogin extends JFrame{
 	private ImageIcon user_image_bg_normalIcon = ImageManageUtils.getImageIcon("images/usericon/login_head_bkg_normal.png");
 	private ImageIcon user_image_bg_hoverIcon = ImageManageUtils.getImageIcon("images/usericon/login_head_bkg_highlight.png");
 	//密码框中的键盘
-	private ImageIcon pwd_keyboard_Icon = ImageManageUtils.getImageIcon("images/frame/login/btn_loginpwd_keyboard.png");
+	private ImageIcon pwd_keyboard_Icon = ImageManageUtils.getImageIcon("images/frame/login/passwordfield/btn_loginpwd_keyboard.png");
 	//输入框边框
-	private ImageIcon textfield_borderIcon = ImageManageUtils.getImageIcon("images/frame/login/textfield_border.png");
-	//帐号前面的企鹅
-	private ImageIcon avatarIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_penguin_avatar.png");
+	private ImageIcon textfield_borderIcon = ImageManageUtils.getImageIcon("images/frame/login/textfield/textfield_border.png");
+	//帐号输入框下拉按钮
+	private ImageIcon avatarIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_arrow_avatar.png");
 	//注册新用户按钮
-	private ImageIcon btn_register_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_register_normal.png");
+	private ImageIcon btn_register_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/fontbutton/btn_register_normal.png");
 	//注册新用户按钮高亮
-	private ImageIcon btn_register_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_register_hover.png");
+	private ImageIcon btn_register_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/fontbutton/btn_register_hover.png");
 	//注册新用户按钮点击
-	private ImageIcon btn_register_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_register_press.png");
+	private ImageIcon btn_register_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/fontbutton/btn_register_press.png");
 	//注册新用户按钮
-	private ImageIcon btn_forgetPwd_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_forgetPwd_normal.png");
+	private ImageIcon btn_forgetPwd_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/fontbutton/btn_forgetPwd_normal.png");
 	//注册新用户按钮高亮
-	private ImageIcon btn_forgetPwd_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_forgetPwd_hover.png");
+	private ImageIcon btn_forgetPwd_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/fontbutton/btn_forgetPwd_hover.png");
 	//注册新用户按钮点击
-	private ImageIcon btn_forgetPwd_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/btn_forgetPwd_press.png");
+	private ImageIcon btn_forgetPwd_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/fontbutton/btn_forgetPwd_press.png");
 	//系统托盘图标
 	private ImageIcon sys_tray_logoIcon = ImageManageUtils.getImageIcon("images/common/sysTrayIcon.png");
 	//系统任务栏图标
 	private ImageIcon taskbar_logoIcon = ImageManageUtils.getImageIcon("images/common/taskBarIcon.png");
 	//登录取消按钮
-	private ImageIcon btn_login_cancelIcon = ImageManageUtils.getImageIcon("images/frame/login/button_red_normal.png");
+	private ImageIcon btn_login_cancelIcon = ImageManageUtils.getImageIcon("images/frame/login/button/button_red_normal.png");
 	//登录取消按钮高亮
-	private ImageIcon btn_login_cancel_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/button_red_hover.png");
+	private ImageIcon btn_login_cancel_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/button/button_red_hover.png");
 	//登录取消按钮点击
-	private ImageIcon btn_login_cancel_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/button_red_press.png");
+	private ImageIcon btn_login_cancel_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/button/button_red_press.png");
 	//登录加载图标
 	private ImageIcon login_loadingIcon = ImageManageUtils.getImageIcon("images/frame/login/login_loading.gif");
 	//多帐户登录图标
-	private ImageIcon multiple_accounts_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/multiple_accounts_normal.png");
+	private ImageIcon multiple_accounts_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/multipleaccounts/multiple_accounts_normal.png");
 	//多帐户登录图标高亮
-	private ImageIcon multiple_accounts_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/multiple_accounts_hover.png");
+	private ImageIcon multiple_accounts_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/multipleaccounts/multiple_accounts_hover.png");
 	//多帐户登录图标点击
-	private ImageIcon multiple_accounts_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/multiple_accounts_press.png");
+	private ImageIcon multiple_accounts_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/multipleaccounts/multiple_accounts_press.png");
 	//帐号闪登图标
-	private ImageIcon quick_login_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/quick_login_normal.png");
+	private ImageIcon quick_login_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/quicklogin/quick_login_normal.png");
 	//帐号闪登图标高亮
-	private ImageIcon quick_login_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/quick_login_hover.png");
+	private ImageIcon quick_login_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/quicklogin/quick_login_hover.png");
 	//帐号闪登图标点击
-	private ImageIcon quick_login_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/quick_login_press.png");
+	private ImageIcon quick_login_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/quicklogin/quick_login_press.png");
 	//设置按钮
 	private ImageIcon btn_set_normalIcon = ImageManageUtils.getImageIcon("images/common/btn_set_normal.png");
 	//设置按钮高亮
@@ -136,6 +139,14 @@ public class MiniLogin extends JFrame{
 	private ImageIcon btn_set_pressIcon = ImageManageUtils.getImageIcon("images/common/btn_set_press.png");
 	//设置按钮被点击
 	private ImageIcon logining_Icon = ImageManageUtils.getImageIcon("images/frame/login/loginingIcon.png");
+	//警告消息提示
+	private ImageIcon error_messageIcon = ImageManageUtils.getImageIcon("images/frame/login/warning/error_message_icon.png");
+	//警告消息提示关闭按钮
+	private ImageIcon error_message_closeIcon = ImageManageUtils.getImageIcon("images/frame/login/warning/btn_warning_close_normal.png");
+	//警告消息提示关闭按钮高亮
+	private ImageIcon error_message_close_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/warning/btn_warning_close_hover.png");
+	//警告消息提示关闭按钮点击
+	private ImageIcon error_message_close_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/warning/btn_warning_close_press.png");
 
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -192,10 +203,16 @@ public class MiniLogin extends JFrame{
 	private JLabel loginingIcon = null;
 	//正在登录号码
 	private JLabel loginingAccount = null;
-	//软键盘
-	private KeyboardUtils keyboardUtils = null;
 	//输入框最大长度及类型限定
 	private LimitedDocumentUtils limitedDocumentUtils = null;
+	//警告消息提示
+	private JPanel errorMessagePanel = null;
+	//警告图标
+	private JLabel errorMessageIcon = null;
+	//警告文字
+	private JLabel errorMessage = null;
+	//警告消息面板关闭按钮
+	private JButton btn_errorMessage_close = null; 
 	
 	//颜色灰
 	private Color BLACK = new Color(32, 32, 32);
@@ -440,8 +457,7 @@ public class MiniLogin extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					keyboardUtils = new KeyboardUtils(null, 111 + (screenWidth - windowWidth)/2, 200 + (screenHeight - windowHeight)/2);
-					keyboardUtils.setVisible(true);
+				
 			}
 		});
 
@@ -465,14 +481,14 @@ public class MiniLogin extends JFrame{
 		
 		//记住密码复选框
 		remember_password = new NewCheckbox("记住密码");
-		remember_password.setBounds(105, 203, 80, 13);
+		remember_password.setBounds(105, 203, 80, 15);
 		remember_password.setFont(FONT_12_BOLD);
 		remember_password.setForeground(BLACK);
 		remember_password.setOpaque(false);
 		
 		//自动登录复选框
 		automatic_login = new NewCheckbox("自动登录");
-		automatic_login.setBounds(180, 203, 80, 13);
+		automatic_login.setBounds(180, 203, 80, 15);
 		automatic_login.setFont(FONT_12_BOLD);
 		automatic_login.setForeground(BLACK);
 		automatic_login.setOpaque(false);
@@ -481,6 +497,44 @@ public class MiniLogin extends JFrame{
 		login_loading = new JLabel(login_loadingIcon);  
 		login_loading.setBounds(1, 240, 377, 2);
 		login_loading.setVisible(false);
+		
+		//警告消息提示
+		errorMessagePanel = new JPanel(null);
+		errorMessagePanel.setBounds(0, 220, 380, 25);
+		errorMessagePanel.setBackground(new Color(179, 217, 239, 240));
+		errorMessagePanel.setVisible(false);
+		
+		//警告图标
+		errorMessageIcon = new JLabel(error_messageIcon);
+		errorMessageIcon.setBounds(10, 5, 16, 16);
+		errorMessageIcon.setVisible(true);
+		
+		//警告文字
+		errorMessage = new JLabel();
+		//errorMessage.setText("您已登录10000 , 不能重复登录。");
+		errorMessage.setFont(FONT_12_NOBOLD);
+		errorMessage.setBounds(36, 4, 300, 16);
+		errorMessage.setVisible(true);
+		
+		//警告消息面板关闭按钮
+		btn_errorMessage_close = new JButton();
+		btn_errorMessage_close.setBounds(365, 5, 12, 12);
+		btn_errorMessage_close.setIcon(error_message_closeIcon);
+		btn_errorMessage_close.setRolloverIcon(error_message_close_hoverIcon);
+		btn_errorMessage_close.setPressedIcon(error_message_close_pressIcon);
+		btn_errorMessage_close.setBorderPainted(false);
+		btn_errorMessage_close.setContentAreaFilled(false);
+		btn_errorMessage_close.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				errorMessagePanel.setVisible(false);
+			}
+		});
+		
+		//警告消息提示面板添加组件
+		errorMessagePanel.add(errorMessageIcon);
+		errorMessagePanel.add(errorMessage);
+		errorMessagePanel.add(btn_errorMessage_close);
 
 		//设置登录按钮
 		btn_login = new NewButton("登录");
@@ -491,28 +545,7 @@ public class MiniLogin extends JFrame{
 		//设置文字在按钮水平垂直上的位置
 		btn_login.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn_login.setVerticalTextPosition(SwingConstants.CENTER);
-		btn_login.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				System.out.println("ddddddddddddd");
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("cccccccccccccc");
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-								
-			}
-			
+		btn_login.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				btn_login.setVisible(false);
@@ -534,6 +567,45 @@ public class MiniLogin extends JFrame{
 				btn_register.setVisible(false);
 				remember_password.setVisible(false);
 				automatic_login.setVisible(false);
+				
+				//登录验证
+				User user = new User();
+				user.setIm(user_field.getText());
+				user.setPassword(new String(password_field.getPassword()));
+				System.out.println(user.getIm()+user.getPassword());
+				
+				IMLoginManager loginManager = new IMLoginManager();
+				MessageType loginMessageType = loginManager.userAuthentication(user);
+				
+				if(loginMessageType.getMessageTypeName().equals("authenticationsuccess")){
+					MiniLogin.this.dispose();
+					new Main().setVisible(true);
+				} else if(loginMessageType.getMessageTypeName().equals("authenticationfailure")){
+					System.out.println("登录失败");
+					//显示警告消息
+					errorMessage.setText("您输入的帐号或密码不正确, 请确认登录。");
+					errorMessagePanel.setVisible(true);
+					
+					btn_login.setVisible(true);
+					btn_login_cancel.setVisible(false);
+					login_loading.setVisible(false);
+					btn_multiple_accounts.setVisible(true);
+					btn_quick_login.setVisible(true);
+					//登录中
+					loginingIcon.setVisible(false);
+					loginingAccount.setVisible(false);
+					user_image.setVisible(true);
+					user_image_normalbg.setVisible(true);
+					user_image_hoverbg.setVisible(true);
+					user_textfield_border.setVisible(true);
+					user_field.setVisible(true);
+					pass_textfield_border.setVisible(true);
+					password_field.setVisible(true);
+					btn_forget_password.setVisible(true);
+					btn_register.setVisible(true);
+					remember_password.setVisible(true);
+					automatic_login.setVisible(true);
+				}
 			}
 		});
 		
@@ -686,6 +758,7 @@ public class MiniLogin extends JFrame{
 		this.add(btn_close);
 		this.add(btn_mini);
 		this.add(btn_set);
+		this.add(errorMessagePanel);
 		this.add(user_image_normalbg);
 		this.add(user_image_hoverbg);
 		this.add(user_image);

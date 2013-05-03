@@ -1886,6 +1886,7 @@ public class Chat extends JFrame{
 		//消息输入多行文本
 		msgInputTextArea = new JTextArea();
 		msgInputTextArea.setRows(6);
+		msgInputTextArea.setMargin(new Insets(10, 10, 5, 5));
 		
 		//消息输入底部工具栏面板
 		msgInputBottomToolBarPanel = new JPanel(null);

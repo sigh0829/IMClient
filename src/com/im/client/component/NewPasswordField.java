@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -14,6 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.plaf.basic.BasicPasswordFieldUI;
 
 import com.im.client.utils.ImageManageUtils;
+import com.im.client.utils.KeyboardUtils;
+import com.im.client.utils.ScreenSizeUtils;
 
 /** 
 * CopyRright (c)2013:	InstantMessage                          
@@ -34,18 +38,34 @@ import com.im.client.utils.ImageManageUtils;
 public class NewPasswordField extends JPasswordField {
 	
 	//密码框背景图片
-	private Image backgroundLeftImage = ImageManageUtils.getImage("passwordfield_bg_left.png", "frame/login");
-	private Image backgroundRightImage = ImageManageUtils.getImage("passwordfield_bg_right.png", "frame/login");
-	private Image passwordfield_backgroundImage = ImageManageUtils.getImage("passwordfield_bg.png", "frame/login");
+	private Image backgroundLeftImage = ImageManageUtils.getImage("passwordfield_bg_left.png", "frame/login/passwordfield");
+	private Image backgroundRightImage = ImageManageUtils.getImage("passwordfield_bg_right.png", "frame/login/passwordfield");
+	private Image passwordfield_backgroundImage = ImageManageUtils.getImage("passwordfield_bg.png", "frame/login/passwordfield");
 	
 	//字体
 	private Font FONT_12_BOLD = new Font("宋体", 0, 13);
 	
 	//颜色
 	Color BLACK = new Color(0,0,0);
+	//软键盘
+	private KeyboardUtils keyboardUtils = null;
+	//窗口的宽度和窗口的高度
+	private int windowWidth = 380;
+	private int windowHeight = 292;
+	
+	//屏幕的宽度和屏幕的高度
+	private int screenWidth = 0;
+	private int screenHeight = 0;
+	//获取屏幕高度宽度
+	private ScreenSizeUtils screenSizeUtils = null;
+	
 
 	public NewPasswordField(ImageIcon keyboard_Icon) {
 		super();
+		//获取屏幕高度宽度
+		screenSizeUtils = new ScreenSizeUtils();
+		screenWidth = screenSizeUtils.getScreenWidth();
+		screenHeight = screenSizeUtils.getScreenHeight();
 		init(keyboard_Icon);
 		this.getInsets();
 		this.setFont(FONT_12_BOLD);
@@ -83,6 +103,14 @@ public class NewPasswordField extends JPasswordField {
 				JLabel label_keyboard_Icon = new JLabel(keyboard_Icon);
 				label_keyboard_Icon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 				label_keyboard_Icon.setBounds(getWidth()-23, 2, 20, 20);
+				label_keyboard_Icon.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						keyboardUtils = new KeyboardUtils(null, 111 + (screenWidth - windowWidth)/2, 200 + (screenHeight - windowHeight)/2);
+						keyboardUtils.setVisible(true);
+					}
+				});
+				
 				NewPasswordField.this.add(label_keyboard_Icon);
 			}
 		});

@@ -1,4 +1,4 @@
-package com.im.client.dto;
+package com.im.common.dto;
 
 import javax.swing.ImageIcon;
 

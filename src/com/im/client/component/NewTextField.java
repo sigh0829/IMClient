@@ -34,9 +34,9 @@ import com.im.client.utils.ImageManageUtils;
 public class NewTextField extends JTextField {
 
 	//输入框背景图片
-	private Image backgroundLeftImage = ImageManageUtils.getImage("textfield_bg_left.png", "frame/login");
-	private Image backgroundRightImage = ImageManageUtils.getImage("textfield_bg_right.png", "frame/login");
-	private Image textfield_backgroundImage = ImageManageUtils.getImage("textfield_bg.png", "frame/login");
+	private Image backgroundLeftImage = ImageManageUtils.getImage("textfield_bg_left.png", "frame/login/textfield");
+	private Image backgroundRightImage = ImageManageUtils.getImage("textfield_bg_right.png", "frame/login/textfield");
+	private Image textfield_backgroundImage = ImageManageUtils.getImage("textfield_bg.png", "frame/login/textfield");
 	
 	//字体
 	private Font FONT_13_BOLD = new Font("宋体", 0, 13);

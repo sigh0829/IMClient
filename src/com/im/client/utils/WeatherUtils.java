@@ -2,7 +2,7 @@ package com.im.client.utils;
 
 import javax.swing.ImageIcon;
 
-import com.im.client.dto.Weather;
+import com.im.common.dto.Weather;
 
 /** 
 * CopyRright (c)2013:	InstantMessage                          

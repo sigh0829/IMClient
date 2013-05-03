@@ -43,10 +43,10 @@ import com.im.client.component.NewScrollBarUI;
 import com.im.client.component.NewTabbedPane;
 import com.im.client.component.NewTreeIconNodeRenderer;
 import com.im.client.component.NewTreeUI;
-import com.im.client.dto.IconTreeNode;
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.im.client.utils.WeatherUtils;
+import com.im.common.dto.IconTreeNode;
 import com.sun.awt.AWTUtilities;
 
 /** 
@@ -2145,6 +2145,16 @@ public class Main extends JFrame{
 		//添加界面拖拽移动监听器
 		this.addMouseListener(moveWindowListener);
 		this.addMouseMotionListener(moveWindowListener); 
+	}
+	
+	//边框
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		Color color = new Color(192, 192, 192);
+		g.setColor(color);
+		g.drawLine(2, 589, 283, 589);
+		g.drawLine(284, 2, 284, 588);
 	}
 	
 	//界面拖拽移动监听器内部类

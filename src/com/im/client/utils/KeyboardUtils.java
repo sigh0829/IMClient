@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
@@ -13,6 +14,8 @@ import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,6 +41,11 @@ import com.sun.awt.AWTUtilities;
 
 @SuppressWarnings("serial")
 public class KeyboardUtils extends JDialog implements MouseListener, ActionListener {
+	
+	//关闭按钮
+	private ImageIcon btn_keyboard_close_normalIcon = ImageManageUtils.getImageIcon("images/frame/login/keyboard/btn_keyboard_close_normal.png");
+	private ImageIcon btn_keyboard_close_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/keyboard/btn_keyboard_close_hover.png");
+	private ImageIcon btn_keyboard_close_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/keyboard/btn_keyboard_close_press.png");
 
 	@SuppressWarnings("unused")
 	//大小写切换
@@ -54,6 +62,7 @@ public class KeyboardUtils extends JDialog implements MouseListener, ActionListe
 	private JLabel Q, W, E, R, T, Y, U, I, O, P, Thr1, Thr2, Thr3;
 	private JLabel Caps, A, S, D, F, G, H, J, K, L, FO1, FO2, FO3;
 	private JLabel Shift, Z, X, C, V, BS, N, M, FI1, FI2;
+	private JButton btn_keyboard_close = null;
 
 	public static String superstr = "";
 	
@@ -65,7 +74,7 @@ public class KeyboardUtils extends JDialog implements MouseListener, ActionListe
 	}
 
 	public void start(int x, int y) {
-		this.setBounds(x, y, 447, 120);
+		this.setBounds(x, y, 457, 120);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
 				setVisible(false);
@@ -81,10 +90,26 @@ public class KeyboardUtils extends JDialog implements MouseListener, ActionListe
 		
 		//定义一个所有圆角都使用 double坐标指定的矩形
 		Shape shape = new RoundRectangle2D.Double(0, 0, 
-				447, 120, 6.5D, 6.5D);  
+				457, 120, 6.5D, 6.5D);  
 		AWTUtilities.setWindowShape(this, shape); 
 		
 		Border border = BorderFactory.createRaisedBevelBorder();
+		
+		//设置最小化按钮
+		btn_keyboard_close = new JButton();
+		btn_keyboard_close.setBounds(new Rectangle(443, 3, 12, 12));
+		btn_keyboard_close.setIcon(btn_keyboard_close_normalIcon);
+		btn_keyboard_close.setRolloverIcon(btn_keyboard_close_hoverIcon);
+		btn_keyboard_close.setPressedIcon(btn_keyboard_close_pressIcon);
+		btn_keyboard_close.setBorderPainted(false);
+		btn_keyboard_close.setContentAreaFilled(false);
+		btn_keyboard_close.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				KeyboardUtils.this.setVisible(false);
+			}
+		});
+		this.getContentPane().add(btn_keyboard_close);
 
 		t1 = new JLabel("1");
 		t1.setHorizontalAlignment(JLabel.CENTER);

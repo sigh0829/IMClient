@@ -29,18 +29,18 @@ public class NewButton extends JButton{
 	@Override
 	public Icon getIcon() {
 		//普通按钮样式
-		return new ImageIcon("images/frame/login/button_normal.png");
+		return new ImageIcon("images/frame/login/button/button_normal.png");
 	}
 
 	@Override
 	public Icon getPressedIcon() {
 		//按钮被点击时样式
-		return new ImageIcon("images/frame/login/button_press.png");
+		return new ImageIcon("images/frame/login/button/button_press.png");
 	}
 
 	@Override
 	public Icon getRolloverIcon() {
 		//按钮高亮样式
-		return new ImageIcon("images/frame/login/button_hover.png");
+		return new ImageIcon("images/frame/login/button/button_hover.png");
 	}
 }
