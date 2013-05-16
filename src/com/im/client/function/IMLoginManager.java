@@ -12,7 +12,7 @@ import com.im.common.dto.User;
 * JDK version used:			JDK 1.7                              
 * NameSpace:				com.im.client.function                   
 * Author：					Ellery                 
-* Create Date：				2011-05-03 10:55
+* Create Date：				2013-05-03 10:55
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

@@ -13,7 +13,7 @@ import javax.swing.plaf.basic.BasicTreeUI;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                         
 * Author：				Ellery                 
-* Create Date：			2011-04-15 15:12 
+* Create Date：			2013-04-15 15:12 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

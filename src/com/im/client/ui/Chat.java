@@ -44,7 +44,7 @@ import com.sun.awt.AWTUtilities;
 * JDK version used:			JDK 1.7                              
 * NameSpace:				com.im.client.ui                         
 * Author：					Ellery                 
-* Create Date：				2011-04-18 23:09
+* Create Date：				2013-04-18 23:09
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

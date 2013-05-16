@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.dto                         
 * Author：				Ellery                 
-* Create Date：			2011-04-03 23:29 
+* Create Date：			2013-04-03 23:29 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

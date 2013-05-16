@@ -21,7 +21,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
 import com.im.client.component.NewButton;
@@ -45,7 +47,7 @@ import com.sun.awt.AWTUtilities;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.ui                         
 * Author：				Ellery                 
-* Create Date：			2011-03-16 14:23 
+* Create Date：			2013-03-16 14:23 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    
@@ -108,7 +110,7 @@ public class MiniLogin extends JFrame{
 	//注册新用户按钮点击
 	private ImageIcon btn_forgetPwd_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/fontbutton/btn_forgetPwd_press.png");
 	//系统托盘图标
-	private ImageIcon sys_tray_logoIcon = ImageManageUtils.getImageIcon("images/common/sysTrayIcon.png");
+	private ImageIcon sys_tray_logoIcon = ImageManageUtils.getImageIcon("images/common/systemtray/sysTrayIcon.png");
 	//系统任务栏图标
 	private ImageIcon taskbar_logoIcon = ImageManageUtils.getImageIcon("images/common/taskBarIcon.png");
 	//登录取消按钮
@@ -147,6 +149,24 @@ public class MiniLogin extends JFrame{
 	private ImageIcon error_message_close_hoverIcon = ImageManageUtils.getImageIcon("images/frame/login/warning/btn_warning_close_hover.png");
 	//警告消息提示关闭按钮点击
 	private ImageIcon error_message_close_pressIcon = ImageManageUtils.getImageIcon("images/frame/login/warning/btn_warning_close_press.png");
+	//用户状态边框高亮
+	private ImageIcon user_border_status_highlightIcon = ImageManageUtils.getImageIcon("images/frame/main/status/allbtn_highlight.png");
+	//用户状态边框点击
+	private ImageIcon user_border_status_pressIcon = ImageManageUtils.getImageIcon("images/frame/main/status/allbtn_down.png");
+	//用户状态-隐身
+	private ImageIcon user_invisible_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/invisible.png");
+	//用户状态-离开
+	private ImageIcon user_away_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/away.png");
+	//用户状态-忙碌
+	private ImageIcon user_busy_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/busy.png");
+	//用户状态-隐身
+	private ImageIcon user_mute_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/mute.png");
+	//用户状态-Q我吧
+	private ImageIcon user_qme_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/qme.png");
+	//用户状态-在线
+	private ImageIcon user_imonline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/imonline.png");
+	//用户状态-离线
+	private ImageIcon user_imoffline_statusIcon = ImageManageUtils.getImageIcon("images/frame/main/status/imoffline.png");
 
 	//获取屏幕高度宽度
 	private ScreenSizeUtils screenSizeUtils = null;
@@ -213,6 +233,26 @@ public class MiniLogin extends JFrame{
 	private JLabel errorMessage = null;
 	//警告消息面板关闭按钮
 	private JButton btn_errorMessage_close = null; 
+	//设置用户状态边框高亮
+	private JLabel user_stauts_hightlight_border = null;
+	//设置用户状态按钮
+	private JButton btn_user_status = null;
+	//设置用户状态
+    private JPopupMenu statusPopupMenu = null;
+	//状态菜单-我在线上
+	private JMenuItem imonlineItem = null;
+	//状态菜单-Q我吧
+	private JMenuItem qMeItem = null;
+	//状态菜单-离开
+	private JMenuItem awayItem = null;
+	//状态菜单-忙碌
+	private JMenuItem busyItem = null;
+	//状态菜单-请勿打扰
+	private JMenuItem muteItem = null;
+	//状态菜单-隐身
+	private JMenuItem invisibleItem = null;
+	//状态菜单-离线
+	private JMenuItem imofflineItem = null;
 	
 	//颜色灰
 	private Color BLACK = new Color(32, 32, 32);
@@ -460,6 +500,133 @@ public class MiniLogin extends JFrame{
 				
 			}
 		});
+		
+		//设置用户状态菜单
+		statusPopupMenu = new JPopupMenu("JPopupMenu"); 
+	    String[] items = {"我在线上", "Q我吧", "离开", "忙碌", "请勿打扰", "隐身", 
+	    		"离线", "添加状态信息", "关闭所有声音", "锁定QQ", "系统设置...", "我的资料...", "我的QQ中心"};  
+	    
+	    //下拉菜单-我在线上
+        imonlineItem = new JMenuItem(items[0], user_imonline_statusIcon);  
+        imonlineItem.setFont(FONT_12_NOBOLD);
+        imonlineItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(user_imonline_statusIcon);
+            }  
+        }); 
+        
+        //下拉菜单-Q我吧
+        qMeItem = new JMenuItem(items[1], user_qme_statusIcon);  
+        qMeItem.setFont(FONT_12_NOBOLD);
+        qMeItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(user_qme_statusIcon);
+            }  
+        });  
+
+        //下拉菜单-离开
+        awayItem = new JMenuItem(items[2], user_away_statusIcon);  
+        awayItem.setFont(FONT_12_NOBOLD);
+        awayItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(user_away_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-忙碌
+        busyItem = new JMenuItem(items[3], user_busy_statusIcon);  
+        busyItem.setFont(FONT_12_NOBOLD);
+        busyItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(user_busy_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-请勿打扰
+        muteItem = new JMenuItem(items[4], user_mute_statusIcon);  
+        muteItem.setFont(FONT_12_NOBOLD);
+        muteItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(user_mute_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-隐身
+        invisibleItem = new JMenuItem(items[5], user_invisible_statusIcon);  
+        invisibleItem.setFont(FONT_12_NOBOLD);
+        invisibleItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(user_invisible_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单-离线
+        imofflineItem = new JMenuItem(items[6], user_imoffline_statusIcon);  
+        imofflineItem.setFont(FONT_12_NOBOLD);
+        imofflineItem.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                btn_user_status.setIcon(user_imoffline_statusIcon);
+            }  
+        }); 
+
+        //下拉菜单添加条目
+        statusPopupMenu.add(imonlineItem);  
+        statusPopupMenu.add(qMeItem);  
+        statusPopupMenu.add(awayItem);  
+        statusPopupMenu.add(busyItem);  
+        statusPopupMenu.add(muteItem);  
+        statusPopupMenu.add(invisibleItem);  
+        statusPopupMenu.add(imofflineItem);  
+		
+		//设置用户状态边框
+		user_stauts_hightlight_border = new JLabel(user_border_status_highlightIcon);
+		user_stauts_hightlight_border.setBorder(null);
+		user_stauts_hightlight_border.setBounds(110, 200, 22, 22);
+		user_stauts_hightlight_border.setVisible(false);
+        
+        //设置用户状态
+		btn_user_status = new JButton();
+		btn_user_status.setBounds(115, 205, 12, 11);
+		btn_user_status.setIcon(user_imonline_statusIcon);
+		btn_user_status.setBorderPainted(false);
+		btn_user_status.setContentAreaFilled(false);
+		btn_user_status.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                if(statusPopupMenu.getSubElements().length != 0) {  
+                	//在组件调用者的坐标空间中的位置 X、Y 显示弹出菜单
+                	statusPopupMenu.show(MiniLogin.this, 110, 222);  
+                    //请求此 Component 获取输入焦点
+                	statusPopupMenu.requestFocus();  
+                }  
+            }  
+        });  
+		btn_user_status.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				user_stauts_hightlight_border.setIcon(user_border_status_pressIcon);
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				user_stauts_hightlight_border.setIcon(user_border_status_highlightIcon);
+				user_stauts_hightlight_border.setVisible(false);
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				user_stauts_hightlight_border.setVisible(true);
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 
 		//设置注册新用户按钮
 		btn_register = new JButton();
@@ -481,14 +648,14 @@ public class MiniLogin extends JFrame{
 		
 		//记住密码复选框
 		remember_password = new NewCheckbox("记住密码");
-		remember_password.setBounds(105, 203, 80, 15);
+		remember_password.setBounds(135, 203, 80, 15);
 		remember_password.setFont(FONT_12_BOLD);
 		remember_password.setForeground(BLACK);
 		remember_password.setOpaque(false);
 		
 		//自动登录复选框
 		automatic_login = new NewCheckbox("自动登录");
-		automatic_login.setBounds(180, 203, 80, 15);
+		automatic_login.setBounds(210, 203, 80, 15);
 		automatic_login.setFont(FONT_12_BOLD);
 		automatic_login.setForeground(BLACK);
 		automatic_login.setOpaque(false);
@@ -567,12 +734,12 @@ public class MiniLogin extends JFrame{
 				btn_register.setVisible(false);
 				remember_password.setVisible(false);
 				automatic_login.setVisible(false);
+				btn_user_status.setVisible(false);
 				
 				//登录验证
 				User user = new User();
 				user.setIm(user_field.getText());
 				user.setPassword(new String(password_field.getPassword()));
-				System.out.println(user.getIm()+user.getPassword());
 				
 				IMLoginManager loginManager = new IMLoginManager();
 				MessageType loginMessageType = loginManager.userAuthentication(user);
@@ -581,8 +748,8 @@ public class MiniLogin extends JFrame{
 					MiniLogin.this.dispose();
 					new Main().setVisible(true);
 				} else if(loginMessageType.getMessageTypeName().equals("authenticationfailure")){
+					//登录失败，显示警告消息
 					System.out.println("登录失败");
-					//显示警告消息
 					errorMessage.setText("您输入的帐号或密码不正确, 请确认登录。");
 					errorMessagePanel.setVisible(true);
 					
@@ -666,6 +833,7 @@ public class MiniLogin extends JFrame{
 				btn_register.setVisible(true);
 				remember_password.setVisible(true);
 				automatic_login.setVisible(true);
+				btn_user_status.setVisible(true);
 			}
 		});
 		
@@ -777,6 +945,8 @@ public class MiniLogin extends JFrame{
 		this.add(btn_quick_login);
 		this.add(loginingIcon);
 		this.add(loginingAccount);
+		this.add(user_stauts_hightlight_border);
+		this.add(btn_user_status);
 		login_bg.add(login_bg_texture);
 		
 		//添加界面拖拽移动监听器

@@ -11,7 +11,7 @@ import java.util.Date;
 * JDK version used:			JDK 1.7                              
 * NameSpace:				com.im.client.dto                         
 * Author：					Ellery                 
-* Create Date：				2011-05-03 10:45
+* Create Date：				2013-05-03 10:45
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

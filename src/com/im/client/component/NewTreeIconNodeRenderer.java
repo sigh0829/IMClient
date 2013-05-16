@@ -19,7 +19,7 @@ import com.im.common.dto.IconTreeNode;
  * JDK version used: 			JDK 1.7 
  * NameSpace:					com.im.client.component 
  * Author： 						Ellery 
- * Create Date： 				2011-04-15 15:22 
+ * Create Date： 				2013-04-15 15:22 
  * Modified By： 
  * Modified Date: 
  * Why&What is modified: 

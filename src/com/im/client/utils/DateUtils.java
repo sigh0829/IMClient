@@ -10,7 +10,7 @@ import java.util.Calendar;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.utils                         
 * Author：				Ellery                 
-* Create Date：			2011-04-29 21:37 
+* Create Date：			2013-04-29 21:37 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

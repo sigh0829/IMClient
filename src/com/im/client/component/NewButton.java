@@ -12,7 +12,7 @@ import javax.swing.JButton;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                         
 * Author：				Ellery                 
-* Create Date：			2011-03-19 15:22 
+* Create Date：			2013-03-19 15:22 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

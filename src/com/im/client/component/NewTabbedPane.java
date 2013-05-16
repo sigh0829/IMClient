@@ -31,7 +31,7 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                         
 * Author：				Ellery                 
-* Create Date：			2011-04-10 21:50 
+* Create Date：			2013-04-10 21:50 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

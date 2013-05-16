@@ -23,7 +23,7 @@ import com.im.client.utils.ImageManageUtils;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                        
 * Author：				Ellery                 
-* Create Date：			2011-03-17 22：29 
+* Create Date：			2013-03-17 22：29 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    

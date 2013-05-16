@@ -10,7 +10,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 * JDK version used:		JDK 1.7                              
 * NameSpace:			com.im.client.component                         
 * Author：				Ellery                 
-* Create Date：			2011-04-15 15:16 
+* Create Date：			2013-04-15 15:16 
 * Modified By：			                                        
 * Modified Date:		                                    
 * Why&What is modified:    
