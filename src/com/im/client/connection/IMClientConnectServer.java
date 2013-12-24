@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import com.im.common.dto.MessageType;
 import com.im.common.dto.User;
 
 /** 
@@ -26,24 +25,23 @@ import com.im.common.dto.User;
 
 public class IMClientConnectServer {
 
-	public MessageType authenticationLoginInfoFromServer(Object object){
+	public Object[] authenticationLoginInfoFromServer(Object object){
 		
 		Socket socket = null;
-		MessageType messageType = null;
+		Object[] o = null;
 		
 		try {
-			messageType = new MessageType();
 			socket = new Socket("127.0.0.1", 8989);
 			
 			//向服务器传送用户信息
 			User user = (User)object;
-			System.out.println("---"+user.getIm()+user.getPassword());
+			System.out.println("---"+user.getImcode()+user.getPassword());
 			ObjectOutputStream userInfoOOS = new ObjectOutputStream(socket.getOutputStream());
 			userInfoOOS.writeObject(object);
 			
 			//读取服务器返回数据信息
 			ObjectInputStream userInfoOIS = new ObjectInputStream(socket.getInputStream());
-			messageType = (MessageType)userInfoOIS.readObject();
+			o = (Object[]) userInfoOIS.readObject();
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -59,7 +57,7 @@ public class IMClientConnectServer {
 			}
 		}
 		
-		return messageType;
+		return o;
 		
 	}
 }

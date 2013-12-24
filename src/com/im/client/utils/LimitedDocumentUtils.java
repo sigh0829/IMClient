@@ -31,7 +31,6 @@ public class LimitedDocumentUtils extends PlainDocument {
 	}
 
 	public LimitedDocumentUtils(int maxLength) {
-		super();
 		this._maxLength = maxLength;
 	}
 

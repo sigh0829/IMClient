@@ -1,7 +1,7 @@
 package com.im.common.dto;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /** 
 * CopyRright (c)2013:		InstantMessage                          
@@ -9,7 +9,7 @@ import java.util.Date;
 * Module ID:				3    
 * Comments:  				用户类                        
 * JDK version used:			JDK 1.7                              
-* NameSpace:				com.im.client.dto                         
+* NameSpace:				com.im.common.dto                         
 * Author：					Ellery                 
 * Create Date：				2013-05-03 10:45
 * Modified By：			                                        
@@ -23,11 +23,22 @@ public class User implements Serializable{
 
 	private long id = 0L;
 	
-	private String im = "";
+	private String imcode = "";
 	
 	private String password = "";
 	
-	private Date registrationDate = null;
+	private Timestamp registration_date = null;
+	
+	private String username = "";
+	
+	private String avatar = "";
+	
+	@Override
+	public String toString() {
+		return "用户信息：id = " + id + ",imcode = " + imcode 
+				+ ",registration_date = " + registration_date 
+				+ ",username = " + username + ",avatar = " + avatar;
+	}
 
 	public long getId() {
 		return id;
@@ -37,12 +48,12 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getIm() {
-		return im;
+	public String getImcode() {
+		return imcode;
 	}
 
-	public void setIm(String im) {
-		this.im = im;
+	public void setImcode(String imcode) {
+		this.imcode = imcode;
 	}
 
 	public String getPassword() {
@@ -53,12 +64,28 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public Date getRegistrationDate() {
-		return registrationDate;
+	public Timestamp getRegistration_date() {
+		return registration_date;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
+	public void setRegistration_date(Timestamp registration_date) {
+		this.registration_date = registration_date;
 	}
-	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 }

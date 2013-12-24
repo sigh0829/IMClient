@@ -260,6 +260,9 @@ public class MiniLogin extends JFrame{
 	private Font FONT_12_BOLD = new Font("微软雅黑", 0, 12);
 	private Font FONT_12_NOBOLD = new Font("微软雅黑", 0, 12);
 	
+	//当前用户
+	User user = null;
+	
 	public MiniLogin(){
 		//获取屏幕高度宽度
 		screenSizeUtils = new ScreenSizeUtils();
@@ -471,6 +474,7 @@ public class MiniLogin extends JFrame{
 		password_field = new NewPasswordField(pwd_keyboard_Icon);
 		password_field.setBorder(null);
 		password_field.setBounds(111, 172, 190, 24);
+		password_field.setText("aaaaa");
 		password_field.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -712,9 +716,10 @@ public class MiniLogin extends JFrame{
 		//设置文字在按钮水平垂直上的位置
 		btn_login.setHorizontalTextPosition(SwingConstants.CENTER);
 		btn_login.setVerticalTextPosition(SwingConstants.CENTER);
-		btn_login.addMouseListener(new MouseAdapter() {
+		btn_login.addMouseListener(new MouseListener() {
+			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
 				btn_login.setVisible(false);
 				btn_login_cancel.setVisible(true);
 				login_loading.setVisible(true);
@@ -736,18 +741,34 @@ public class MiniLogin extends JFrame{
 				automatic_login.setVisible(false);
 				btn_user_status.setVisible(false);
 				
-				//登录验证
-				User user = new User();
-				user.setIm(user_field.getText());
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+				user = new User();
+				user.setImcode(user_field.getText());
 				user.setPassword(new String(password_field.getPassword()));
 				
 				IMLoginManager loginManager = new IMLoginManager();
-				MessageType loginMessageType = loginManager.userAuthentication(user);
+				Object[] o = loginManager.userAuthentication(user);
 				
-				if(loginMessageType.getMessageTypeName().equals("authenticationsuccess")){
+				if(((MessageType) o[0]).getMessageTypeName().equals("authenticationsuccess")){
 					MiniLogin.this.dispose();
-					new Main().setVisible(true);
-				} else if(loginMessageType.getMessageTypeName().equals("authenticationfailure")){
+					new Main(o).setVisible(true);
+				} else if(((MessageType) o[0]).getMessageTypeName().equals("authenticationfailure")){
 					//登录失败，显示警告消息
 					System.out.println("登录失败");
 					errorMessage.setText("您输入的帐号或密码不正确, 请确认登录。");
@@ -773,6 +794,9 @@ public class MiniLogin extends JFrame{
 					remember_password.setVisible(true);
 					automatic_login.setVisible(true);
 				}
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
 			}
 		});
 		
@@ -915,7 +939,7 @@ public class MiniLogin extends JFrame{
 		loginingIcon.setVisible(false);
 		
 		//正在登录号码
-		loginingAccount = new JLabel("正在登录(" + "921728078" + ")...");
+		loginingAccount = new JLabel("   正在登录...");
 		loginingAccount.setBounds(120, 142, 200, 30);
 		loginingAccount.setFont(FONT_12_NOBOLD);
 		loginingAccount.setForeground(Color.WHITE);

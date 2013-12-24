@@ -39,7 +39,7 @@ public class ScreenSizeUtils {
 	
 	//返回屏幕的宽度
 	public int getScreenWidth(){
-		screenWidth = tool.getScreenSize().width;
+		screenWidth = this.tool.getScreenSize().width;
 		return screenWidth;
 	}
 	

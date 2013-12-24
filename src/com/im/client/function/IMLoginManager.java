@@ -1,7 +1,6 @@
 package com.im.client.function;
 
 import com.im.client.connection.IMClientConnectServer;
-import com.im.common.dto.MessageType;
 import com.im.common.dto.User;
 
 /** 
@@ -21,7 +20,7 @@ import com.im.common.dto.User;
 
 public class IMLoginManager {
 
-	public MessageType userAuthentication(User user){
+	public Object[] userAuthentication(User user){
 		return new IMClientConnectServer().authenticationLoginInfoFromServer(user);
 	}
 }

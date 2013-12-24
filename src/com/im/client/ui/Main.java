@@ -21,6 +21,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -46,7 +48,9 @@ import com.im.client.component.NewTreeUI;
 import com.im.client.utils.ImageManageUtils;
 import com.im.client.utils.ScreenSizeUtils;
 import com.im.client.utils.WeatherUtils;
+import com.im.common.dto.GroupsAndFriends;
 import com.im.common.dto.IconTreeNode;
+import com.im.common.dto.User;
 import com.sun.awt.AWTUtilities;
 
 /** 
@@ -121,7 +125,7 @@ public class Main extends JFrame{
 	//头像边框
 	private ImageIcon user_image_border_normalIcon = ImageManageUtils.getImageIcon("images/frame/main/user_imgbg_normal.png");
 	//用户头像
-	private ImageIcon user_imageIcon = ImageManageUtils.getImageIcon("images/usericon/user_image/user_image.png");
+	private ImageIcon user_imageIcon = null;
 	//用户状态边框高亮
 	private ImageIcon user_border_status_highlightIcon = ImageManageUtils.getImageIcon("images/frame/main/status/allbtn_highlight.png");
 	//用户状态边框点击
@@ -391,10 +395,6 @@ public class Main extends JFrame{
 	private IconTreeNode root = null; 
 	//定义好友列表二级节点
 	private IconTreeNode root1 = null;
-	private IconTreeNode root2 = null;
-	private IconTreeNode root3 = null;
-	private IconTreeNode root4 = null;
-	private IconTreeNode root5 = null;
 	//定义好友列表节点渲染器
 	private NewTreeIconNodeRenderer renderer = null;
 	//定义树
@@ -498,7 +498,13 @@ public class Main extends JFrame{
 	private Font FONT_14_NOBOLD = new Font("微软雅黑", 0, 14);
 	private Font FONT_13_NOBOLD = new Font("微软雅黑", 0, 13);
 	
-	public Main(){
+	//当前用户对象
+	User user = null;
+	//好友分组及好友列表
+	List<GroupsAndFriends> groupsAndFriendsList = null;
+	
+	@SuppressWarnings("unchecked")
+	public Main(Object[] o){
 		//获取屏幕高度宽度
 		screenSizeUtils = new ScreenSizeUtils();
 		screenWidth = screenSizeUtils.getScreenWidth();
@@ -506,6 +512,11 @@ public class Main extends JFrame{
 		
 		//设置天气
 		currentWeatherStatus = "sunny";
+		
+		//获取当前用户对象
+		this.user = (User) o[1];
+		//获取好友列表
+		groupsAndFriendsList = (List<GroupsAndFriends>) o[2];
 		
 		//初始化界面
 		initUI();
@@ -630,6 +641,7 @@ public class Main extends JFrame{
 		user_img_hightlight_border.setVisible(false);
 		
 		//设置头像
+		user_imageIcon = ImageManageUtils.getImageIcon(user.getAvatar());
 		user_image = new JLabel(user_imageIcon);
 		user_image.setBounds(13,34,53,53);
 		user_image.addMouseListener(new MouseAdapter() {
@@ -848,7 +860,7 @@ public class Main extends JFrame{
 		});
 
 		//设置昵称
-		nickName = new JLabel("飞翔de企鹅");
+		nickName = new JLabel(user.getUsername());
 		nickName.setFont(FONT_14_NOBOLD);
 		nickName.setBounds(100, 37, 75, 17);
 
@@ -1196,36 +1208,20 @@ public class Main extends JFrame{
 		//定义根节点
 		root = new IconTreeNode(null, null);
 		
-		//好友列表 定义二级节点
-		root1 = new IconTreeNode(null, "我的好友 [0/3]");
-		root2 = new IconTreeNode(null, "我的家人 [5/8]");
-		root3 = new IconTreeNode(null, "我的朋友 [6/11]");
-		root4 = new IconTreeNode(null, "陌生人 [1/4]");
-		root5 = new IconTreeNode(null, "黑名单 [0/0]");
-
-		//二级节点添加叶子节点
-		root1.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/1.png"), "雅君"));
-		root1.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/2.png"), "伟旭"));
-		root1.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/3.png"), "宜群"));
-
-		root2.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
-		root2.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
-
-		root3.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
-		root3.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
-
-		root4.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
-		root4.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
-
-		root5.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/4.png"), "彬强"));
-		root5.add(new IconTreeNode(new ImageIcon("images/usericon/system_image/5.png"), "小强"));
-
-		//根节点添加二级节点
-		root.add(root1);
-		root.add(root2);
-		root.add(root3);
-		root.add(root4);
-		root.add(root5);
+		Iterator<GroupsAndFriends> it = groupsAndFriendsList.iterator();
+		while(it.hasNext()){
+			GroupsAndFriends groupsAndFriends = it.next();
+			//好友列表 定义二级节点
+			root1 = new IconTreeNode(null, groupsAndFriends.getGroup_name());
+			
+			List<User> userList = groupsAndFriends.getFriends();
+			Iterator<User> userIt = userList.iterator();
+			while(userIt.hasNext()){
+				User u = userIt.next();
+				root1.add(new IconTreeNode(new ImageIcon(u.getAvatar()), u.getUsername()));
+			}
+			root.add(root1);
+		}
 		
 		//节点渲染器
 		renderer = new NewTreeIconNodeRenderer();
@@ -2180,8 +2176,11 @@ public class Main extends JFrame{
         }
 	};
 	
-	public static void main(String[] args) {
-		new Main().setVisible(true);
-	}
+	/*public static void main(String[] args) {
+		User user = new User();
+		user.setIm("10000");
+		user.setPassword("aaaaa");
+		new Main(user).setVisible(true);
+	}*/
 
 }
